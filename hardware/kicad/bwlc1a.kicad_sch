@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "Teapotlabs BWLC1A")
-		(date "2024-05-22")
-		(rev "2")
+		(date "2026-11-16")
+		(rev "4")
 		(company "Teapot Laboratories")
 	)
 	(lib_symbols)
@@ -495,16 +495,6 @@
 	)
 	(wire
 		(pts
-			(xy 167.005 84.455) (xy 167.005 65.405)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a3475edb-98bb-40a8-8caf-47659730e648")
-	)
-	(wire
-		(pts
 			(xy 68.58 97.79) (xy 77.47 97.79)
 		)
 		(stroke
@@ -532,16 +522,6 @@
 			(type default)
 		)
 		(uuid "a902f554-b17a-44a3-a84e-3aef1aed0ff0")
-	)
-	(wire
-		(pts
-			(xy 167.005 65.405) (xy 188.595 65.405)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a9161792-a1f7-49db-b207-cda26850ed9e")
 	)
 	(wire
 		(pts
@@ -632,16 +612,6 @@
 			(type default)
 		)
 		(uuid "d5028e97-6cb1-4ef5-8d4b-c1d146875183")
-	)
-	(wire
-		(pts
-			(xy 153.67 84.455) (xy 167.005 84.455)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d5fb5761-7f08-427e-ae77-e5141e5670d4")
 	)
 	(wire
 		(pts
@@ -923,16 +893,6 @@
 		(pin "CELL_PWRKEY" output
 			(at 153.67 86.995 0)
 			(uuid "28d64bb6-e0f7-4c1e-b83a-144198934f7b")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "CELL_RESET" output
-			(at 153.67 84.455 0)
-			(uuid "df34b6eb-2729-4838-8e28-150151952478")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1597,16 +1557,6 @@
 				(justify left)
 			)
 		)
-		(pin "CELL_RESET" input
-			(at 188.595 65.405 180)
-			(uuid "49512d03-9141-42ff-aff9-f742d9c0bc16")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
 		(pin "CELL_RXD" input
 			(at 188.595 73.025 180)
 			(uuid "05661113-6f58-4206-8411-78071b7afe02")
@@ -1652,6 +1602,16 @@
 				(path "/388039b1-99cc-430f-bd4a-010573fde798"
 					(page "2")
 				)
+			)
+		)
+		(pin "+3V3" input
+			(at 188.595 60.96 180)
+			(uuid "44be934b-175e-404c-895d-d92d7d36f34f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 	)
@@ -1815,6 +1775,26 @@
 				)
 			)
 		)
+	)
+	(wire
+		(pts
+			(xy 180.34 60.96) (xy 188.595 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b1095b04-0284-4860-86ce-3b430f31b57e")
+	)
+	(label "+3V3"
+		(at 180.34 60.96 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f899adbb-8eb7-41bc-85f1-49834693e420")
 	)
 	(sheet_instances
 		(path "/"

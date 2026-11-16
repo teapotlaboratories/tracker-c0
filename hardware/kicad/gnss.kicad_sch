@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "GNSS")
-		(date "2024-05-22")
-		(rev "2")
+		(date "2026-11-16")
+		(rev "4")
 		(company "Teapot Laboratories")
 	)
 	(lib_symbols
@@ -4107,7 +4107,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "  L96-M33"
+		(property "Manufacturer Part Number" "L96-M33"
 			(at 123.19 88.9 0)
 			(hide yes)
 			(show_name no)

@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "Power")
-		(date "2024-05-22")
-		(rev "2")
+		(date "2026-11-16")
+		(rev "4")
 		(company "Teapot Laboratories")
 	)
 	(lib_symbols
@@ -4708,7 +4708,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "LVS303015-2R2M-N "
+		(property "Manufacturer Part Number" "LVS303015-2R2M-N"
 			(at 196.85 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -6156,7 +6156,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "DMG1012UW-7 "
+		(property "Manufacturer Part Number" "DMG1012UW-7"
 			(at 118.11 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -8316,7 +8316,7 @@
 				)
 			)
 		)
-		(property "Value" "20k"
+		(property "Value" "22k"
 			(at 198.882 67.056 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8337,7 +8337,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010230_UNI-ROYAL-Uniroyal-Elec-0603WAF2002T5E_C4184.pdf"
+		(property "Datasheet" "https://jlcpcb.com/partdetail/C31850"
 			(at 203.2 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -8348,7 +8348,7 @@
 				)
 			)
 		)
-		(property "Description" "100mW Thick Film Resistors 75V ±100ppm/℃ ±1% 20kΩ 0603 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "100mW Thick Film Resistors 75V ±100ppm/℃ ±1% 22kΩ 0603 Chip Resistor - Surface Mount ROHS"
 			(at 203.2 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -8370,7 +8370,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0603WAF2002T5E"
+		(property "Manufacturer Part Number" "0603WAF2202T5E"
 			(at 203.2 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -8392,7 +8392,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C4184"
+		(property "Distributor Part Number" "C31850"
 			(at 203.2 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -8403,7 +8403,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0603WAF2002T5E_C4184.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0603WAF2202T5E_C31850.html"
 			(at 203.2 66.04 0)
 			(hide yes)
 			(show_name no)

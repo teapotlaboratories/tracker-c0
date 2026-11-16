@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "USB and Charger")
-		(date "2024-05-22")
-		(rev "2")
+		(date "2026-11-16")
+		(rev "4")
 		(company "Teapot Laboratories")
 	)
 	(lib_symbols
@@ -4775,7 +4775,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "ESD5651N"
+		(property "Value" "ESDBW5V0A1"
 			(at 114.935 73.025 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4797,7 +4797,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2301051530_TECH-PUBLIC-ESD5651N_C5342369.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2209151800_Leiditech-ESDBW5V0A1_C5173252.pdf"
 			(at 111.76 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -4808,7 +4808,7 @@
 				)
 			)
 		)
-		(property "Description" "DFN1006-2L ESD and Surge Protection (TVS/ESD) ROHS"
+		(property "Description" "DFN1006 ESD Protection Devices ROHS"
 			(at 111.76 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -4819,7 +4819,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "TECH PUBLIC"
+		(property "Manufacturer" "Leiditech"
 			(at 111.76 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -4830,7 +4830,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "ESD5651N"
+		(property "Manufacturer Part Number" "ESDBW5V0A1"
 			(at 111.76 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -4852,7 +4852,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C5342369"
+		(property "Distributor Part Number" "C5173252"
 			(at 111.76 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -4863,7 +4863,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/span-style-background-color-ff0-ESD-span-and-Surge-Protection-TVS-span-style-background-color-ff0-ESD-span_TECH-PUBLIC-ESD5651N_C5342369.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/span-style-background-color-ff0-ESD-span-Protection-Devices_Leiditech-ESDBW5V0A1_C5173252.html"
 			(at 111.76 73.66 0)
 			(hide yes)
 			(show_name no)

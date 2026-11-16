@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "Main Controller")
-		(date "2024-05-22")
-		(rev "2")
+		(date "2026-11-16")
+		(rev "4")
 		(company "Teapot Laboratories")
 	)
 	(lib_symbols
@@ -4036,16 +4036,6 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 92.71) (xy 168.91 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "12083d6f-0a51-4ad2-90a9-d8340cedd6cf")
-	)
-	(wire
-		(pts
 			(xy 245.11 41.91) (xy 245.11 45.085)
 		)
 		(stroke
@@ -5624,17 +5614,6 @@
 		)
 		(uuid "ca718582-0a54-4122-afba-778a20f961b2")
 	)
-	(hierarchical_label "CELL_RESET"
-		(shape output)
-		(at 168.91 92.71 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "cbdb283e-a2ad-4a8f-ae8b-fe7d8810f878")
-	)
 	(hierarchical_label "GNSS_RXD"
 		(shape input)
 		(at 168.91 80.01 0)
@@ -6182,7 +6161,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "1u"
 			(at 242.57 52.705 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6204,7 +6183,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL05A105KP5NNNC_C14445.pdf"
 			(at 236.855 50.165 0)
 			(hide yes)
 			(show_name no)
@@ -6215,7 +6194,7 @@
 				)
 			)
 		)
-		(property "Description" "16V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS"
+		(property "Description" "10V 1uF X5R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS"
 			(at 236.855 50.165 0)
 			(hide yes)
 			(show_name no)
@@ -6237,7 +6216,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "CL05B104KO5NNNC"
+		(property "Manufacturer Part Number" "CL05A105KP5NNNC"
 			(at 236.855 50.165 0)
 			(hide yes)
 			(show_name no)
@@ -6259,7 +6238,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C1525"
+		(property "Distributor Part Number" "C14445"
 			(at 236.855 50.165 0)
 			(hide yes)
 			(show_name no)
@@ -6270,7 +6249,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL05A105KP5NNNC_C14445.html"
 			(at 236.855 50.165 0)
 			(hide yes)
 			(show_name no)
@@ -16002,5 +15981,9 @@
 				)
 			)
 		)
+	)
+	(no_connect
+		(at 160.01999999999998 92.71)
+		(uuid "7247a550-7c6b-4f40-bc95-a29113792c84")
 	)
 )

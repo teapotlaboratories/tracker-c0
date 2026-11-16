@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "Sensors")
-		(date "2024-05-22")
-		(rev "2")
+		(date "2026-11-16")
+		(rev "4")
 		(company "Teapot Laboratories")
 	)
 	(lib_symbols
@@ -5129,5 +5129,233 @@
 				)
 			)
 		)
+	)
+	(hierarchical_label "+3V3"
+		(shape input)
+		(at 229.87 63.5 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f443e3d2-84e0-4540-815b-989e1e8194a3")
+	)
+	(hierarchical_label "+BATT"
+		(shape input)
+		(at 247.65 63.5 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "17e4b1a0-b7c7-4aca-ba5d-8d780869b7fc")
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 237.49 60.96 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c06c266b-c549-4ce2-963c-1d7d905a73eb")
+		(property "Reference" "#PWR0156"
+			(at 237.49 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 237.49 57.15 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 237.49 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 237.49 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 237.49 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f7e16ea4-0ed7-465b-befc-80e28366b381")
+		)
+		(instances
+			(project "bwlc1a"
+				(path "/388039b1-99cc-430f-bd4a-010573fde798/f0ceb3a9-6c16-45f6-8aec-9ac0bb10996d"
+					(reference "#PWR0156")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+BATT")
+		(at 255.27 60.96 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "8db8b17b-5f86-42a9-9e46-a84ec250d1d7")
+		(property "Reference" "#PWR0157"
+			(at 255.27 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+BATT"
+			(at 255.27 57.15 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 255.27 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 255.27 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+BATT\""
+			(at 255.27 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f5e305aa-9110-43be-8304-f544b096bd8e")
+		)
+		(instances
+			(project "bwlc1a"
+				(path "/388039b1-99cc-430f-bd4a-010573fde798/f0ceb3a9-6c16-45f6-8aec-9ac0bb10996d"
+					(reference "#PWR0157")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 229.87 63.5) (xy 237.49 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f47af9b2-5b87-4989-8630-bc1bac85a479")
+	)
+	(wire
+		(pts
+			(xy 237.49 63.5) (xy 237.49 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f792bc32-c27f-4f4e-8104-c733008e6dd3")
+	)
+	(wire
+		(pts
+			(xy 247.65 63.5) (xy 255.27 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0185695d-cb50-4414-bd60-c51c31443c6b")
+	)
+	(wire
+		(pts
+			(xy 255.27 63.5) (xy 255.27 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1dd25c20-3db2-4328-9474-2cb39480d169")
+	)
+	(text "Sheets Connection"
+		(exclude_from_sim no)
+		(at 233.68 69.85 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "617aa6c8-518a-4c1f-a73e-0689e9c2885d")
 	)
 )
