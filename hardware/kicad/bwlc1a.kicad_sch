@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20231120)
+	(version 20260306)
 	(generator "eeschema")
-	(generator_version "8.0")
+	(generator_version "10.0")
 	(uuid "388039b1-99cc-430f-bd4a-010573fde798")
 	(paper "A4")
 	(title_block
@@ -785,7 +785,6 @@
 	)
 	(label "GNSS_3V3"
 		(at 139.7 55.88 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -796,7 +795,6 @@
 	)
 	(label "+BATT"
 		(at 180.34 121.92 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -807,7 +805,6 @@
 	)
 	(label "+BATT"
 		(at 74.93 52.07 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -818,7 +815,6 @@
 	)
 	(label "+3V3"
 		(at 138.43 69.85 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -829,7 +825,6 @@
 	)
 	(label "GNSS_VBCKP"
 		(at 139.7 60.96 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -840,7 +835,6 @@
 	)
 	(label "GNSS_3V3"
 		(at 240.03 88.9 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -851,7 +845,6 @@
 	)
 	(label "+3V3"
 		(at 180.34 119.38 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -862,7 +855,6 @@
 	)
 	(label "GNSS_VBCKP"
 		(at 240.03 96.52 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -873,7 +865,6 @@
 	)
 	(label "+BATT"
 		(at 240.03 104.14 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -885,16 +876,22 @@
 	(sheet
 		(at 97.917 77.47)
 		(size 55.753 47.625)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(stroke
 			(width 0.1524)
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "3774d0f3-a7e5-4b39-9680-0f9041fc211b")
 		(property "Sheetname" "Main Controller"
 			(at 97.79 127.635 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -904,6 +901,8 @@
 		)
 		(property "Sheetfile" "main_controller.kicad_sch"
 			(at 123.19 125.73 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -913,213 +912,213 @@
 		)
 		(pin "FG_INT" input
 			(at 153.67 116.84 0)
+			(uuid "ad32c6aa-4b8c-4546-9653-ef902353c1e1")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "ad32c6aa-4b8c-4546-9653-ef902353c1e1")
 		)
 		(pin "CELL_PWRKEY" output
 			(at 153.67 86.995 0)
+			(uuid "28d64bb6-e0f7-4c1e-b83a-144198934f7b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "28d64bb6-e0f7-4c1e-b83a-144198934f7b")
 		)
 		(pin "CELL_RESET" output
 			(at 153.67 84.455 0)
+			(uuid "df34b6eb-2729-4838-8e28-150151952478")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "df34b6eb-2729-4838-8e28-150151952478")
 		)
 		(pin "CELL_STATUS" input
 			(at 153.67 81.915 0)
+			(uuid "b33d678c-bc25-4090-9334-b6b09defb251")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "b33d678c-bc25-4090-9334-b6b09defb251")
 		)
 		(pin "IMU_INT" input
 			(at 153.67 114.3 0)
+			(uuid "fb5eecd1-bb80-4066-ba5f-c54ce7ca17d9")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "fb5eecd1-bb80-4066-ba5f-c54ce7ca17d9")
 		)
 		(pin "GNSS_EN" output
 			(at 97.917 81.28 180)
+			(uuid "ecad8bf5-f338-45f6-8ebb-918531c348ed")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "ecad8bf5-f338-45f6-8ebb-918531c348ed")
 		)
 		(pin "USB_D-" bidirectional
 			(at 97.917 104.775 180)
+			(uuid "a1d54b2c-f503-44df-9b7a-d834cb419697")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "a1d54b2c-f503-44df-9b7a-d834cb419697")
 		)
 		(pin "USB_D+" bidirectional
 			(at 97.917 102.235 180)
+			(uuid "76487539-e990-4335-a1fe-f958578f14fe")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "76487539-e990-4335-a1fe-f958578f14fe")
 		)
 		(pin "CELL_EN" output
 			(at 97.917 86.36 180)
+			(uuid "ae5ff9b9-9229-48a4-bffe-c189a18a9a04")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "ae5ff9b9-9229-48a4-bffe-c189a18a9a04")
 		)
 		(pin "GNSS_VBCKP_EN" output
 			(at 97.917 83.82 180)
+			(uuid "50d84dca-3606-460b-a3f3-3dea86aa0db5")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "50d84dca-3606-460b-a3f3-3dea86aa0db5")
 		)
 		(pin "+3V3" input
 			(at 132.715 77.47 90)
+			(uuid "f2fd767b-5cc0-4165-8bef-cb0d59b14d1e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "f2fd767b-5cc0-4165-8bef-cb0d59b14d1e")
 		)
 		(pin "SDA" bidirectional
 			(at 153.67 119.38 0)
+			(uuid "10fc8725-adcc-40ae-a36d-340902c9129e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "10fc8725-adcc-40ae-a36d-340902c9129e")
 		)
 		(pin "SCL" output
 			(at 153.67 121.92 0)
+			(uuid "a28d9d34-5d2b-40f7-a66d-f8df80ef2e8b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "a28d9d34-5d2b-40f7-a66d-f8df80ef2e8b")
 		)
 		(pin "CELL_TXD" input
 			(at 153.67 89.535 0)
+			(uuid "22c54b54-0517-42af-9a80-9d6506377d17")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "22c54b54-0517-42af-9a80-9d6506377d17")
 		)
 		(pin "CELL_RXD" output
 			(at 153.67 92.075 0)
+			(uuid "00216110-2ffb-464b-8927-f703ce2f8842")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "00216110-2ffb-464b-8927-f703ce2f8842")
 		)
 		(pin "GNSS_RESET" output
 			(at 153.67 96.52 0)
+			(uuid "b1a4192e-e6e7-45cd-8264-4954cfb26182")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "b1a4192e-e6e7-45cd-8264-4954cfb26182")
 		)
 		(pin "GNSS_RXD" input
 			(at 153.67 104.14 0)
+			(uuid "80f55c03-3246-4326-8f67-a7899443bb4b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "80f55c03-3246-4326-8f67-a7899443bb4b")
 		)
 		(pin "GNSS_TXD" output
 			(at 153.67 106.68 0)
+			(uuid "b0efa732-6a86-456a-b68d-66b835ba67c5")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "b0efa732-6a86-456a-b68d-66b835ba67c5")
 		)
 		(pin "GNSS_FO" output
 			(at 153.67 101.6 0)
+			(uuid "d8a4f51e-1e01-47ec-928c-280194658df6")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "d8a4f51e-1e01-47ec-928c-280194658df6")
 		)
 		(pin "GNSS_EXTINT" output
 			(at 153.67 99.06 0)
+			(uuid "3f2bc280-81a2-484d-bda1-c56e7734905f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "3f2bc280-81a2-484d-bda1-c56e7734905f")
 		)
 		(pin "GNSS_STAT" input
 			(at 153.67 109.22 0)
+			(uuid "8470857a-a99e-44d5-83da-91cdbacd3a10")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "8470857a-a99e-44d5-83da-91cdbacd3a10")
 		)
 		(instances
 			(project "bwlc1a"
@@ -1132,17 +1131,23 @@
 	(sheet
 		(at 36.83 91.44)
 		(size 31.75 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "682951ea-0756-4fd0-8a4d-877ac2f402c6")
 		(property "Sheetname" "USB and Charger"
 			(at 36.83 90.7284 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1152,6 +1157,8 @@
 		)
 		(property "Sheetfile" "usb_and_charger.kicad_sch"
 			(at 36.83 108.5346 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1161,43 +1168,43 @@
 		)
 		(pin "VBUS" output
 			(at 68.58 97.79 0)
+			(uuid "5f74f789-1619-4bea-b6af-58313668615d")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "5f74f789-1619-4bea-b6af-58313668615d")
 		)
 		(pin "+BATT" bidirectional
 			(at 68.58 95.25 0)
+			(uuid "c4287a0f-d764-4a79-b692-ef2a323aa15b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "c4287a0f-d764-4a79-b692-ef2a323aa15b")
 		)
 		(pin "USB_D+" bidirectional
 			(at 68.58 102.235 0)
+			(uuid "856044bd-fa6a-4393-a965-281f0ae0d9ea")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "856044bd-fa6a-4393-a965-281f0ae0d9ea")
 		)
 		(pin "USB_D-" bidirectional
 			(at 68.58 104.775 0)
+			(uuid "35689239-07c5-401c-a9da-455459b55e8c")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "35689239-07c5-401c-a9da-455459b55e8c")
 		)
 		(instances
 			(project "bwlc1a"
@@ -1210,16 +1217,22 @@
 	(sheet
 		(at 193.04 81.915)
 		(size 31.75 27.305)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(stroke
 			(width 0.1524)
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "6908783c-0fa0-46ec-befb-a4abfbcaa74b")
 		(property "Sheetname" "GNSS"
 			(at 193.04 81.2034 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1229,6 +1242,8 @@
 		)
 		(property "Sheetfile" "gnss.kicad_sch"
 			(at 204.47 80.01 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1238,93 +1253,93 @@
 		)
 		(pin "GNSS_VBCKP" input
 			(at 224.79 96.52 0)
+			(uuid "fa2e2c50-94b6-4ccb-b233-fc2322c1d288")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "fa2e2c50-94b6-4ccb-b233-fc2322c1d288")
 		)
 		(pin "+BATT" input
 			(at 224.79 104.14 0)
+			(uuid "2f349144-2866-46a2-a18c-e9473bc5bcd6")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "2f349144-2866-46a2-a18c-e9473bc5bcd6")
 		)
 		(pin "GNSS_3V3" input
 			(at 224.79 88.9 0)
+			(uuid "4215fb42-acc8-4385-8d36-926920009150")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "4215fb42-acc8-4385-8d36-926920009150")
 		)
 		(pin "GNSS_EXTINT" input
 			(at 193.04 87.63 180)
+			(uuid "f791692b-f767-45c9-8d86-d288e84a9c64")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "f791692b-f767-45c9-8d86-d288e84a9c64")
 		)
 		(pin "GNSS_FO" input
 			(at 193.04 90.17 180)
+			(uuid "80d14dbe-6fbe-4306-b07b-c6985c01b2a1")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "80d14dbe-6fbe-4306-b07b-c6985c01b2a1")
 		)
 		(pin "GNSS_RESET" input
 			(at 193.04 85.09 180)
+			(uuid "bb1be720-2a23-46cd-88af-66d96f285b93")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "bb1be720-2a23-46cd-88af-66d96f285b93")
 		)
 		(pin "GNSS_STAT" output
 			(at 193.04 100.33 180)
+			(uuid "6617c532-8c71-43a1-aa0c-66a4d27b0184")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "6617c532-8c71-43a1-aa0c-66a4d27b0184")
 		)
 		(pin "GNSS_RXD" input
 			(at 193.04 92.71 180)
+			(uuid "c77139e6-529e-437c-8ae6-5a21046009a9")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "c77139e6-529e-437c-8ae6-5a21046009a9")
 		)
 		(pin "GNSS_TXD" output
 			(at 193.04 95.25 180)
+			(uuid "0cef9e4e-04a6-431a-bb5d-4ade9b64512b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "0cef9e4e-04a6-431a-bb5d-4ade9b64512b")
 		)
 		(instances
 			(project "bwlc1a"
@@ -1337,16 +1352,22 @@
 	(sheet
 		(at 96.52 49.53)
 		(size 29.21 23.495)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(stroke
 			(width 0.1524)
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "c42c1b26-c4d8-47f4-ac0f-5524ee8d9937")
 		(property "Sheetname" "Power"
 			(at 96.52 48.8184 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1356,6 +1377,8 @@
 		)
 		(property "Sheetfile" "power.kicad_sch"
 			(at 106.045 46.99 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1365,93 +1388,93 @@
 		)
 		(pin "VBUS" input
 			(at 96.52 54.61 180)
+			(uuid "221bfc0a-4644-4efa-8529-3bbb9010a7f1")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "221bfc0a-4644-4efa-8529-3bbb9010a7f1")
 		)
 		(pin "+3V3" output
 			(at 125.73 69.85 0)
+			(uuid "b494b4bf-7e1c-4e15-a812-ed5b52cd2e1d")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "b494b4bf-7e1c-4e15-a812-ed5b52cd2e1d")
 		)
 		(pin "+BATT" input
 			(at 96.52 52.07 180)
+			(uuid "4b772455-6163-4d78-a88e-9138e3430834")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "4b772455-6163-4d78-a88e-9138e3430834")
 		)
 		(pin "GNSS_EN" input
 			(at 96.52 69.85 180)
+			(uuid "1e5b80f0-552b-43c5-8384-f0b1b2840f50")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "1e5b80f0-552b-43c5-8384-f0b1b2840f50")
 		)
 		(pin "CELL_EN" input
 			(at 96.52 64.77 180)
+			(uuid "43351dbb-79fe-477d-b0c0-496f4f29998a")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "43351dbb-79fe-477d-b0c0-496f4f29998a")
 		)
 		(pin "GNSS_VBCKP_EN" input
 			(at 96.52 67.31 180)
+			(uuid "4c639b78-e17f-4c11-8f1b-eb9bc2ea3440")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "4c639b78-e17f-4c11-8f1b-eb9bc2ea3440")
 		)
 		(pin "GNSS_VBCKP" output
 			(at 125.73 60.96 0)
+			(uuid "0b86c3e2-eaae-48d8-9064-3da5c7a5e1d9")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "0b86c3e2-eaae-48d8-9064-3da5c7a5e1d9")
 		)
 		(pin "CELL_BATT" output
 			(at 125.73 53.34 0)
+			(uuid "34d6acf1-d44a-465c-9aec-23756b473619")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "34d6acf1-d44a-465c-9aec-23756b473619")
 		)
 		(pin "GNSS_3V3" output
 			(at 125.73 55.88 0)
+			(uuid "3ceb61ca-c8fd-46ab-8539-07d5c5ced1f4")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "3ceb61ca-c8fd-46ab-8539-07d5c5ced1f4")
 		)
 		(instances
 			(project "bwlc1a"
@@ -1464,17 +1487,23 @@
 	(sheet
 		(at 234.315 50.165)
 		(size 22.86 5.715)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "ca79f09e-abdb-462a-9aab-98f2e37e5b23")
 		(property "Sheetname" "Antenna"
 			(at 234.315 49.4534 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1484,6 +1513,8 @@
 		)
 		(property "Sheetfile" "antenna.kicad_sch"
 			(at 234.315 56.4646 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1493,13 +1524,13 @@
 		)
 		(pin "CELL_ANT" input
 			(at 234.315 53.34 180)
+			(uuid "e88e2f30-e983-48af-9ce1-dbe864d921f2")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "e88e2f30-e983-48af-9ce1-dbe864d921f2")
 		)
 		(instances
 			(project "bwlc1a"
@@ -1512,16 +1543,22 @@
 	(sheet
 		(at 188.595 50.165)
 		(size 32.385 26.67)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(stroke
 			(width 0.1524)
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "d0b0fe7e-ffcb-4a20-b7b5-70f0caeaf6a1")
 		(property "Sheetname" "Cellular"
 			(at 188.595 49.4534 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1531,6 +1568,8 @@
 		)
 		(property "Sheetfile" "cellular.kicad_sch"
 			(at 198.755 48.26 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1540,73 +1579,73 @@
 		)
 		(pin "CELL_STATUS" output
 			(at 188.595 62.865 180)
+			(uuid "7238b6f3-9301-4e46-bbc4-3823a11504cf")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "7238b6f3-9301-4e46-bbc4-3823a11504cf")
 		)
 		(pin "CELL_PWRKEY" input
 			(at 188.595 67.945 180)
+			(uuid "b87614d4-77dc-4e24-b2cb-02316e4536ac")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "b87614d4-77dc-4e24-b2cb-02316e4536ac")
 		)
 		(pin "CELL_RESET" input
 			(at 188.595 65.405 180)
+			(uuid "49512d03-9141-42ff-aff9-f742d9c0bc16")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "49512d03-9141-42ff-aff9-f742d9c0bc16")
 		)
 		(pin "CELL_RXD" input
 			(at 188.595 73.025 180)
+			(uuid "05661113-6f58-4206-8411-78071b7afe02")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "05661113-6f58-4206-8411-78071b7afe02")
 		)
 		(pin "CELL_TXD" output
 			(at 188.595 70.485 180)
+			(uuid "61365759-dc71-4bb0-88c9-14114f30620d")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "61365759-dc71-4bb0-88c9-14114f30620d")
 		)
 		(pin "CELL_ANT" output
 			(at 220.98 53.34 0)
+			(uuid "5516cd88-40cd-4e68-9636-4500944c740b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "5516cd88-40cd-4e68-9636-4500944c740b")
 		)
 		(pin "CELL_BATT" input
 			(at 188.595 53.34 180)
+			(uuid "370297fa-2c62-49ed-b463-80dd2e71cb38")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "370297fa-2c62-49ed-b463-80dd2e71cb38")
 		)
 		(instances
 			(project "bwlc1a"
@@ -1619,16 +1658,22 @@
 	(sheet
 		(at 188.595 115.57)
 		(size 32.385 22.225)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(stroke
 			(width 0.1524)
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "f0ceb3a9-6c16-45f6-8aec-9ac0bb10996d")
 		(property "Sheetname" "Sensors"
 			(at 188.595 114.935 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1638,6 +1683,8 @@
 		)
 		(property "Sheetfile" "sensors.kicad_sch"
 			(at 198.755 113.665 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1647,63 +1694,63 @@
 		)
 		(pin "IMU_INT" output
 			(at 188.595 126.365 180)
+			(uuid "02d29a8f-bdbb-4aca-8463-2b99d61985b0")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "02d29a8f-bdbb-4aca-8463-2b99d61985b0")
 		)
 		(pin "+BATT" input
 			(at 188.595 121.92 180)
+			(uuid "be9308ba-03ff-4cc4-99a7-95a46c354beb")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "be9308ba-03ff-4cc4-99a7-95a46c354beb")
 		)
 		(pin "+3V3" input
 			(at 188.595 119.38 180)
+			(uuid "589710a5-c646-4979-b16e-11de3f86e673")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "589710a5-c646-4979-b16e-11de3f86e673")
 		)
 		(pin "FG_INT" output
 			(at 188.595 128.905 180)
+			(uuid "3d5a5600-91c6-48e0-a785-c9547059d307")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "3d5a5600-91c6-48e0-a785-c9547059d307")
 		)
 		(pin "SDA" bidirectional
 			(at 188.595 131.445 180)
+			(uuid "3e03a033-48ef-4887-a98b-9eab20091ee3")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "3e03a033-48ef-4887-a98b-9eab20091ee3")
 		)
 		(pin "SCL" input
 			(at 188.595 133.985 180)
+			(uuid "ee90e76d-8c1d-4c85-8203-d63390c05eda")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "ee90e76d-8c1d-4c85-8203-d63390c05eda")
 		)
 		(instances
 			(project "bwlc1a"
@@ -1716,17 +1763,23 @@
 	(sheet
 		(at 45.085 50.8)
 		(size 23.495 14.605)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "fc98a97f-c593-44d5-bbd7-e4921ada3217")
 		(property "Sheetname" "Battery"
 			(at 45.085 50.0884 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1736,6 +1789,8 @@
 		)
 		(property "Sheetfile" "battery.kicad_sch"
 			(at 45.085 65.9896 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1745,13 +1800,13 @@
 		)
 		(pin "+BATT" bidirectional
 			(at 68.58 58.42 0)
+			(uuid "807c63eb-d0ad-4605-9bbc-0f6350e9808e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "807c63eb-d0ad-4605-9bbc-0f6350e9808e")
 		)
 		(instances
 			(project "bwlc1a"
