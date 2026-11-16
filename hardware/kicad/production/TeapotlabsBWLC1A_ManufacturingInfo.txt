@@ -1,3 +1,5 @@
+Teapotlabs BWLC1A - Revision 4
+
 Thickness = 1.6mm
 
 --------------------
@@ -12,7 +14,11 @@ Min. hole size: 0.3mm
 Solder mask: Red
 Silkscreen: White
 
+Vias: tented on both sides. No via-in-pad, no filling or capping needed.
+
 Impedance control: Yes
+  50 ohm coplanar waveguide on L1 (LTE antenna feed),
+  trace 0.33mm, gap 0.2mm, referenced to L2 (GND)
 
 --------------------
 
@@ -24,7 +30,7 @@ L1	Copper		1oz					bwlc1a-F_Cu.gbr
 
 L2	Copper		1oz					bwlc1a-In1_Cu.gbr
 
-	Core		Core 1.2mm	Dk=4.6
+	Core		~1.07mm		Dk=4.6 (adjust for 1.6mm finished thickness)
 
 L3	Copper		1oz					bwlc1a-In2_Cu.gbr
 
