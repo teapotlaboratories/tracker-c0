@@ -193,7 +193,7 @@
 	)
 	(fp_line
 		(start -11.3 -8)
-		(end -13.2 -8)
+		(end -12.7 -8)
 		(stroke
 			(width 0.6)
 			(type default)
@@ -603,7 +603,7 @@
 	)
 	(fp_line
 		(start 1 -11.3)
-		(end 1 -13.2)
+		(end 1 -12.7)
 		(stroke
 			(width 0.6)
 			(type default)
@@ -943,7 +943,7 @@
 	)
 	(fp_line
 		(start 11.3 4)
-		(end 13.2 4)
+		(end 12.7 4)
 		(stroke
 			(width 0.6)
 			(type default)

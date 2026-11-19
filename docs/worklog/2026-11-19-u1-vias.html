@@ -1,0 +1,209 @@
+<title>BWLC1A U1 Via Clearance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (~74ch) plus a wide board view and a close-up grid; same identity as the BWLC1A reports. */
+:root{
+  --paper:#f6f5f1; --panel:#ffffff; --ink:#1d2321; --muted:#5c6763; --rule:#d9dcd6;
+  --mask:#a3262a; --copper:#a8662b; --ok:#3f6b2a; --warn:#9a6a00; --bad:#a3262a;
+  --tint-bad:#f6e3e1; --tint-ok:#e7efdf; --tint-warn:#f5ecd6; --tint-cu:#f3e6d8; --code-bg:#eceee8;
+  --display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#141716; --panel:#1b1f1d; --ink:#e6e8e3; --muted:#9aa49f; --rule:#2e3431;
+  --mask:#e0675f; --copper:#d79a5e; --ok:#9cbd6e; --warn:#e0b04a; --bad:#e0675f;
+  --tint-bad:#3a2120; --tint-ok:#23301c; --tint-warn:#352c16; --tint-cu:#33271b; --code-bg:#232825; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141716; --panel:#1b1f1d; --ink:#e6e8e3; --muted:#9aa49f; --rule:#2e3431;
+  --mask:#e0675f; --copper:#d79a5e; --ok:#9cbd6e; --warn:#e0b04a; --bad:#e0675f;
+  --tint-bad:#3a2120; --tint-ok:#23301c; --tint-warn:#352c16; --tint-cu:#33271b; --code-bg:#232825; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1180px;margin:0 auto}
+.col{max-width:74ch}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.6rem;font-weight:700;margin:0 0 .4rem}
+p{margin:.6rem 0}
+code{font-family:var(--mono);font-size:.88em;background:var(--code-bg);padding:.05em .35em;border-radius:3px}
+.eyebrow{font:500 .75rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+header.top{padding-block:44px 26px;border-bottom:1px solid var(--rule);display:grid;gap:14px}
+.lede{font-size:1.08rem;max-width:72ch}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.st{border:1px solid var(--rule);background:var(--panel);border-radius:4px;padding:10px 12px;border-top:3px solid var(--rule)}
+.st.bad{border-top-color:var(--bad)} .st.warn{border-top-color:var(--warn)} .st.ok{border-top-color:var(--ok)}
+.st .v{font:600 1.7rem/1.1 var(--display);font-variant-numeric:tabular-nums}
+.st .k{font-size:.85rem;color:var(--muted)}
+section{padding-block:30px 6px;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+.board{display:grid;grid-template-columns:minmax(0,640px) minmax(0,1fr);gap:24px;align-items:start;margin-top:12px}
+@media (max-width:900px){.board{grid-template-columns:minmax(0,1fr)}}
+figure{margin:0;min-width:0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;background:#10161a}
+figcaption{font-size:.84rem;color:var(--muted);margin-top:6px}
+figcaption b{color:var(--ink)}
+.legend{display:grid;gap:8px;font-size:.9rem}
+.sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:8px;border:1px solid var(--rule)}
+.tbl{overflow-x:auto;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:.88rem;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 9px;text-align:left;vertical-align:top}
+th{font:600 .74rem var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--panel)}
+td.num{text-align:right;white-space:nowrap}
+.pill{display:inline-block;font:500 .7rem var(--mono);padding:2px 7px;border-radius:999px;white-space:nowrap;margin:1px 0}
+.p-ok{background:var(--tint-ok);color:var(--ok)} .p-warn{background:var(--tint-warn);color:var(--warn)}
+.p-bad{background:var(--tint-bad);color:var(--bad)} .p-cu{background:var(--tint-cu);color:var(--copper)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:12px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px;margin-top:12px}
+.opt{border:1px solid var(--rule);background:var(--panel);border-radius:4px;padding:12px 14px;min-width:0}
+.opt h3{font-size:1.1rem;margin-bottom:4px}
+.opt.rec{border-color:var(--copper)}
+.opt .tag{font:500 .72rem var(--mono);color:var(--copper);text-transform:uppercase;letter-spacing:.06em}
+.pair4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;margin:12px 0}
+ul{margin:.4rem 0;padding-left:1.2rem} li{margin:.25rem 0}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">BWLC1A Rev 4 · U1 (SIMCom A7670G) · measured at commit e4abb09, fix applied after</div>
+  <h1>Vias next to the modem pads</h1>
+  <p class="lede">18 vias sit within 0.15 mm of a U1 pad. Each is on the same net as its pad, so nothing shorts. The questions for assembly are whether solder can reach a via hole, and whether the solder mask between hole and pad is wide enough for the fab to make. Three of them also sit under the paste overprint that the SIMCom stencil added this round.</p>
+  <div class="stats">
+    <div class="st"><div class="v">18</div><div class="k">vias within 0.15 mm of a pad (21 via–pad pairs; my earlier "26" was a rough count)</div></div>
+    <div class="st warn"><div class="v">15</div><div class="k">overlap the pad copper by 0.03–0.16 mm</div></div>
+    <div class="st bad"><div class="v">1</div><div class="k">drill hole reaches into a pad opening (#1, PWRKEY, 0.007 mm)</div></div>
+    <div class="st bad"><div class="v">3</div><div class="k">under the new 0.5 mm paste overprint (#1, #14, #15)</div></div>
+    <div class="st ok"><div class="v">3</div><div class="k">just clear of the pad (#16–#18)</div></div>
+  </div>
+</header>
+
+<section id="board">
+  <h2>Where they are</h2>
+  <div class="board">
+    <figure><img src="../images/u1-vias/overview.webp" alt="U1 footprint with the 18 vias circled and numbered"><figcaption><b>U1, top side.</b> Red circles overlap a pad; blue circles are just clear. Numbers match the table.</figcaption></figure>
+    <div>
+      <div class="legend">
+        <div><span class="sw" style="background:#784a28"></span>Copper under solder mask (GND pour)</div>
+        <div><span class="sw" style="background:#deb254"></span>Exposed pad (solder-mask opening)</div>
+        <div><span class="sw" style="background:#965c34"></span>Via ring, covered by mask (tented)</div>
+        <div><span class="sw" style="background:#e12828"></span>Via ring inside a pad opening</div>
+        <div><span class="sw" style="background:#080808"></span>Drill hole, covered by mask</div>
+        <div><span class="sw" style="background:#e600e6"></span>Drill hole inside a pad opening</div>
+        <div><span class="sw" style="background:#ffec5a"></span>Paste opening outline</div>
+      </div>
+      <div class="col">
+      <p>Most are ground vias at the inner ends of the edge pads, tying the module's ground pins down to the inner planes. The vias are tented: solder mask covers them on both sides, and the board's mask expansion is 0, so each pad opening is exactly the pad.</p>
+      <p>A via ring inside a pad opening is just more exposed copper on the same net. The hole is what matters: if solder reaches it, solder drains into the via and can starve the joint.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="table">
+  <h2>Every via</h2>
+  <div class="col"><p><b>Copper</b> is the gap from the via ring to the pad copper (negative means overlap). <b>Hole</b> is the gap from the drill hole's edge to the pad opening: the width of solder mask that keeps solder out of the via. <b>Paste</b> is the gap from the via ring to the nearest stencil opening (negative means paste prints over the via). All in mm; vias are 0.6 mm with a 0.3 mm drill.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>#</th><th>Pad</th><th>Net</th><th>Via X, Y (mm)</th><th>Copper</th><th>Hole</th><th>Paste</th><th>Assessment</th></tr></thead>
+    <tbody>
+      <tr><td class="num"><b>1</b></td><td>1</td><td>PWRKEY</td><td class="num">130.43, 100.31</td><td class="num">-0.157</td><td class="num">-0.007</td><td class="num">-0.30</td><td><span class="pill p-bad">hole in pad opening</span> <span class="pill p-bad">under paste overprint</span></td></tr>
+      <tr><td class="num"><b>2</b></td><td>65</td><td>GND</td><td class="num">138.59, 97.51</td><td class="num">-0.100</td><td class="num">+0.050</td><td class="num">-0.10</td><td><span class="pill p-warn">thin mask web over hole</span></td></tr>
+      <tr><td class="num"><b>3</b></td><td>62</td><td>GND</td><td class="num">141.58, 97.51</td><td class="num">-0.099</td><td class="num">+0.051</td><td class="num">-0.10</td><td><span class="pill p-warn">thin mask web over hole</span></td></tr>
+      <tr><td class="num"><b>4</b></td><td>45</td><td>GND</td><td class="num">154.37, 106.30</td><td class="num">-0.099</td><td class="num">+0.051</td><td class="num">-0.10</td><td><span class="pill p-warn">thin mask web over hole</span></td></tr>
+      <tr><td class="num"><b>5</b></td><td>61</td><td>GND</td><td class="num">142.56, 97.51</td><td class="num">-0.099</td><td class="num">+0.051</td><td class="num">-0.10</td><td><span class="pill p-warn">thin mask web over hole</span></td></tr>
+      <tr><td class="num"><b>6</b></td><td>59</td><td>GND</td><td class="num">144.56, 97.51</td><td class="num">-0.099</td><td class="num">+0.051</td><td class="num">-0.10</td><td><span class="pill p-warn">thin mask web over hole</span></td></tr>
+      <tr><td class="num"><b>7</b></td><td>64</td><td>GND</td><td class="num">139.56, 97.51</td><td class="num">-0.099</td><td class="num">+0.051</td><td class="num">-0.10</td><td><span class="pill p-warn">thin mask web over hole</span></td></tr>
+      <tr><td class="num"><b>8</b></td><td>46</td><td>GND</td><td class="num">154.37, 105.30</td><td class="num">-0.098</td><td class="num">+0.052</td><td class="num">-0.10</td><td><span class="pill p-warn">thin mask web over hole</span></td></tr>
+      <tr><td class="num"><b>9</b></td><td>58</td><td>GND</td><td class="num">145.60, 97.51</td><td class="num">-0.098</td><td class="num">+0.052</td><td class="num">-0.10</td><td><span class="pill p-warn">thin mask web over hole</span></td></tr>
+      <tr><td class="num"><b>10</b></td><td>63</td><td>GND</td><td class="num">140.57, 97.51</td><td class="num">-0.097</td><td class="num">+0.053</td><td class="num">-0.10</td><td><span class="pill p-warn">thin mask web over hole</span></td></tr>
+      <tr><td class="num"><b>11</b></td><td>29</td><td>GND</td><td class="num">146.54, 119.10</td><td class="num">-0.091</td><td class="num">+0.059</td><td class="num">-0.09</td><td><span class="pill p-warn">thin mask web over hole</span></td></tr>
+      <tr><td class="num"><b>12</b></td><td>54</td><td>GND</td><td class="num">149.58, 97.54</td><td class="num">-0.067</td><td class="num">+0.083</td><td class="num">-0.07</td><td><span class="pill p-warn">thin mask web over hole</span></td></tr>
+      <tr><td class="num"><b>13</b></td><td>18</td><td>GND</td><td class="num">135.57, 119.06</td><td class="num">-0.053</td><td class="num">+0.097</td><td class="num">-0.05</td><td><span class="pill p-warn">thin mask web over hole</span></td></tr>
+      <tr><td class="num"><b>14</b></td><td>39</td><td>GND</td><td class="num">156.82, 112.31</td><td class="num">-0.053</td><td class="num">+0.097</td><td class="num">-0.30</td><td><span class="pill p-bad">under paste overprint</span> <span class="pill p-warn">thin mask web over hole</span></td></tr>
+      <tr><td class="num"><b>15</b></td><td>59</td><td>GND</td><td class="num">144.27, 95.12</td><td class="num">-0.028</td><td class="num">+0.122</td><td class="num">-0.30</td><td><span class="pill p-bad">under paste overprint</span> <span class="pill p-cu">ring overlaps pad</span></td></tr>
+      <tr><td class="num"><b>16</b></td><td>66</td><td>CELL_STATUS</td><td class="num">137.57, 97.63</td><td class="num">+0.022</td><td class="num">+0.172</td><td class="num">clear</td><td><span class="pill p-ok">clear of pad</span></td></tr>
+      <tr><td class="num"><b>17</b></td><td>2</td><td>GND</td><td class="num">132.80, 101.65</td><td class="num">+0.030</td><td class="num">+0.180</td><td class="num">clear</td><td><span class="pill p-ok">clear of pad</span></td></tr>
+      <tr><td class="num"><b>18</b></td><td>17</td><td>GND</td><td class="num">132.94, 116.34</td><td class="num">+0.071</td><td class="num">+0.221</td><td class="num">clear</td><td><span class="pill p-ok">clear of pad</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="col">
+  <ul>
+    <li><b>Hole in a pad opening (#1).</b> The PWRKEY via's hole edge is 0.007 mm inside pad 1's opening. That's effectively tangent, and normal mask registration error can expose part of the hole.</li>
+    <li><b>Thin mask web (#2–#13).</b> Only 0.05–0.10 mm of mask separates the hole from the pad opening. That is tighter than the solder-mask web many fabs hold. I haven't checked PCBWay's exact limit; their DFM report will say whether it holds.</li>
+    <li><b>Under the paste overprint (#1, #14, #15).</b> These vias sit at the outer end of an edge pad, where the SIMCom stencil prints paste 0.5 mm past the pad. Paste lands on the mask over the via. It should pull back onto the pad during reflow, but a weak tent would give it a path into the hole.</li>
+  </ul>
+  </div>
+</section>
+
+<section id="closeups">
+  <h2>Close-ups</h2>
+  <div class="col"><p>Each tile is 2.6 × 2.6 mm centred on the via, at the same colours as the board view.</p></div>
+  <div class="grid">
+    <figure class="tile"><img src="../images/u1-vias/via_01.webp" alt="Via 1 next to U1 pad 1" loading="lazy"><figcaption><b>#1</b> · pad 1 · PWRKEY · copper -0.16 mm · hole -0.01 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_02.webp" alt="Via 2 next to U1 pad 65" loading="lazy"><figcaption><b>#2</b> · pad 65 · GND · copper -0.10 mm · hole +0.05 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_03.webp" alt="Via 3 next to U1 pad 62" loading="lazy"><figcaption><b>#3</b> · pad 62 · GND · copper -0.10 mm · hole +0.05 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_04.webp" alt="Via 4 next to U1 pad 45" loading="lazy"><figcaption><b>#4</b> · pad 45 · GND · copper -0.10 mm · hole +0.05 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_05.webp" alt="Via 5 next to U1 pad 61" loading="lazy"><figcaption><b>#5</b> · pad 61 · GND · copper -0.10 mm · hole +0.05 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_06.webp" alt="Via 6 next to U1 pad 59" loading="lazy"><figcaption><b>#6</b> · pad 59 · GND · copper -0.10 mm · hole +0.05 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_07.webp" alt="Via 7 next to U1 pad 64" loading="lazy"><figcaption><b>#7</b> · pad 64 · GND · copper -0.10 mm · hole +0.05 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_08.webp" alt="Via 8 next to U1 pad 46" loading="lazy"><figcaption><b>#8</b> · pad 46 · GND · copper -0.10 mm · hole +0.05 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_09.webp" alt="Via 9 next to U1 pad 58" loading="lazy"><figcaption><b>#9</b> · pad 58 · GND · copper -0.10 mm · hole +0.05 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_10.webp" alt="Via 10 next to U1 pad 63" loading="lazy"><figcaption><b>#10</b> · pad 63 · GND · copper -0.10 mm · hole +0.05 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_11.webp" alt="Via 11 next to U1 pad 29" loading="lazy"><figcaption><b>#11</b> · pad 29 · GND · copper -0.09 mm · hole +0.06 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_12.webp" alt="Via 12 next to U1 pad 54" loading="lazy"><figcaption><b>#12</b> · pad 54 · GND · copper -0.07 mm · hole +0.08 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_13.webp" alt="Via 13 next to U1 pad 18" loading="lazy"><figcaption><b>#13</b> · pad 18 · GND · copper -0.05 mm · hole +0.10 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_14.webp" alt="Via 14 next to U1 pad 39" loading="lazy"><figcaption><b>#14</b> · pad 39 · GND · copper -0.05 mm · hole +0.10 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_15.webp" alt="Via 15 next to U1 pad 59" loading="lazy"><figcaption><b>#15</b> · pad 59 · GND · copper -0.03 mm · hole +0.12 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_16.webp" alt="Via 16 next to U1 pad 66" loading="lazy"><figcaption><b>#16</b> · pad 66 · CELL_STATUS · copper +0.02 mm · hole +0.17 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_17.webp" alt="Via 17 next to U1 pad 2" loading="lazy"><figcaption><b>#17</b> · pad 2 · GND · copper +0.03 mm · hole +0.18 mm</figcaption></figure>
+    <figure class="tile"><img src="../images/u1-vias/via_18.webp" alt="Via 18 next to U1 pad 17" loading="lazy"><figcaption><b>#18</b> · pad 17 · GND · copper +0.07 mm · hole +0.22 mm</figcaption></figure>
+  </div>
+</section>
+
+<section id="fix">
+  <h2>Fix applied (option 1)</h2>
+  <div class="col">
+  <p>Applied to the board and the U1 library footprint after review. Three changes:</p>
+  <ul>
+    <li><b>Paste on pads 1, 39 and 59</b> ends flush with the pad instead of running 0.5 mm past it. The other 77 edge pads keep SIMCom's overprint. Done in the library footprint and on the board, identically.</li>
+    <li><b>Via #1 (PWRKEY)</b> moves 0.20 mm left, to (130.23, 100.31). The top-side stub to pad 1 grows by 0.2 mm. On the bottom side the trace keeps its shape: the straight drop from the via is 0.2 mm further left and runs 0.2 mm lower, then meets the same diagonal as today. No extra bends.</li>
+    <li>Nothing else moves. The 14 ground vias stay as they are.</li>
+  </ul>
+  <p>DRC after the fix: 119 items, the same as before, with nothing new and nothing gone; 0 unconnected; schematic and board in sync; no library mismatch for U1. The production check passes. No via hole now reaches a pad opening, and no paste prints over a via. In the Gerbers only paste, copper, the plated drill file and the IPC netlist changed; the BOM and CPL are unchanged.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Via</th><th>Copper to pad</th><th>Hole to pad opening</th><th>Paste</th></tr></thead>
+    <tbody>
+      <tr><td><b>#1</b> PWRKEY, pad 1</td><td class="num">−0.157 → <b>+0.043</b></td><td class="num">−0.007 → <b>+0.193</b></td><td>over the via → <b>clear</b></td></tr>
+      <tr><td><b>#14</b> GND, pad 39</td><td class="num">−0.053 → −0.052</td><td class="num">+0.097 → +0.098</td><td>over the via → flush with the pad, like the other ground vias</td></tr>
+      <tr><td><b>#15</b> GND, pad 59</td><td class="num">−0.028 → −0.024</td><td class="num">+0.122 → +0.126</td><td>over the via → flush with the pad, like the other ground vias</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Via #1, top side</h3>
+  <div class="pair4">
+    <figure><img src="../images/u1-vias/fix_01_before.webp" alt="Via 1 before: overlapping pad 1, under paste overprint"><figcaption><b>Now</b> · the via ring cuts into pad 1 (red) and the paste outline wraps around the via</figcaption></figure>
+    <figure><img src="../images/u1-vias/fix_01_after.webp" alt="Via 1 after: clear of pad 1, paste flush"><figcaption><b>Fixed</b> · via 0.2 mm left and clear of the pad; paste ends at the pad</figcaption></figure>
+    <figure><img src="../images/u1-vias/fix_01_b_before.webp" alt="PWRKEY trace on the bottom layer before"><figcaption><b>Now</b> · bottom layer, PWRKEY trace from the via</figcaption></figure>
+    <figure><img src="../images/u1-vias/fix_01_b_after.webp" alt="PWRKEY trace on the bottom layer after"><figcaption><b>Fixed</b> · same shape; the drop meets the existing diagonal 0.2 mm lower</figcaption></figure>
+  </div>
+  <h3>Vias #14 and #15</h3>
+  <div class="pair4">
+    <figure><img src="../images/u1-vias/fix_14_before.webp" alt="Via 14 before"><figcaption><b>Now</b> · #14, pad 39's overprint over the via</figcaption></figure>
+    <figure><img src="../images/u1-vias/fix_14_after.webp" alt="Via 14 after"><figcaption><b>Fixed</b> · pad 39's paste ends at the pad</figcaption></figure>
+    <figure><img src="../images/u1-vias/fix_15_before.webp" alt="Via 15 before"><figcaption><b>Now</b> · #15, pad 59's overprint over the via</figcaption></figure>
+    <figure><img src="../images/u1-vias/fix_15_after.webp" alt="Via 15 after"><figcaption><b>Fixed</b> · pad 59's paste ends at the pad</figcaption></figure>
+  </div>
+</section>
+
+<section id="options">
+  <h2>Options</h2>
+  <div class="opts">
+    <div class="opt rec"><div class="tag">Recommended</div><h3>Fix the four that matter</h3><p>Trim the 0.5 mm paste overprint on pads 1, 39 and 59, so no paste prints over a via. Move the PWRKEY via (#1) about 0.2 mm away from pad 1, so its hole is properly covered. Leave the 14 ground vias and tell PCBWay they're intentional. A small, contained change.</p></div>
+    <div class="opt"><h3>Clear all 15 overlaps</h3><p>Pull every overlapping via clear of its pad, with a 0.1 mm mask web or more. Space is tight: the top-row vias sit in about 0.65 mm between the pad ends and the small pads, so some vias would need to shrink (for example 0.45 mm) or be removed. More layout work, and it changes the module's ground stitching.</p></div>
+    <div class="opt"><h3>Accept as is</h3><p>Order as it stands and let PCBWay's DFM review decide. All 18 are same-net and tented. The risk is a query or a starved joint on PWRKEY or the ground pins.</p></div>
+  </div>
+</section>
+</div>

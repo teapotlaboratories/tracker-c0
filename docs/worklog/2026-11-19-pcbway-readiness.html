@@ -84,7 +84,7 @@ pre{background:var(--code-bg);padding:10px 12px;border-radius:4px;overflow-x:aut
     <div class="v"><div class="k">Board edge</div><div class="t">Fixed</div><p>Copper stays 0.3 mm from the outline on all four layers. 104 edge vias moved inward, 6 removed.</p></div>
     <div class="v"><div class="k">U1 stencil</div><div class="t">Fixed</div><p>The modem's 124 pads now get SIMCom's stencil openings (A7670G guide p.23).</p></div>
     <div class="v"><div class="k">Stock</div><div class="t">3 lines swapped</div><p>C30/C31 and R1/R2/R3/R7 (zero at LCSC) and Q4/Q5/Q6 (none at Digi-Key or Mouser) now use in-stock equivalents.</p></div>
-    <div class="v warn"><div class="k">Still open</div><div class="t">4 items</div><p>Vias touching U1 pads, U1 supply, panel and fiducials, the courtyard overlaps. See the last section.</p></div>
+    <div class="v warn"><div class="k">Still open</div><div class="t">3 items</div><p>U1 supply, panel and fiducials, the courtyard overlaps. See the last section.</p></div>
   </div>
 </section>
 
@@ -245,7 +245,7 @@ python3 hardware/tools/fab/check_production.py   # PASS / FAIL before any order<
   <div class="tbl"><table>
     <thead><tr><th>Item</th><th>What</th><th>Status</th></tr></thead>
     <tbody>
-      <tr><td>Vias touching U1 pads</td><td>26 via-pad pairs where a via's copper ring overlaps a U1 edge pad by up to 0.16 mm. All on the pad's own net (GND, and PWRKEY on pad 1). The drill holes stay outside the pad openings, except PWRKEY by about 0.007 mm, and the vias are tented, so solder can't run down them. PCBWay's check may still ask about "via in pad". Moving them 0.1–0.2 mm clears it.</td><td><span class="pill p-warn">your call</span></td></tr>
+      <tr><td>Vias touching U1 pads</td><td>18 vias sit within 0.15 mm of a U1 pad. Fixed the ones that mattered: the PWRKEY via moved 0.2 mm off pad 1, and pads 1, 39 and 59 lost the paste overprint that printed over vias. The 14 ground vias that overlap their own pads stay; they are tented and same-net. Details: <a href="2026-11-19-u1-vias.html">U1 via report</a>.</td><td><span class="pill p-ok">fixed</span></td></tr>
       <tr><td>U1 supply</td><td>A7670G-LABE: 16 at LCSC today. Confirm PCBWay can source it, or supply it yourself.</td><td><span class="pill p-warn">check in quote</span></td></tr>
       <tr><td>Panel and fiducials</td><td>No fiducials on the board, and J3 overhangs the right edge by 0.88 mm. PCBWay normally panelizes with rails that carry fiducials; the J3 edge needs routing, not V-scoring. You chose to leave the order notes as they are.</td><td><span class="pill p-cu">left as is</span></td></tr>
       <tr><td>Courtyard overlaps</td><td>The 7 DRC errors are courtyard overlaps around U3 and TP29, courtyard lines only, no body overlap.</td><td><span class="pill p-cu">known</span></td></tr>
