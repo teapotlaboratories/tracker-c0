@@ -1,0 +1,194 @@
+<title>Tracker C0 LTE Antenna Feed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: reading column (~74ch) with wide figure rows; same identity as the other Tracker C0 reports. */
+:root{
+  --paper:#f6f5f1; --panel:#ffffff; --ink:#1d2321; --muted:#5c6763; --rule:#d9dcd6;
+  --mask:#a3262a; --copper:#a8662b; --ok:#3f6b2a; --warn:#9a6a00; --bad:#a3262a; --fr4:#5f7a3a;
+  --tint-bad:#f6e3e1; --tint-ok:#e7efdf; --tint-warn:#f5ecd6; --tint-cu:#f3e6d8; --code-bg:#eceee8;
+  --display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#141716; --panel:#1b1f1d; --ink:#e6e8e3; --muted:#9aa49f; --rule:#2e3431;
+  --mask:#e0675f; --copper:#d79a5e; --ok:#9cbd6e; --warn:#e0b04a; --bad:#e0675f; --fr4:#9cbd6e;
+  --tint-bad:#3a2120; --tint-ok:#23301c; --tint-warn:#352c16; --tint-cu:#33271b; --code-bg:#232825; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141716; --panel:#1b1f1d; --ink:#e6e8e3; --muted:#9aa49f; --rule:#2e3431;
+  --mask:#e0675f; --copper:#d79a5e; --ok:#9cbd6e; --warn:#e0b04a; --bad:#e0675f; --fr4:#9cbd6e;
+  --tint-bad:#3a2120; --tint-ok:#23301c; --tint-warn:#352c16; --tint-cu:#33271b; --code-bg:#232825; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1180px;margin:0 auto}
+.col{max-width:74ch}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.6rem;font-weight:700;margin:0 0 .4rem}
+h3{font-size:1.1rem;font-weight:600;margin-top:1.2rem}
+p{margin:.6rem 0}
+code{font-family:var(--mono);font-size:.88em;background:var(--code-bg);padding:.05em .35em;border-radius:3px}
+.eyebrow{font:500 .75rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+header.top{padding-block:44px 26px;border-bottom:1px solid var(--rule);display:grid;gap:14px}
+.lede{font-size:1.08rem;max-width:72ch}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:10px}
+.c{border:1px solid var(--rule);background:var(--panel);border-radius:4px;padding:10px 12px;border-top:3px solid var(--rule)}
+.c.ok{border-top-color:var(--ok)} .c.warn{border-top-color:var(--warn)} .c.bad{border-top-color:var(--bad)}
+.c .k{font:500 .74rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.c .t{font:600 1.15rem/1.25 var(--display);margin:2px 0 4px}
+.c p{margin:0;font-size:.9rem}
+section{padding-block:30px 6px;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:18px;margin-top:12px;align-items:start}
+figure{margin:0;min-width:0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;background:#0f1419}
+figure.paper img{background:#fff}
+figcaption{font-size:.84rem;color:var(--muted);margin-top:6px}
+figcaption b{color:var(--ink)}
+.src{font:500 .72rem var(--mono);letter-spacing:.04em;color:var(--copper);text-transform:uppercase}
+.tbl{overflow-x:auto;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
+th{font:600 .74rem var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--panel)}
+td.num{text-align:right;white-space:nowrap}
+tr.hl td{background:var(--tint-warn)}
+.pill{display:inline-block;font:500 .7rem var(--mono);padding:2px 7px;border-radius:999px;white-space:nowrap}
+.p-ok{background:var(--tint-ok);color:var(--ok)} .p-warn{background:var(--tint-warn);color:var(--warn)} .p-bad{background:var(--tint-bad);color:var(--bad)}
+.xsec{max-width:640px;background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:10px}
+.xsec svg{width:100%;height:auto;display:block}
+.xsec text{font:500 11px var(--mono);fill:var(--ink)}
+.tldr{border:1px solid var(--rule);border-left:4px solid var(--copper);background:var(--panel);border-radius:4px;padding:12px 16px;max-width:86ch}
+.tldr h2{font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.tldr ul{margin:0}
+ul{margin:.4rem 0;padding-left:1.2rem} li{margin:.25rem 0}
+pre{background:var(--code-bg);padding:10px 12px;border-radius:4px;overflow-x:auto;font:400 .85rem/1.5 var(--mono)}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Tracker C0 Rev 4 · LTE antenna feed · U1 pin 60 → E1</div>
+  <h1>Is the antenna feed right?</h1>
+  <p class="lede">Mostly yes. The feed is laid out as a coplanar line over ground, and the antenna corner follows TE's layout guide. Solving the real cross-section gives about <b>45 Ω, not 50 Ω</b>, because the original sizing ignored copper thickness and solder mask. That costs about 0.06 dB, which is negligible. The bigger limit is the board size: the ground plane is shorter than the antenna needs for full low-band efficiency.</p>
+  <div class="tldr" role="note">
+    <h2>TL;DR</h2>
+    <ul>
+      <li><b>The trace is built as designed:</b> 0.33 mm wide, 0.21 mm gaps to ground, continuous ground plane underneath, ground vias along both sides.</li>
+      <li><b>Real impedance ≈ 45 Ω</b> (42–48 Ω depending on the fab's stack-up), not 50 Ω. That costs at most about 0.1 dB, so no layout change. Order with impedance control and PCBWay can trim it to 50 Ω.</li>
+      <li><b>The antenna corner follows TE's guide.</b> Tune the match (C43/L3) on board 1; TE used 12 nH / 4.7 pF, we fit 10 nH / 3.3 pF.</li>
+      <li><b>The board is the real limit:</b> about 68 mm of ground plane against TE's suggested 120 mm, so the 700–960 MHz bands will be the weakest. An external antenna on J6 is the way around it.</li>
+      <li><b>On board 1</b>, use the IPEX bypass (R27/R28 instead of R25/R26, short cable J6 → J7) to compare the PCB trace against a cable.</li>
+    </ul>
+  </div>
+  <div class="cards">
+    <div class="c ok"><div class="k">Layout</div><div class="t">Built as designed</div><p>0.33 mm trace, 0.21 mm gaps, unbroken ground on L2, a via fence along both sides.</p></div>
+    <div class="c warn"><div class="k">Impedance</div><div class="t">≈ 45 Ω (42–48)</div><p>Low by about 10 %. That costs about 0.06 dB, and a fab with impedance control can fine-tune it.</p></div>
+    <div class="c ok"><div class="k">Antenna layout</div><div class="t">Follows TE</div><p>Stepped ground edge, ground strip under the feed, match at the ground edge.</p></div>
+    <div class="c warn"><div class="k">Matching</div><div class="t">10 nH / 3.3 pF</div><p>TE measured with 12 nH / 4.7 pF. Tune on board 1 with a network analyzer.</p></div>
+    <div class="c bad"><div class="k">Low bands</div><div class="t">Ground ≈ 68 mm</div><p>TE suggests 120 mm. Expect weaker 700–960 MHz. The IPEX bypass doesn't change this; only an external antenna would.</p></div>
+  </div>
+</header>
+
+<section id="path">
+  <h2>The feed path</h2>
+  <div class="col"><p>U1 pin 60 → 3.2 mm → <b>R25</b> (0 Ω) → 7.3 mm → <b>R26</b> (0 Ω) → 1.9 mm → <b>C43</b> 3.3 pF in series, <b>L3</b> 10 nH to ground → 9.4 mm → <b>E1</b>. About 22 mm of 0.33 mm trace, all on F.Cu. J6 (next to U1) and J7 (next to the matching network) are a bypass for the PCB trace: fit R27 and R28 instead of R25 and R26, and a short IPEX cable from J6 to J7 carries the signal instead of the ~19 mm of trace between them. It still feeds E1 through the same match. In the default build (R25/R26 fitted, R27/R28 not) J6 and J7 are idle. The ESD diode D12 isn't fitted.</p></div>
+  <figure style="margin-top:12px"><img src="../images/rf-feed/feed_path.webp" alt="Front copper: the feed from U1 pin 60 through R25, R26, C43 and L3 to the E1 feed pad"><figcaption><b>Front copper.</b> The feed runs left from U1 with ground vias on both sides (white dots). It leaves the ground pour at x ≈ 121.5 mm, past L3, and crosses the copper-free antenna zone to E1's feed pad.</figcaption></figure>
+  <h3>Measured along the line (72 points)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Stretch</th><th>Gap to coplanar ground</th><th>Ground plane on L2 under the trace</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>Straight runs (R25 → R26, most of the rest)</td><td class="num">0.21 mm each side</td><td>continuous</td><td><span class="pill p-ok">as designed</span></td></tr>
+      <tr><td>Next to the 0402 pads (R25/R27, R26/R28, C43/L3)</td><td class="num">0.24–0.64 mm</td><td>continuous</td><td><span class="pill p-ok">normal pad clearance</span></td></tr>
+      <tr><td>Last 8 mm into E1 (x 121.5 → 113.3)</td><td class="num">no ground</td><td>none, by design</td><td><span class="pill p-ok">antenna zone</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="col"><p class="muted">35 ground vias sit within 1 mm of the 22 mm feed. The last stretch is inside the copper-free area TE requires around the antenna (all layers), so it works as part of the antenna feed, not as a 50 Ω line. TE's reference layout does the same.</p></div>
+</section>
+
+<section id="z">
+  <h2>Impedance</h2>
+  <div class="col"><p>The design numbers (0.33 mm trace, 0.2 mm gap, 0.1855 mm prepreg of Dk 4.56 to L2) give exactly 50 Ω in the usual thin-copper formula. Those formulas disagree once you add copper thickness, which matters with gaps this narrow. So I solved the actual cross-section with a 2-D field solver, after checking it against two known answers.</p></div>
+  <div class="xsec" style="margin:12px 0" role="img" aria-label="Cross-section of the coplanar line: 0.33 mm trace between grounds with 0.21 mm gaps, 0.1855 mm prepreg over the L2 ground plane">
+    <svg viewBox="0 0 640 210">
+      <rect x="20" y="150" width="600" height="14" fill="var(--copper)"/>
+      <rect x="20" y="95" width="600" height="55" fill="var(--tint-ok)" stroke="var(--fr4)"/>
+      <rect x="20" y="81" width="226" height="14" fill="var(--copper)"/><rect x="286" y="81" width="66" height="14" fill="var(--copper)"/><rect x="392" y="81" width="228" height="14" fill="var(--copper)"/>
+      <path d="M20 78 H246 V81 H286 V78 H352 V81 H392 V78 H620" fill="none" stroke="var(--mask)" stroke-width="3" opacity=".7"/>
+      <text x="300" y="70">trace 0.33</text><text x="250" y="112">gap 0.21</text><text x="356" y="112">0.21</text>
+      <text x="40" y="74">GND (F.Cu)</text><text x="470" y="74">GND (F.Cu)</text>
+      <text x="40" y="128">prepreg 0.1855 mm, Dk 4.56</text>
+      <text x="40" y="184">L2 ground plane (In1.Cu)</text>
+      <text x="420" y="128">copper 35–45 µm</text><text x="420" y="196">solder mask ≈ 15 µm (red line)</text>
+    </svg>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Cross-section</th><th>Z₀</th></tr></thead>
+    <tbody>
+      <tr><td>Thin copper, no mask (how it was sized)</td><td class="num">49.9 Ω</td></tr>
+      <tr><td>35 µm copper, no mask</td><td class="num">46.9 Ω</td></tr>
+      <tr><td>35 µm copper + 15 µm solder mask</td><td class="num">45.2 Ω</td></tr>
+      <tr class="hl"><td><b>45 µm plated copper + mask</b> (realistic finished outer layer)</td><td class="num"><b>44.5 Ω</b></td></tr>
+    </tbody>
+  </table></div>
+  <div class="col"><p class="muted">Solver check: microstrip of the same width gives 51.5 Ω against 51.4 Ω from the Hammerstad–Jensen formula; thin-copper coplanar gives 49.9 Ω against 50.1 Ω from conformal mapping. Grid 5 µm. The mask thickness and Dk 3.8 are typical values I assumed; PCBWay's actual mask isn't known.</p></div>
+  <h3>With the fab's real stack-up</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Prepreg L1–L2</th><th>Dk 4.30</th><th>Dk 4.56</th></tr></thead>
+    <tbody>
+      <tr><td>0.170 mm</td><td class="num">43.7 Ω</td><td class="num">42.7 Ω</td></tr>
+      <tr><td>0.1855 mm (our notes)</td><td class="num">45.5 Ω</td><td class="num">44.5 Ω</td></tr>
+      <tr><td>0.200 mm</td><td class="num">47.2 Ω</td><td class="num">46.1 Ω</td></tr>
+      <tr><td>0.210 mm</td><td class="num">48.2 Ω</td><td class="num">47.1 Ω</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Does 45 Ω matter?</h3>
+  <div class="col">
+  <p>Barely. A 45 Ω section in a 50 Ω path reflects about 6 % of the signal at each end. In the worst case that's 18.7 dB return loss and 0.06 dB of mismatch loss. With the thinnest prepreg in the table (42.7 Ω) it's 0.1 dB. The antenna's own match, about 7–13 dB return loss in TE's data (p.2), dominates by far.</p>
+  <p>Hitting 50 Ω on the real cross-section takes a narrower trace and a wider gap, for example about 0.26 mm with 0.25 mm gaps (51 Ω in the solver). Ordering with impedance control lets PCBWay do that adjustment with their own stack-up and solver.</p>
+  </div>
+</section>
+
+<section id="te">
+  <h2>Antenna layout against TE's guide</h2>
+  <div class="pair">
+    <figure class="paper"><img src="../images/rf-feed/te_p6.webp" alt="TE 2108784-1 mounting guide: top and bottom layer ground shapes, feed and matching pads"><figcaption><span class="src">TE 2108784-1 datasheet · p.6</span><br>Antenna at the board edge, ground stepped back, matching pads at the ground edge, ground strip under the feed on the bottom side. Measured with 12 nH and 4.7 pF.</figcaption></figure>
+    <figure><img src="../images/rf-feed/antenna_In1.webp" alt="Our L2 ground plane near the antenna, with the stepped ground edge marked"><figcaption><b>Ours, L2 ground.</b> The same stepped edge: 15.2 mm from the board edge on the feed side, 18.5 mm on the other side.</figcaption></figure>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Item</th><th>TE (p.6–7)</th><th>Tracker C0</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>Antenna position</td><td>on the board edge</td><td>on the left edge</td><td><span class="pill p-ok">same</span></td></tr>
+      <tr><td>Ground set-back, feed side</td><td>14.5 mm</td><td>15.2 mm</td><td><span class="pill p-ok">≥ TE</span></td></tr>
+      <tr><td>Ground set-back, other side</td><td>17.8 mm</td><td>18.5 mm</td><td><span class="pill p-ok">≥ TE</span></td></tr>
+      <tr><td>Bottom ground strip under the feed</td><td>to 9.0 mm from the edge</td><td>to 9.7 mm from the edge</td><td><span class="pill p-ok">same idea</span></td></tr>
+      <tr><td>Matching parts</td><td>series + shunt at the ground edge</td><td>C43 series + L3 shunt at the ground edge</td><td><span class="pill p-ok">same</span></td></tr>
+      <tr><td>Matching values</td><td>12 nH, 4.7 pF (TE's 45 × 130 mm board)</td><td>10 nH, 3.3 pF</td><td><span class="pill p-warn">tune on board 1</span></td></tr>
+      <tr><td>Ground plane length</td><td>≥ 120 mm suggested (p.1)</td><td>≈ 65–69 mm</td><td><span class="pill p-bad">board-size limit</span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>What the short ground plane costs</h3>
+  <div class="pair">
+    <figure class="paper"><img src="../images/rf-feed/te_p2.webp" alt="TE chart of antenna efficiency against frequency for 120, 100 and 80 mm ground planes"><figcaption><span class="src">TE 2108784-1 datasheet · p.2</span><br>Low-band (698–960 MHz) efficiency falls from about 45–67 % at 120 mm of ground to about 19–42 % at 80 mm. Above about 1.7 GHz the curves stay close together.</figcaption></figure>
+    <div class="col">
+      <p>Our ground plane is shorter than TE's smallest curve, so expect the low LTE bands between 698 and 960 MHz to be the weakest, including B12 and B13, which US carriers use for coverage. That comes from the board's 83.75 mm length; no change to the feed can fix it.</p>
+      <p>The u.FL pair doesn't help here: the IPEX bypass still feeds E1, so it has the same ground plane. If low bands turn out weak on board 1, J6 can also take an external antenna directly (R27 fitted, R25 and R26 removed), which gets around the board-size limit.</p>
+    </div>
+  </div>
+</section>
+
+<section id="next">
+  <h2>What to do</h2>
+  <div class="col">
+  <ul>
+    <li><b>Order with impedance control</b> and ask PCBWay for <b>50 Ω ±10 % coplanar (grounded) on L1</b>, trace 0.33 / gap 0.2 mm referenced to L2, allowing them to adjust the trace width and gap. Without that, expect about 45 Ω, which still works.</li>
+    <li><b>Tune the match on board 1</b> with a network analyzer at the U1 side of R25 (C43 and L3, starting from TE's 12 nH / 4.7 pF). This matters more than the line impedance.</li>
+    <li><b>Compare the PCB trace with the IPEX bypass</b> on board 1: swap R25/R26 for R27/R28, fit a short cable from J6 to J7, and compare signal strength. A small difference confirms the trace (about 45 Ω, under 0.1 dB of mismatch) costs nothing that matters.</li>
+    <li><b>Check low-band performance</b>, comparing signal strength on a low and a high band. If low bands are weak, an external antenna on J6 is the way around the board-size limit.</li>
+    <li>No layout change is needed before ordering.</li>
+  </ul>
+  </div>
+</section>
+</div>
