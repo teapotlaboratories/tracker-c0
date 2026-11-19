@@ -3445,7 +3445,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C15849"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C29936"
 			(at 207.01 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -3456,7 +3456,7 @@
 				)
 			)
 		)
-		(property "Description" "1uF ±10% 50V Ceramic Capacitor X5R 0603"
+		(property "Description" "1uF ±10% 25V Ceramic Capacitor X7R 0603"
 			(at 207.01 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -3478,7 +3478,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "CL10A105KB8NNNC"
+		(property "Manufacturer Part Number" "CL10B105KA8NNNC"
 			(at 207.01 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -3500,7 +3500,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C15849"
+		(property "Distributor Part Number" "C29936"
 			(at 207.01 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -3511,7 +3511,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/C15849.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C29936.html"
 			(at 207.01 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -6106,7 +6106,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C15849"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C29936"
 			(at 170.815 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -6117,7 +6117,7 @@
 				)
 			)
 		)
-		(property "Description" "1uF ±10% 50V Ceramic Capacitor X5R 0603"
+		(property "Description" "1uF ±10% 25V Ceramic Capacitor X7R 0603"
 			(at 170.815 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -6139,7 +6139,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "CL10A105KB8NNNC"
+		(property "Manufacturer Part Number" "CL10B105KA8NNNC"
 			(at 170.815 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -6161,7 +6161,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C15849"
+		(property "Distributor Part Number" "C29936"
 			(at 170.815 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -6172,7 +6172,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/C15849.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C29936.html"
 			(at 170.815 106.68 0)
 			(hide yes)
 			(show_name no)

@@ -9034,7 +9034,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C25092"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/b426be3ce22c6de3e0c3a2248e49159e.pdf?productCode=C114765"
 			(at 57.785 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -9045,7 +9045,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors ±1% ±100ppm/℃ 22Ω 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "22Ω 62.5mW 50V Thick Film Resistor ±100ppm/℃ ±1% 0402 Chip Resistor - Surface Mount RoHS"
 			(at 57.785 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -9056,7 +9056,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "UNI-ROYAL(Uniroyal Elec)"
+		(property "Manufacturer" "YAGEO"
 			(at 57.785 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -9067,7 +9067,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGF220JTCE"
+		(property "Manufacturer Part Number" "RC0402FR-0722RL"
 			(at 57.785 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -9089,7 +9089,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C25092"
+		(property "Distributor Part Number" "C114765"
 			(at 57.785 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -9100,7 +9100,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGF220JTCE_C25092.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C114765.html"
 			(at 57.785 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -16100,7 +16100,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DMG1012UW"
+		(property "Value" "DMN2710UW"
 			(at 233.68 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16123,7 +16123,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/52adfdffbe5dc83878e9a5aaf518813b.pdf?productCode=C156390"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/DMN2710UW.pdf"
 			(at 231.14 149.85999999999999 0)
 			(hide yes)
 			(show_name no)
@@ -16135,7 +16135,7 @@
 				(justify left)
 			)
 		)
-		(property "Description" "20V 1A 450mΩ@4.5V,600mA 290mW 1V@250uA 1PCSNChannel SOT-323-3 MOSFETs ROHS"
+		(property "Description" "20V 0.9A N-Channel MOSFET, RDS(on) 0.45Ω@4.5V 0.75Ω@1.8V, SOT-323"
 			(at 226.06 153.67 0)
 			(hide yes)
 			(show_name no)
@@ -16155,7 +16155,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer Part Number" "DMG1012UW-7"
+		(property "Manufacturer Part Number" "DMN2710UW-7"
 			(at 226.06 153.67 0)
 			(effects
 				(font
@@ -16164,7 +16164,7 @@
 				(hide yes)
 			)
 		)
-		(property "Distributor" "LCSC"
+		(property "Distributor" "Digikey"
 			(at 226.06 153.67 0)
 			(effects
 				(font
@@ -16173,7 +16173,7 @@
 				(hide yes)
 			)
 		)
-		(property "Distributor Part Number" "C156390"
+		(property "Distributor Part Number" "31-DMN2710UW-7CT-ND"
 			(at 226.06 153.67 0)
 			(effects
 				(font
@@ -16182,7 +16182,7 @@
 				(hide yes)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/MOSFETs_Diodes-Incorporated-DMG1012UW-7_C156390.html"
+		(property "Distributor Link" "https://www.digikey.com/en/products/result?keywords=DMN2710UW-7"
 			(at 226.06 153.67 0)
 			(effects
 				(font

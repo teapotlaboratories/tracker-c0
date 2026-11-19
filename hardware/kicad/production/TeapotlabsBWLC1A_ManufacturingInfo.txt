@@ -4,7 +4,7 @@ Thickness = 1.6mm
 
 --------------------
 
-Size: 50.1 x 83.85mm (bottom-right corner cut away for the battery cable)
+Size: 50.0 x 83.75mm (bottom-right corner cut away for the battery cable)
 Number of layers: 4
 Material: S1000H TG150
 
