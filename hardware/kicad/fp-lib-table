@@ -1,4 +1,4 @@
 (fp_lib_table
   (version 7)
-  (lib (name "bwlc1a")(type "KiCad")(uri "${KIPRJMOD}/library/bwlc1a.pretty")(options "")(descr ""))
+  (lib (name "tracker-c0")(type "KiCad")(uri "${KIPRJMOD}/library/tracker-c0.pretty")(options "")(descr ""))
 )

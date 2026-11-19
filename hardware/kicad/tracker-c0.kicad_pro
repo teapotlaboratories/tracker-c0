@@ -508,7 +508,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "bwlc1a.kicad_pro",
+    "filename": "tracker-c0.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -591,7 +591,7 @@
   },
   "schematic": {
     "annotate_start_num": 0,
-    "bom_export_filename": "production\\bwlc1a.csv",
+    "bom_export_filename": "production\\tracker-c0.csv",
     "bom_fmt_presets": [],
     "bom_fmt_settings": {
       "field_delimiter": ",",
@@ -800,8 +800,8 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "bwlc1a.kicad_sch",
-        "name": "bwlc1a",
+        "filename": "tracker-c0.kicad_sch",
+        "name": "tracker-c0",
         "uuid": "00000000-0000-0000-0000-000000000000"
       }
     ]

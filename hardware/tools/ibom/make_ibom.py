@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Build the BWLC1A interactive BOM: one self-contained HTML file.
+"""Build the Tracker C0 interactive BOM: one self-contained HTML file.
 
 Reads the board with KiCad's pcbnew module (KiCad 10) and the production BOM and CPL CSVs, checks that
 they agree, and writes template.html with the data embedded.
 
 Usage (from the repo root, with KiCad's Python):
     python3 hardware/tools/ibom/make_ibom.py \
-        --board hardware/kicad/bwlc1a.kicad_pcb \
-        --bom hardware/kicad/production/TeapotlabsBWLC1A_BOM.csv \
-        --cpl hardware/kicad/production/TeapotlabsBWLC1A_CPL.csv \
-        --out hardware/kicad/production/TeapotlabsBWLC1A_InteractiveBOM.html
+        --board hardware/kicad/tracker-c0.kicad_pcb \
+        --bom hardware/kicad/production/TeapotlabsTrackerC0_BOM.csv \
+        --cpl hardware/kicad/production/TeapotlabsTrackerC0_CPL.csv \
+        --out hardware/kicad/production/TeapotlabsTrackerC0_InteractiveBOM.html
 
 --fragment writes the page without the <!doctype>/<html>/<head>/<body> wrapper (for hosts that add it).
 """
@@ -171,7 +171,7 @@ def main():
     ap.add_argument('--bom', required=True)
     ap.add_argument('--cpl', required=True)
     ap.add_argument('--out', required=True)
-    ap.add_argument('--title', default='BWLC1A Rev 4 Interactive BOM')
+    ap.add_argument('--title', default='Tracker C0 Rev 4 Interactive BOM')
     ap.add_argument('--fragment', action='store_true')
     a = ap.parse_args()
 

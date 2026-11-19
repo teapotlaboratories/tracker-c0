@@ -18,7 +18,7 @@ import collections, csv, math, os, re, subprocess, sys, tempfile, zipfile
 import pcbnew
 
 KICAD = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'kicad'))
-PROD = os.path.join(KICAD, 'production', 'TeapotlabsBWLC1A')
+PROD = os.path.join(KICAD, 'production', 'TeapotlabsTrackerC0')
 FAB_LAYERS = {'F_Cu', 'In1_Cu', 'In2_Cu', 'B_Cu', 'F_Paste', 'B_Paste', 'F_SilkS', 'B_SilkS', 'F_Mask', 'B_Mask', 'Edge_Cuts'}
 
 
@@ -26,8 +26,8 @@ def main():
     tmp = tempfile.mkdtemp()
     net = os.path.join(tmp, 'net.xml')
     subprocess.run(['kicad-cli', 'sch', 'export', 'netlist', '--format', 'kicadxml', '-o', net,
-                    os.path.join(KICAD, 'bwlc1a.kicad_sch')], check=True, capture_output=True)
-    subprocess.run(['git', '-C', KICAD, 'checkout', '--', 'bwlc1a.kicad_prl'], capture_output=True)
+                    os.path.join(KICAD, 'tracker-c0.kicad_sch')], check=True, capture_output=True)
+    subprocess.run(['git', '-C', KICAD, 'checkout', '--', 'tracker-c0.kicad_prl'], capture_output=True)
     zf = zipfile.ZipFile(PROD + '_Gerber.zip')
     zf.extractall(os.path.join(tmp, 'zip'))
     Z = os.path.join(tmp, 'zip')
@@ -39,12 +39,12 @@ def main():
 
     # zip contents
     for n in zf.namelist():
-        m = re.fullmatch(r'bwlc1a-(.+)\.gbr', n)
+        m = re.fullmatch(r'tracker-c0-(.+)\.gbr', n)
         if m and m.group(1) not in FAB_LAYERS:
             I('Zip', 'non-fabrication layer in the zip: ' + n)
     info.append('zip: ' + ', '.join(sorted(zf.namelist())))
 
-    b = pcbnew.LoadBoard(os.path.join(KICAD, 'bwlc1a.kicad_pcb'))
+    b = pcbnew.LoadBoard(os.path.join(KICAD, 'tracker-c0.kicad_pcb'))
     ax = b.GetDesignSettings().GetAuxOrigin()
     mm = lambda v: v / 1e6
     s = open(net).read()

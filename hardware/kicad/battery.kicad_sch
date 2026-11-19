@@ -1112,7 +1112,7 @@
 			(uuid "f6d4751d-be62-44c1-875e-e4a4a5236c40")
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798/fc98a97f-c593-44d5-bbd7-e4921ada3217"
 					(reference "#PWR095")
 					(unit 1)
@@ -1205,7 +1205,7 @@
 			(uuid "08dd1067-5085-4f12-848a-800d12ac337c")
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798/fc98a97f-c593-44d5-bbd7-e4921ada3217"
 					(reference "#PWR093")
 					(unit 1)
@@ -1275,7 +1275,7 @@
 				)
 			)
 		)
-		(property "Footprint" "bwlc1a:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal"
+		(property "Footprint" "tracker-c0:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal"
 			(at 93.345 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -1414,7 +1414,7 @@
 			(uuid "df6db7ba-27f7-4651-978a-969aee8d9cfe")
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798/fc98a97f-c593-44d5-bbd7-e4921ada3217"
 					(reference "J4")
 					(unit 1)
@@ -1491,7 +1491,7 @@
 			(uuid "4c4f88f1-7fe3-4ab8-9fd0-333d1024b95e")
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798/fc98a97f-c593-44d5-bbd7-e4921ada3217"
 					(reference "#PWR094")
 					(unit 1)
@@ -1703,7 +1703,7 @@
 			(uuid "51746e8b-c2e0-4ace-b5f4-3d35fd9a087c")
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798/fc98a97f-c593-44d5-bbd7-e4921ada3217"
 					(reference "TP33")
 					(unit 1)
@@ -1912,7 +1912,7 @@
 			(uuid "93289266-fe7e-4b7e-bf04-199f075a1011")
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798/fc98a97f-c593-44d5-bbd7-e4921ada3217"
 					(reference "Q3")
 					(unit 1)

@@ -1,11 +1,15 @@
-# BWLC1A: Low-power Cellular GPS Tracker
+# Tracker C0: Low-power Cellular GPS Tracker
 
-![BWLC1A Rev 4, 3D render](docs/images/bwlc1a-rev4-3d-iso.webp)
+![Tracker C0 Rev 4, 3D render](docs/images/tracker-c0-rev4-3d-iso.webp)
 
-BWLC1A is a small, low-cost tracker board from Teapot Laboratories. It reports its position over LTE Cat-1 and is
+Tracker C0 is a small, low-cost tracker board from Teapot Laboratories. It reports its position over LTE Cat-1 and is
 meant to run for **at least a year on one battery**. To get there it spends almost all of its time in deep sleep,
 wakes up when the accelerometer feels movement, takes a GNSS fix, sends a report over the cellular network, and goes
 back to sleep with the modem and GNSS fully powered off.
+
+> **Formerly BWLC1A.** The project and this repository were renamed to Tracker C0 (`tracker-c0`) on 2026-11-19.
+> The dated reports in [`docs/worklog/`](docs/worklog) and the Git history before that date use the old name and
+> the old file names (`bwlc1a.*`, `TeapotlabsBWLC1A_*`). The old GitHub URL redirects here.
 
 | | |
 |---|---|
@@ -24,10 +28,10 @@ back to sleep with the modem and GNSS fully powered off.
 
 | Top | Bottom |
 |---|---|
-| ![3D render, top](docs/images/bwlc1a-rev4-3d-top.webp) | ![3D render, bottom](docs/images/bwlc1a-rev4-3d-bottom.webp) |
-| ![Front copper and silkscreen](docs/images/bwlc1a-rev4-pcb-front.webp) | ![Back copper and silkscreen](docs/images/bwlc1a-rev4-pcb-back.webp) |
+| ![3D render, top](docs/images/tracker-c0-rev4-3d-top.webp) | ![3D render, bottom](docs/images/tracker-c0-rev4-3d-bottom.webp) |
+| ![Front copper and silkscreen](docs/images/tracker-c0-rev4-pcb-front.webp) | ![Back copper and silkscreen](docs/images/tracker-c0-rev4-pcb-back.webp) |
 
-<p align="center"><img src="docs/images/bwlc1a-rev4-turntable.webp" alt="BWLC1A Rev 4 turntable render" width="720"></p>
+<p align="center"><img src="docs/images/tracker-c0-rev4-turntable.webp" alt="Tracker C0 Rev 4 turntable render" width="720"></p>
 
 ## Architecture
 
@@ -140,11 +144,11 @@ LiPo for one year. Measure sleep and event current on the first boards before ch
 
 ## Schematic
 
-![Top-level schematic](docs/images/bwlc1a-rev4-schematic-root.webp)
+![Top-level schematic](docs/images/tracker-c0-rev4-schematic-root.webp)
 
-The KiCad 10 project is in [`hardware/kicad/`](hardware/kicad): the root sheet `bwlc1a.kicad_sch` plus eight
+The KiCad 10 project is in [`hardware/kicad/`](hardware/kicad): the root sheet `tracker-c0.kicad_sch` plus eight
 sub-sheets (Power, Battery, USB and Charger, Main Controller, Cellular, GNSS, Sensors, Antenna), the board
-`bwlc1a.kicad_pcb`, and project libraries in `library/`.
+`tracker-c0.kicad_pcb`, and project libraries in `library/`.
 
 ## Manufacturing
 
@@ -152,11 +156,11 @@ Production files are in [`hardware/kicad/production/`](hardware/kicad/production
 
 | File | Contents |
 |---|---|
-| `TeapotlabsBWLC1A_Gerber.zip` | Gerbers, PTH/NPTH drill, IPC-D-356 netlist, PCBWay BOM and positions |
-| `TeapotlabsBWLC1A_BOM.csv` | Bill of materials: 53 lines, 112 parts, with LCSC, Mouser or Digi-Key part numbers |
-| `TeapotlabsBWLC1A_CPL.csv` | Pick-and-place positions (top side only) |
-| `TeapotlabsBWLC1A_ManufacturingInfo.txt` | Board spec, stack-up and impedance notes for the fab |
-| `TeapotlabsBWLC1A_InteractiveBOM.html` | Interactive BOM for hand assembly and inspection (open in a browser) |
+| `TeapotlabsTrackerC0_Gerber.zip` | Gerbers, PTH/NPTH drill, IPC-D-356 netlist, PCBWay BOM and positions |
+| `TeapotlabsTrackerC0_BOM.csv` | Bill of materials: 53 lines, 112 parts, with LCSC, Mouser or Digi-Key part numbers |
+| `TeapotlabsTrackerC0_CPL.csv` | Pick-and-place positions (top side only) |
+| `TeapotlabsTrackerC0_ManufacturingInfo.txt` | Board spec, stack-up and impedance notes for the fab |
+| `TeapotlabsTrackerC0_InteractiveBOM.html` | Interactive BOM for hand assembly and inspection (open in a browser) |
 
 Board spec: 4 layers, 1.6 mm, S1000H TG150, 5/5 mil, 0.3 mm minimum hole, tented vias, red solder mask with white
 silkscreen. The LTE antenna feed is a 50 Ω coplanar waveguide on L1 (0.33 mm trace, 0.2 mm gap, referenced to L2),

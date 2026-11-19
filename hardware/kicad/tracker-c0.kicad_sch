@@ -5,7 +5,7 @@
 	(uuid "388039b1-99cc-430f-bd4a-010573fde798")
 	(paper "A4")
 	(title_block
-		(title "Teapotlabs BWLC1A")
+		(title "Teapotlabs Tracker C0")
 		(date "2026-11-16")
 		(rev "4")
 		(company "Teapot Laboratories")
@@ -1001,7 +1001,7 @@
 			)
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798"
 					(page "4")
 				)
@@ -1097,7 +1097,7 @@
 			)
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798"
 					(page "6")
 				)
@@ -1222,7 +1222,7 @@
 			)
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798"
 					(page "3")
 				)
@@ -1337,7 +1337,7 @@
 			)
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798"
 					(page "5")
 				)
@@ -1393,7 +1393,7 @@
 			)
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798"
 					(page "9")
 				)
@@ -1498,7 +1498,7 @@
 			)
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798"
 					(page "2")
 				)
@@ -1623,7 +1623,7 @@
 			)
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798"
 					(page "8")
 				)
@@ -1679,7 +1679,7 @@
 			)
 		)
 		(instances
-			(project "bwlc1a"
+			(project "tracker-c0"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798"
 					(page "7")
 				)

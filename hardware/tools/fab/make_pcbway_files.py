@@ -1,6 +1,6 @@
 """Turn the raw kicad-cli BOM and position exports into the production files.
 
-Called by export_production.sh with its work directory. Writes TeapotlabsBWLC1A_BOM.csv and _CPL.csv (fitted
+Called by export_production.sh with its work directory. Writes TeapotlabsTrackerC0_BOM.csv and _CPL.csv (fitted
 parts only: a non-empty Manufacturer Part Number and Value != "DNP"), and z/PCBWay_bom.csv and
 z/PCBWay_positions.csv for the Gerber zip. CPL coordinates are the footprint origins in the drill/place-file
 origin frame, the same frame as the Gerbers.
@@ -22,7 +22,7 @@ for r in rows:
     keep.append(r)
 keep.sort(key=lambda r: nat(r['Reference'].split(',')[0]))
 cols=['Id','Reference','Qty','Manufacturer','Manufacturer Part Number','Value','Description','Datasheet','Footprint','Distributor','Distributor Part Number','Distributor Link']
-with open(f'{O}/TeapotlabsBWLC1A_BOM.csv','w',newline='',encoding='utf-8') as f:
+with open(f'{O}/TeapotlabsTrackerC0_BOM.csv','w',newline='',encoding='utf-8') as f:
     w=csv.writer(f); w.writerow(cols)
     for i,r in enumerate(keep,1): w.writerow([i]+[r[c].strip() for c in cols[1:]])
 bomrefs={x:r for r in keep for x in r['Reference'].split(',')}
@@ -41,7 +41,7 @@ for r in csv.DictReader(open(f'{O}/pos_all.csv')):
 cpl.sort(key=lambda r: nat(r[0])); pw.sort(key=lambda r: nat(r[4]))
 missing=set(bomrefs)-{r[0] for r in cpl}
 assert not missing, missing
-with open(f'{O}/TeapotlabsBWLC1A_CPL.csv','w',newline='',encoding='utf-8') as f:
+with open(f'{O}/TeapotlabsTrackerC0_CPL.csv','w',newline='',encoding='utf-8') as f:
     w=csv.writer(f); w.writerow(['Designator','Mid X','Mid Y','Rotation','Layer']); w.writerows(cpl)
 with open(f'{O}/z/PCBWay_positions.csv','w',newline='',encoding='utf-8') as f:
     w=csv.writer(f); w.writerow(['pos_x','pos_y','rotation','side','designator','mpn','pack','value','mount_type','place']); w.writerows(pw)

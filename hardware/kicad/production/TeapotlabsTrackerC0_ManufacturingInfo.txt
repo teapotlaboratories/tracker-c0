@@ -1,4 +1,4 @@
-Teapotlabs BWLC1A - Revision 4
+Teapotlabs Tracker C0 - Revision 4
 
 Thickness = 1.6mm
 
@@ -27,16 +27,16 @@ Impedance control: Yes
 
 SUGGESTED STACK-UP
 
-L1	Copper		1oz					bwlc1a-F_Cu.gbr
+L1	Copper		1oz					tracker-c0-F_Cu.gbr
 
 	Prepreg		0.1855mm	Dk=4.56 (7628 RC46%)
 
-L2	Copper		1oz					bwlc1a-In1_Cu.gbr
+L2	Copper		1oz					tracker-c0-In1_Cu.gbr
 
 	Core		~1.07mm		Dk=4.6 (adjust for 1.6mm finished thickness)
 
-L3	Copper		1oz					bwlc1a-In2_Cu.gbr
+L3	Copper		1oz					tracker-c0-In2_Cu.gbr
 
 	Prepreg		0.1855mm	Dk=4.56 (7628 RC46%)
 
-L4	Copper		1oz					bwlc1a-B_Cu.gbr
+L4	Copper		1oz					tracker-c0-B_Cu.gbr

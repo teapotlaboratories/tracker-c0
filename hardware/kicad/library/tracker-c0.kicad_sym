@@ -33,7 +33,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "bwlc1a:2108784-1"
+		(property "Footprint" "tracker-c0:2108784-1"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -165,7 +165,7 @@
 				)
 			)
 		)
-		(property "Footprint" "bwlc1a:LGA-124_L24.0-W24.0-P1.0-A7670C-LASS"
+		(property "Footprint" "tracker-c0:LGA-124_L24.0-W24.0-P1.0-A7670C-LASS"
 			(at 0 57.15 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1823,7 +1823,7 @@
 				)
 			)
 		)
-		(property "Footprint" "bwlc1a:BWIPX-1-001E"
+		(property "Footprint" "tracker-c0:BWIPX-1-001E"
 			(at 0 -7.62 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1967,7 +1967,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "bwlc1a:ESP32-S3-MINI-1"
+		(property "Footprint" "tracker-c0:ESP32-S3-MINI-1"
 			(at 0 -55.88 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3249,7 +3249,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "bwlc1a:L76L-M33"
+		(property "Footprint" "tracker-c0:L76L-M33"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3617,7 +3617,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "bwlc1a:L96-M33"
+		(property "Footprint" "tracker-c0:L96-M33"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4299,7 +4299,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "bwlc1a:NN03-310"
+		(property "Footprint" "tracker-c0:NN03-310"
 			(at 0 -15.24 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4548,7 +4548,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "bwlc1a:NN03-320"
+		(property "Footprint" "tracker-c0:NN03-320"
 			(at 0 -15.24 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5122,7 +5122,7 @@
 				)
 			)
 		)
-		(property "Footprint" "bwlc1a:SIM-SMD_SMN-304"
+		(property "Footprint" "tracker-c0:SIM-SMD_SMN-304"
 			(at 0 -17.78 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5720,7 +5720,7 @@
 				)
 			)
 		)
-		(property "Footprint" "bwlc1a:TSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL"
+		(property "Footprint" "tracker-c0:TSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL"
 			(at 0 -16.51 0)
 			(show_name no)
 			(do_not_autoplace no)
