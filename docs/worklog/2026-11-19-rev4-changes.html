@@ -1,0 +1,850 @@
+<title>BWLC1A Rev 4 Changes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (~74ch) with wide figure rows that break out to 1180px; sticky section index on desktop. */
+:root{
+  --paper:#f6f5f1; --panel:#ffffff; --ink:#1d2321; --muted:#5c6763; --rule:#d9dcd6;
+  --mask:#a3262a;   /* solder-mask red, the accent */
+  --copper:#a8662b; /* copper, second accent */
+  --fr4:#5f7a3a;    /* laminate green, used for "fitted / ok" */
+  --warn:#9a6a00; --bad:#a3262a; --ok:#3f6b2a;
+  --tint-bad:#f6e3e1; --tint-ok:#e7efdf; --tint-warn:#f5ecd6; --tint-cu:#f3e6d8;
+  --code-bg:#eceee8;
+  --display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#141716; --panel:#1b1f1d; --ink:#e6e8e3; --muted:#9aa49f; --rule:#2e3431;
+  --mask:#e0675f; --copper:#d79a5e; --fr4:#9cbd6e; --warn:#e0b04a; --bad:#e0675f; --ok:#9cbd6e;
+  --tint-bad:#3a2120; --tint-ok:#23301c; --tint-warn:#352c16; --tint-cu:#33271b; --code-bg:#232825; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141716; --panel:#1b1f1d; --ink:#e6e8e3; --muted:#9aa49f; --rule:#2e3431;
+  --mask:#e0675f; --copper:#d79a5e; --fr4:#9cbd6e; --warn:#e0b04a; --bad:#e0675f; --ok:#9cbd6e;
+  --tint-bad:#3a2120; --tint-ok:#23301c; --tint-warn:#352c16; --tint-cu:#33271b; --code-bg:#232825; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1180px;margin:0 auto}
+.col{max-width:74ch}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,5vw,3.1rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.75rem;font-weight:700;margin-bottom:.4rem}
+h3{font-size:1.15rem;font-weight:600;margin-top:1.6rem}
+p{margin:.6rem 0}
+code,.mono{font-family:var(--mono);font-size:.88em}
+code{background:var(--code-bg);padding:.05em .35em;border-radius:3px}
+a{color:var(--mask)}
+.eyebrow{font:500 .75rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+small{font-size:.85rem}
+
+header.top{padding-block:48px 28px;border-bottom:1px solid var(--rule);display:grid;gap:18px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;font:400 .85rem/1.4 var(--mono);color:var(--muted)}
+.meta b{color:var(--ink);font-weight:500}
+.lede{font-size:1.1rem;max-width:68ch}
+
+.commits{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-top:6px}
+.commit{border:1px solid var(--rule);background:var(--panel);padding:10px 12px;border-radius:4px;min-width:0}
+.commit .h{font:500 .8rem var(--mono);color:var(--copper)}
+.commit .s{font-weight:600;font-size:.95rem}
+.commit .f{font-size:.8rem;color:var(--muted)}
+
+.layout{display:grid;grid-template-columns:200px minmax(0,1fr);gap:40px;margin-top:32px}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);align-self:start;font-size:.88rem}
+nav.toc ol{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:2px}
+nav.toc a{color:var(--muted);text-decoration:none;display:block;padding:4px 8px;border-left:2px solid transparent}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--ink);border-left-color:var(--mask);outline:none}
+@media (max-width:900px){.layout{grid-template-columns:minmax(0,1fr)} nav.toc{position:static} nav.toc ol{display:flex;flex-wrap:wrap;gap:4px} nav.toc a{border:1px solid var(--rule);border-radius:3px}}
+
+section{padding-block:28px 12px;border-top:1px solid var(--rule);scroll-margin-top:12px}
+section:first-of-type{border-top:0;padding-top:0}
+.why{border-left:3px solid var(--mask);padding:2px 0 2px 14px;margin:14px 0}
+.why .eyebrow{color:var(--mask)}
+
+.pill{display:inline-block;font:500 .7rem/1.6 var(--mono);letter-spacing:.04em;text-transform:uppercase;padding:0 .5em;border-radius:3px;white-space:nowrap}
+.p-crit{background:var(--mask);color:var(--paper)}
+.p-high{background:var(--tint-bad);color:var(--bad)}
+.p-med{background:var(--tint-warn);color:var(--warn)}
+.p-low{background:var(--code-bg);color:var(--muted)}
+.p-ok{background:var(--tint-ok);color:var(--ok)}
+.p-cu{background:var(--tint-cu);color:var(--copper)}
+
+.tablewrap{overflow-x:auto;margin:14px 0;border:1px solid var(--rule);border-radius:4px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:600 .75rem var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--code-bg)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono)}
+tr.cleared td{background:var(--tint-ok)}
+
+figure{margin:18px 0}
+figcaption{font-size:.85rem;color:var(--muted);margin-top:6px}
+.diagram{background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:12px;overflow-x:auto}
+.diagram svg{display:block;width:100%;height:auto;min-width:560px}
+.diagram svg text{font-family:var(--mono);fill:var(--ink)}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.pair figure{margin:0}
+.pair img,.single img{width:100%;height:auto;border-radius:3px;display:block;border:1px solid var(--rule)}
+.tag{font:500 .72rem var(--mono);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;display:flex;gap:6px;align-items:center}
+.tag.b{color:var(--muted)} .tag.a{color:var(--mask)}
+@media (max-width:620px){.pair{grid-template-columns:minmax(0,1fr)}}
+
+.stack{display:grid;gap:14px}
+.stack>*{min-width:0}
+.pair.ba img{background:#0f1419}
+.narrow{max-width:760px}
+.rows{display:grid;gap:22px}
+.rows>div{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:760px){.rows>div{grid-template-columns:minmax(0,1fr)}}
+.hint{font:400 .75rem var(--mono);color:var(--muted);margin-top:4px}
+
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+@media (max-width:760px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:.9rem}
+.kv dt{font-family:var(--mono);color:var(--muted)} .kv dd{margin:0}
+.callout{background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:12px 14px;margin:14px 0}
+.callout.warn{background:var(--tint-warn);border-color:transparent}
+ul.tight{margin:.4rem 0;padding-left:1.2rem} ul.tight li{margin:.2rem 0}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style><style>
+.diagram svg .w{stroke:var(--ink);stroke-width:2;fill:none}
+.diagram svg .c{stroke:var(--copper);stroke-width:2.5;fill:none}
+.diagram svg .m{stroke:var(--muted);stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.diagram svg .box{stroke:var(--rule);stroke-width:1.5;fill:var(--code-bg)}
+.diagram svg .fet{stroke:var(--mask);stroke-width:2.5;fill:var(--panel)}
+.diagram svg .res{stroke:var(--ink);stroke-width:2;fill:var(--panel)}
+.diagram svg .dot{fill:var(--ink)}
+.diagram svg text.t{font-size:13px}
+.diagram svg text.s{font-size:11px;fill:var(--muted)}
+.diagram svg text.h{font:600 15px var(--display);fill:var(--mask)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font:400 .82rem var(--mono);margin-top:8px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:22px;height:4px;border-radius:2px}
+.single img{background:#0f1419}
+.sch img{background:#fff}
+</style><style>
+/* review-report components */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.tile{border:1px solid var(--rule);background:var(--panel);padding:12px 14px;border-radius:4px;min-width:0}
+.tile .n{font:700 1.9rem/1 var(--display);font-variant-numeric:tabular-nums}
+.tile .l{font-size:.85rem;color:var(--muted);margin-top:4px}
+.tile.bad .n{color:var(--bad)} .tile.warn .n{color:var(--warn)} .tile.ok .n{color:var(--ok)}
+.find{border:1px solid var(--rule);border-radius:4px;background:var(--panel);padding:14px 16px;margin:12px 0;display:grid;gap:6px;min-width:0}
+.find .hd{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+.find .hd b{font-family:var(--display);font-size:1.12rem;font-weight:600}
+.find .k{font:500 .72rem var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.find p{margin:0}
+.find .row{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 12px}
+@media (max-width:620px){.find .row{grid-template-columns:minmax(0,1fr)}}
+.src{font-size:.82rem;color:var(--muted)}
+tr.total td{font-weight:600;background:var(--code-bg)} tr.leak td{background:var(--tint-bad)} tr.gone td{text-decoration:line-through;color:var(--muted)}
+.callout.ok{background:var(--tint-ok);border-color:transparent}
+ol.plan{padding-left:1.3rem} ol.plan li{margin:.45rem 0}
+.part{padding:34px 0 0;border-top:3px solid var(--ink);margin-top:10px}
+.part .eyebrow{color:var(--mask)} .part h2{font-size:2.1rem}
+nav.toc .grp{font:500 .68rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mask);padding:12px 8px 2px}
+@media (max-width:900px){nav.toc .grp{width:100%;padding:8px 0 0}}
+.pair figure img{border:1px solid var(--rule)}
+code{overflow-wrap:anywhere}
+</style>
+<style>
+.cards{display:grid;gap:16px;margin-top:14px}
+.chg{border:1px solid var(--rule);background:var(--panel);border-radius:6px;padding:16px;display:grid;gap:8px;min-width:0}
+.chg .ct{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline}
+.chg .ct h3{margin:0;font-size:1.25rem}
+.chg .no{font:700 1.5rem/1 var(--display);color:var(--mask);min-width:1.2em}
+.chg p{margin:0;max-width:80ch} .chg .why{color:var(--muted)} .chg .why b{color:var(--ink)}
+.chg .more{font-size:.85rem;color:var(--muted)}
+.views{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:6px}
+@media (max-width:860px){.views{grid-template-columns:minmax(0,1fr)}}
+.view{margin:0;border:1px solid var(--rule);border-radius:4px;padding:8px;background:var(--paper);min-width:0;display:flex;flex-direction:column;gap:6px}
+.view .vh{font:600 .72rem var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.view figcaption{font-size:.78rem;color:var(--muted);margin:0}
+.shots{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+.shot{position:relative;display:block;border-radius:3px;overflow:hidden;border:1px solid var(--rule)}
+.shot img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;border:0}
+.shot.sch img{background:#f5f4ee} .shot.pcb img{background:#0f1419} .shot.r3d img{background:#8f90ab}
+.shot .chip{position:absolute;left:6px;top:6px;font:600 .66rem/1.5 var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:0 .45em;border-radius:3px}
+.chip.b{background:rgba(20,23,22,.78);color:#e6e8e3} .chip.a{background:var(--mask);color:#fff}
+.shot:focus-visible{outline:2px solid var(--mask);outline-offset:2px}
+.none{flex:1;display:grid;place-items:center;text-align:center;font-size:.85rem;color:var(--muted);border:1px dashed var(--rule);border-radius:3px;padding:16px;min-height:120px}
+@media (min-width:861px){.shots{grid-template-columns:minmax(0,1fr)}}
+.whole{border:1px solid var(--rule);background:var(--panel);border-radius:6px;padding:16px;margin-top:14px;display:grid;gap:10px;min-width:0}
+.whole .wh{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline} .whole .wh h3{margin:0;font-size:1.25rem} .whole .wh span{font-size:.82rem}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--rule)}
+.tabs button{font:500 .85rem var(--body);color:var(--muted);background:none;border:0;border-bottom:2px solid transparent;padding:8px 10px;cursor:pointer;margin-bottom:-1px}
+.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--mask)}
+.tabs button:focus-visible{outline:2px solid var(--mask);outline-offset:-2px}
+.cmp{position:relative;border-radius:4px;overflow:hidden;border:1px solid var(--rule);user-select:none;touch-action:pan-y}
+.cmp.pcb{background:#0f1419} .cmp.r3d{background:#8f90ab}
+.cmp img{display:block;width:100%;height:auto}
+.cmp .cb{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.cmp .line{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.4);pointer-events:none}
+.cmp .line::after{content:"";position:absolute;top:50%;left:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.5)}
+.cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.cmp input:focus-visible+.x,.cmp:focus-within{outline:2px solid var(--mask);outline-offset:2px}
+.cmp .chip{position:absolute;top:8px;font:600 .66rem/1.5 var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:0 .45em;border-radius:3px;pointer-events:none}
+.cmp .chip.l{left:8px} .cmp .chip.r{right:8px}
+.cnote{font-size:.82rem;color:var(--muted);margin:6px 0 0}
+.pair2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px} @media (max-width:620px){.pair2{grid-template-columns:minmax(0,1fr)}}
+.pair2 .shot img{aspect-ratio:auto}
+.orbit{display:grid;gap:8px}
+.omodes{display:flex;gap:4px;flex-wrap:wrap}
+.omodes button,.octl button{font:500 .82rem var(--body);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:5px 10px;cursor:pointer}
+.omodes button[aria-pressed=true],.oplay[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.omodes button:focus-visible,.octl button:focus-visible,.othumbs button:focus-visible,.ostage:focus-visible{outline:2px solid var(--mask);outline-offset:2px}
+.ostage{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;cursor:grab;touch-action:pan-y;user-select:none}
+.ostage:active{cursor:grabbing}
+.ov{position:relative;margin:0;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:#8f90ab}
+.ov img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;pointer-events:none}
+.ov .chip{position:absolute;left:8px;top:8px;font:600 .66rem/1.5 var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:0 .45em;border-radius:3px}
+.orbit[data-mode=a] .ob,.orbit[data-mode=b] .oa{display:none}
+.orbit[data-mode=s] .ostage{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:620px){.orbit[data-mode=s] .ostage{grid-template-columns:minmax(0,1fr)}}
+.octl{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.octl input{flex:1;min-width:140px;accent-color:var(--mask)}
+.oang{font:500 .85rem var(--mono);min-width:3.2em;text-align:right;color:var(--muted)}
+.othumbs{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px}
+@media (max-width:620px){.othumbs{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.othumbs button{padding:0;border:2px solid transparent;border-radius:3px;background:#8f90ab;cursor:pointer;overflow:hidden}
+.othumbs button[aria-current=true]{border-color:var(--mask)}
+.othumbs img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+
+</style>
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Teapotlabs BWLC1A · Rev 4 · branch r4 vs f95b485 · not committed · 2026-11-17 to 2026-11-19</div>
+  <h1>BWLC1A Rev 4 Changes</h1>
+  <p class="lede">Every Rev 4 change since the last commit, in one place. Part 1 replaces the modem's level shifter and adds proper RESET and STATUS drivers. Part 2 covers the BOM and parts. Part 3 is the adversarial review against the product goal (a cheap tracker that lasts a year on battery, asleep until it moves) and the fixes you chose from it.</p>
+  <div class="meta"><span>ERC <b>3 errors</b> (pre-existing)</span><span>DRC <b>119</b></span><span>unconnected <b>0</b></span><span>parity <b>clean</b></span><span>BOM <b>53 lines / 112 parts</b></span><span>sleep <b>~28–41 µA</b> (estimate)</span></div>
+  <div class="commits">
+    <div class="commit"><div class="h">Part 1 · U2 · Q5 · Q6</div><div class="s">TXB0102, RESET and STATUS</div><div class="f">2-channel VSSOP-8 translator for the UART; open-drain RESET driver on GPIO12; STATUS inverted into GPIO17.</div></div>
+    <div class="commit"><div class="h">Part 2 · BOM</div><div class="s">Stock, datasheets, our own iBOM</div><div class="f">J4 swapped to an in-stock PH clone; every datasheet link a PDF; iBOM built from scratch.</div></div>
+    <div class="commit"><div class="h">Part 3 · review</div><div class="s">Battery switch, R6, cheap wins, J4 on top</div><div class="f">Buck replaced by a P-FET switch; GNSS reset leak removed; 45 → 29 Extended lines; single-sided assembly; corner cut-out for the cable.</div></div>
+  </div>
+</header>
+
+<div class="layout">
+<nav class="toc" aria-label="Sections"><div class="eyebrow">Sections</div><ol>
+  <li><a href="#tldr"><b>TL;DR</b></a></li>
+  <li class="grp">1 · Modem interface</li>
+  <li><a href="#drivers">How the drivers work</a></li>
+  <li><a href="#schematic">Schematic</a></li>
+  <li><a href="#u2">Board: U2 and Q5</a></li>
+  <li><a href="#q6">Board: Q6</a></li>
+  <li><a href="#status-tidy">STATUS tidy</a></li>
+  <li><a href="#render3d">3D views</a></li>
+  <li><a href="#routes">Routes</a></li>
+  <li class="grp">2 · Parts</li>
+  <li><a href="#bom">BOM and parts</a></li>
+  <li class="grp">3 · Review</li>
+  <li><a href="#fixed">Fixes applied</a></li>
+  <li><a href="#must">Fix before ordering</a></li>
+  <li><a href="#battery">Battery budget</a></li>
+  <li><a href="#should">Should fix</a></li>
+  <li><a href="#cost">Cost</a></li>
+  <li><a href="#low">Lower priority</a></li>
+  <li><a href="#tools">Fab tools</a></li>
+  <li><a href="#passed">What held up</a></li>
+  <li><a href="#plan">Plan and status</a></li>
+  <li><a href="#unknown">Not checked</a></li>
+  <li class="grp">All parts</li>
+  <li><a href="#checks">Checks</a></li>
+  <li><a href="#firmware">Firmware</a></li>
+  <li><a href="#open">Open items</a></li>
+</ol></nav>
+
+<main class="stack">
+<section id="tldr">
+  <h2>TL;DR</h2>
+  <p class="col">Eight changes since the last commit (f95b485). First the whole board, then one card per change with <b>before</b> and <b>after</b> for the schematic, the board (front copper) and a 3D render; click any card image to open it full size. The board now passes DRC with 119 items (none new), 0 unconnected, schematic in sync; BOM 53 lines / 112 parts, all on the top side; estimated sleep current 28–41 µA. Nothing is committed yet.</p>
+  <div class="whole"><div class="wh"><h3>Whole board, before and after</h3><span class="muted">Drag the slider, or focus it and use the arrow keys.</span></div><div class="tabs" role="tablist"><button role="tab" id="tab-wtop" aria-controls="pane-wtop" aria-selected="true" tabindex="0">Top copper</button><button role="tab" id="tab-wbot" aria-controls="pane-wbot" aria-selected="false" tabindex="-1">Bottom copper</button><button role="tab" id="tab-w3t" aria-controls="pane-w3t" aria-selected="false" tabindex="-1">3D top</button><button role="tab" id="tab-w3b" aria-controls="pane-w3b" aria-selected="false" tabindex="-1">3D bottom</button><button role="tab" id="tab-w3o" aria-controls="pane-w3o" aria-selected="false" tabindex="-1">3D all angles</button></div><div class="pane" role="tabpanel" id="pane-wtop" aria-labelledby="tab-wtop"><div class="cmp pcb" style="--pos:50%"><img src="../images/rev4-report/w_pcb_F_a7.webp" alt="Top copper, after" loading="lazy"><div class="cb"><img src="../images/rev4-report/w_pcb_F_b.webp" alt="Top copper, before" loading="lazy"></div><div class="line" aria-hidden="true"></div><span class="chip b l">before</span><span class="chip a r">after</span><input type="range" min="0" max="100" value="50" aria-label="Top copper: drag to compare before and after"></div><p class="cnote">Front copper and silkscreen. Look for the modem switch (centre), the charger column and J4 at the bottom right, and the logo now at the far left.</p></div><div class="pane" role="tabpanel" id="pane-wbot" aria-labelledby="tab-wbot" hidden><div class="cmp pcb" style="--pos:50%"><img src="../images/rev4-report/w_pcb_B_a5.webp" alt="Bottom copper, after" loading="lazy"><div class="cb"><img src="../images/rev4-report/w_pcb_B_b.webp" alt="Bottom copper, before" loading="lazy"></div><div class="line" aria-hidden="true"></div><span class="chip b l">before</span><span class="chip a r">after</span><input type="range" min="0" max="100" value="50" aria-label="Bottom copper: drag to compare before and after"></div><p class="cnote">Back copper and silkscreen, seen from below. J4 and its pour are gone from this side.</p></div><div class="pane" role="tabpanel" id="pane-w3t" aria-labelledby="tab-w3t" hidden><div class="cmp r3d" style="--pos:50%"><img src="../images/rev4-report/w3_top_a7.webp" alt="3D top view, after" loading="lazy"><div class="cb"><img src="../images/rev4-report/w3_top_b.webp" alt="3D top view, before" loading="lazy"></div><div class="line" aria-hidden="true"></div><span class="chip b l">before</span><span class="chip a r">after</span><input type="range" min="0" max="100" value="50" aria-label="3D top view: drag to compare before and after"></div><p class="cnote">KiCad raytraced render, top. Parts marked DNP are still drawn by the renderer.</p></div><div class="pane" role="tabpanel" id="pane-w3b" aria-labelledby="tab-w3b" hidden><div class="cmp r3d" style="--pos:50%"><img src="../images/rev4-report/w3_bot_a5.webp" alt="3D bottom view, after" loading="lazy"><div class="cb"><img src="../images/rev4-report/w3_bot_b.webp" alt="3D bottom view, before" loading="lazy"></div><div class="line" aria-hidden="true"></div><span class="chip b l">before</span><span class="chip a r">after</span><input type="range" min="0" max="100" value="50" aria-label="3D bottom view: drag to compare before and after"></div><p class="cnote">KiCad raytraced render, seen from below. The bottom side is now bare: no parts to assemble there.</p></div><div class="pane" role="tabpanel" id="pane-w3o" aria-labelledby="tab-w3o" hidden><div class="orbit" data-n="12"><div class="omodes" role="group" aria-label="Show"><button type="button" data-m="b" aria-pressed="false">Before</button><button type="button" data-m="a" aria-pressed="true">After</button><button type="button" data-m="s" aria-pressed="false">Side by side</button></div><div class="ostage" tabindex="0" aria-label="3D view, drag or use the arrow keys to rotate"><figure class="ov ob"><img alt="Board at the last commit, 3D view" draggable="false"><span class="chip b">before</span></figure><figure class="ov oa"><img alt="Current board, 3D view" draggable="false"><span class="chip a">after</span></figure></div><div class="octl"><button type="button" class="oprev" aria-label="Rotate left">&#9664;</button><input type="range" min="0" max="11" value="0" aria-label="View angle"><button type="button" class="onext" aria-label="Rotate right">&#9654;</button><button type="button" class="oplay" aria-pressed="false">Play</button><span class="oang">0°</span></div><div class="othumbs"><button type="button" data-i="0" aria-label="View from 0°"><img src="../images/rev4-report/o_now7_0.webp" alt="" loading="lazy"></button><button type="button" data-i="1" aria-label="View from 30°"><img src="../images/rev4-report/o_now7_30.webp" alt="" loading="lazy"></button><button type="button" data-i="2" aria-label="View from 60°"><img src="../images/rev4-report/o_now7_60.webp" alt="" loading="lazy"></button><button type="button" data-i="3" aria-label="View from 90°"><img src="../images/rev4-report/o_now7_90.webp" alt="" loading="lazy"></button><button type="button" data-i="4" aria-label="View from 120°"><img src="../images/rev4-report/o_now7_120.webp" alt="" loading="lazy"></button><button type="button" data-i="5" aria-label="View from 150°"><img src="../images/rev4-report/o_now7_150.webp" alt="" loading="lazy"></button><button type="button" data-i="6" aria-label="View from 180°"><img src="../images/rev4-report/o_now7_180.webp" alt="" loading="lazy"></button><button type="button" data-i="7" aria-label="View from 210°"><img src="../images/rev4-report/o_now7_210.webp" alt="" loading="lazy"></button><button type="button" data-i="8" aria-label="View from 240°"><img src="../images/rev4-report/o_now7_240.webp" alt="" loading="lazy"></button><button type="button" data-i="9" aria-label="View from 270°"><img src="../images/rev4-report/o_now7_270.webp" alt="" loading="lazy"></button><button type="button" data-i="10" aria-label="View from 300°"><img src="../images/rev4-report/o_now7_300.webp" alt="" loading="lazy"></button><button type="button" data-i="11" aria-label="View from 330°"><img src="../images/rev4-report/o_now7_330.webp" alt="" loading="lazy"></button></div></div><p class="cnote">Twelve KiCad raytraced views of the top side, every 30° around the board at a 45° tilt. Drag the image, use the slider or arrow keys, or press Play. Parts marked DNP are still drawn by the renderer.</p></div></div>
+  <div class="cards"><article class="chg"><div class="ct"><span class="no">1</span><h3>Modem UART shifter shrinks; RESET gets a driver</h3><span class="pill p-ok">done</span></div>
+  <p class="what">U2 goes from the 4-channel TXB0104 (QFN-14) to the 2-channel TXB0102 (VSSOP-8), carrying only the modem UART. The freed space next to U1 pin 16 holds Q5 with R31/R32: an open-drain RESET driver on GPIO12, copied from the PWRKEY driver.</p><p class="why"><b>Why:</b> two of the four channels were unused, and the modem RESET pin was left floating, so a hung modem could only be recovered by cutting its power.</p>
+  <div class="views"><figure class="view"><div class="vh">Schematic</div><div class="shots"><a class="shot sch" href="../images/rev4-report/sch_before_cell.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_before_cell.webp" alt="TXB0104 and PWRKEY driver" loading="lazy"><span class="chip b">before</span></a><a class="shot sch" href="../images/rev4-report/sch_after_cell_r2.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_after_cell_r2.webp" alt="TXB0102 and new RESET driver Q5" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">PCB</div><div class="shots"><a class="shot pcb" href="../images/rev4-report/before_u2_f.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/before_u2_f.webp" alt="TXB0104 west of U1" loading="lazy"><span class="chip b">before</span></a><a class="shot pcb" href="../images/rev4-report/after_u2_f_r5.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/after_u2_f_r5.webp" alt="TXB0102, C12, C13 and Q5" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">3D</div><div class="shots"><a class="shot r3d" href="../images/rev4-report/before_3d_u2.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/before_3d_u2.webp" alt="render before" loading="lazy"><span class="chip b">before</span></a><a class="shot r3d" href="../images/rev4-report/after_3d_u2_r8.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/after_3d_u2_r8.webp" alt="render after" loading="lazy"><span class="chip a">after</span></a></div></figure></div>
+  <p class="more">Details: <a href="#schematic">Schematic</a> · <a href="#u2">Board: U2 and Q5</a> · <a href="#routes">Routes</a></p></article>
+<article class="chg"><div class="ct"><span class="no">2</span><h3>Modem STATUS read through an inverter</h3><span class="pill p-ok">done</span></div>
+  <p class="what">Q6 with R33/R34 turns the modem's 1.8 V STATUS output into a 3.3 V signal on GPIO17, inverted (low = modem on). Both STATUS routes were then tidied to 45° bends.</p><p class="why"><b>Why:</b> a 1.8 V high is below what a 3.3 V ESP32 input reliably reads as high.</p>
+  <div class="views"><figure class="view"><div class="vh">Schematic</div><div class="shots"><a class="shot sch" href="../images/rev4-report/sch_before_mc.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_before_mc.webp" alt="GPIO17 straight to STATUS" loading="lazy"><span class="chip b">before</span></a><a class="shot sch" href="../images/rev4-report/sch_after_mc_r2.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_after_mc_r2.webp" alt="Q6 inverter into GPIO17" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">PCB</div><div class="shots"><a class="shot pcb" href="../images/rev4-report/before_q6_f.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/before_q6_f.webp" alt="empty area" loading="lazy"><span class="chip b">before</span></a><a class="shot pcb" href="../images/rev4-report/after_q6_f_r7.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/after_q6_f_r7.webp" alt="Q6, R33, R34" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">3D</div><div class="shots"><a class="shot r3d" href="../images/rev4-report/before_3d_q6.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/before_3d_q6.webp" alt="render before" loading="lazy"><span class="chip b">before</span></a><a class="shot r3d" href="../images/rev4-report/after_3d_q6_r8.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/after_3d_q6_r8.webp" alt="render after" loading="lazy"><span class="chip a">after</span></a></div></figure></div>
+  <p class="more">Details: <a href="#q6">Board: Q6</a> · <a href="#status-tidy">STATUS tidy</a></p></article>
+<article class="chg"><div class="ct"><span class="no">3</span><h3>Modem powered straight from the battery</h3><span class="pill p-ok">done</span></div>
+  <p class="what">The SY8089 buck (U5, L1, R16, R17, C25) is gone. Q7 (PMV32UP P-FET) switches the battery to the modem, driven by Q8 (2N7002) from CELL_EN. C44/R36 give a ~15 ms soft start (~0.24 A inrush), and R37 drains the modem rail after turn-off.</p><p class="why"><b>Why:</b> the buck sat in dropout for most of the battery range, sagged on transmit bursts, and C25 was 47 µF where the datasheet wants 22 pF, so the modem rail took seconds to come up.</p>
+  <div class="views"><figure class="view"><div class="vh">Schematic</div><div class="shots"><a class="shot sch" href="../images/rev4-report/fx_sw_before_sch.png" target="_blank" rel="noopener"><img src="../images/rev4-report/fx_sw_before_sch.png" alt="SY8089 buck" loading="lazy"><span class="chip b">before</span></a><a class="shot sch" href="../images/rev4-report/fx_sw_after_sch_r2.png" target="_blank" rel="noopener"><img src="../images/rev4-report/fx_sw_after_sch_r2.png" alt="Q7/Q8 battery switch" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">PCB</div><div class="shots"><a class="shot pcb" href="../images/rev4-report/fx_sw_before_F.png" target="_blank" rel="noopener"><img src="../images/rev4-report/fx_sw_before_F.png" alt="U5 and L1" loading="lazy"><span class="chip b">before</span></a><a class="shot pcb" href="../images/rev4-report/fx_sw_after_F_r2.png" target="_blank" rel="noopener"><img src="../images/rev4-report/fx_sw_after_F_r2.png" alt="Q7, Q8 and passives" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">3D</div><div class="shots"><a class="shot r3d" href="../images/rev4-report/t3_sw_b.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/t3_sw_b.webp" alt="render before" loading="lazy"><span class="chip b">before</span></a><a class="shot r3d" href="../images/rev4-report/t3_sw_a3.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/t3_sw_a3.webp" alt="render after" loading="lazy"><span class="chip a">after</span></a></div></figure></div>
+  <p class="more">Details: <a href="#fixed">Review fixes applied</a> · <a href="#must">Fix before ordering</a></p></article>
+<article class="chg"><div class="ct"><span class="no">4</span><h3>GNSS reset pull-up R6 removed</h3><span class="pill p-ok">done</span></div>
+  <p class="what">R6 (10 k from the always-on 3.3 V to GNSS_RESET) is removed from the schematic and the board (it was first marked not fitted). Firmware drives GPIO1 open-drain, as Quectel's reference does.</p><p class="why"><b>Why:</b> with the GNSS rail off in sleep, R6 back-fed the L96 or burned current through the GPIO: about 0.3 mA, ten times everything else asleep.</p>
+  <div class="views"><figure class="view"><div class="vh">Schematic</div><div class="shots"><a class="shot sch" href="../images/rev4-report/t_sch_r6_b.png" target="_blank" rel="noopener"><img src="../images/rev4-report/t_sch_r6_b.png" alt="R6 10k" loading="lazy"><span class="chip b">before</span></a><a class="shot sch" href="../images/rev4-report/t_sch_r6_a3.png" target="_blank" rel="noopener"><img src="../images/rev4-report/t_sch_r6_a3.png" alt="R6 DNP" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">PCB</div><div class="shots"><a class="shot pcb" href="../images/rev4-report/t_pcb_r6_b.png" target="_blank" rel="noopener"><img src="../images/rev4-report/t_pcb_r6_b.png" alt="R6 area" loading="lazy"><span class="chip b">before</span></a><a class="shot pcb" href="../images/rev4-report/t_pcb_r6_a3.png" target="_blank" rel="noopener"><img src="../images/rev4-report/t_pcb_r6_a3.png" alt="R6 area, unchanged copper" loading="lazy"><span class="chip a">after</span></a></div><figcaption>R6 and its pads are gone; the green box marks where it was.</figcaption></figure><figure class="view"><div class="vh">3D</div><div class="shots"><a class="shot r3d" href="../images/rev4-report/t3_r6_b.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/t3_r6_b.webp" alt="render before" loading="lazy"><span class="chip b">before</span></a><a class="shot r3d" href="../images/rev4-report/t3_r6_a3.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/t3_r6_a3.webp" alt="render after, R6 removed" loading="lazy"><span class="chip a">after</span></a></div><figcaption>Red box = where R6 was.</figcaption></figure></div>
+  <p class="more">Details: <a href="#must">Fix before ordering</a> · <a href="#firmware">Firmware</a></p></article>
+<article class="chg"><div class="ct"><span class="no">5</span><h3>GNSS backup always on from the battery</h3><span class="pill p-ok">done</span></div>
+  <p class="what">The L96 backup supply (V_BCKP) is wired straight to the battery: first through JP1 with its pins swapped, then JP1 itself was removed. The backup switch (Q1, Q2, R18, R19, test point TP31) is removed with its two nets; ESP32 GPIO2 is now a no-connect.</p><p class="why"><b>Why:</b> the backup was off unless GPIO2 held it on, so every fix was a cold start (~30 s at ~25 mA). Always-on backup costs 7 µA and gives hot starts; it also saves four parts and 7.5 µA of bias.</p>
+  <div class="views"><figure class="view"><div class="vh">Schematic</div><div class="shots"><a class="shot sch" href="../images/rev4-report/t_sch_jp1_b.png" target="_blank" rel="noopener"><img src="../images/rev4-report/t_sch_jp1_b.png" alt="JP1 to the switch output" loading="lazy"><span class="chip b">before</span></a><a class="shot sch" href="../images/rev4-report/t_sch_jp1_a4.png" target="_blank" rel="noopener"><img src="../images/rev4-report/t_sch_jp1_a4.png" alt="V_BCKP straight to +BATT, JP1 removed" loading="lazy"><span class="chip a">after</span></a><a class="shot sch" href="../images/rev4-report/t_sch_bckp_b.png" target="_blank" rel="noopener"><img src="../images/rev4-report/t_sch_bckp_b.png" alt="backup switch fitted" loading="lazy"><span class="chip b">before</span></a><a class="shot sch" href="../images/rev4-report/t_sch_bckp_a3.png" target="_blank" rel="noopener"><img src="../images/rev4-report/t_sch_bckp_a3.png" alt="backup switch removed" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">PCB</div><div class="shots"><a class="shot pcb" href="../images/rev4-report/t_pcb_bckp_b.png" target="_blank" rel="noopener"><img src="../images/rev4-report/t_pcb_bckp_b.png" alt="JP1 and the switch" loading="lazy"><span class="chip b">before</span></a><a class="shot pcb" href="../images/rev4-report/t_pcb_bckp_a7.png" target="_blank" rel="noopener"><img src="../images/rev4-report/t_pcb_bckp_a7.png" alt="JP1 removed, short +BATT link in its place" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">3D</div><div class="shots"><a class="shot r3d" href="../images/rev4-report/t3_bckp_b.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/t3_bckp_b.webp" alt="render before" loading="lazy"><span class="chip b">before</span></a><a class="shot r3d" href="../images/rev4-report/t3_bckp_a7.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/t3_bckp_a7.webp" alt="render after, Q1/Q2/R18/R19 marked" loading="lazy"><span class="chip a">after</span></a></div><figcaption>Red boxes = where the backup-switch parts were.</figcaption></figure></div>
+  <p class="more">Details: <a href="#should">Should fix</a> · <a href="#battery">Battery budget</a></p></article>
+<article class="chg"><div class="ct"><span class="no">6</span><h3>Battery connector on top, cable cut-out, logo moved</h3><span class="pill p-ok">done</span></div>
+  <p class="what">J4 moves from the bottom to the top, so every part is on one side. The bottom-right corner is cut away (rounded corners: 1 mm, and 0.5 mm next to J4) so the cable drops past the board edge; J4 sits 3.3 mm further in. U8, C35, R23 and Q3 moved left, which widens the battery path to the modem to about 3 mm. The top logo, which sat in that corner, moved next to the GPS module, into the space freed by the backup switch and JP1 (upright, and scaled to 62% so it fits the free space, centred between U7 and the TP24 label with 1.15 mm on each side; it uses a new TeapotLogo_Small footprint in the project library). The bottom-silkscreen antenna-option note ("R25+R26 = PCB antenna / R27+R28 = u.FL") is removed, and the CHRG label is now white knockout text like the other labels.</p><p class="why"><b>Why:</b> J4 was the only bottom-side part, which meant paying for second-side assembly and a second stencil for one connector.</p>
+  <div class="views"><figure class="view"><div class="vh">Schematic</div><div class="none">No schematic change: layout only (J4's part number was swapped earlier, same land pattern).</div></figure><figure class="view"><div class="vh">PCB</div><div class="shots"><a class="shot pcb" href="../images/rev4-report/fx_corner_before_F.png" target="_blank" rel="noopener"><img src="../images/rev4-report/fx_corner_before_F.png" alt="corner, J4 on the bottom" loading="lazy"><span class="chip b">before</span></a><a class="shot pcb" href="../images/rev4-report/fx_corner_after4_F.png" target="_blank" rel="noopener"><img src="../images/rev4-report/fx_corner_after4_F.png" alt="corner, J4 on top with cut-out" loading="lazy"><span class="chip a">after</span></a><a class="shot pcb" href="../images/rev4-report/t_pcb_logo_b5.png" target="_blank" rel="noopener"><img src="../images/rev4-report/t_pcb_logo_b5.png" alt="next to the GPS, before: backup switch and JP1" loading="lazy"><span class="chip b">before</span></a><a class="shot pcb" href="../images/rev4-report/t_pcb_logo_a7.png" target="_blank" rel="noopener"><img src="../images/rev4-report/t_pcb_logo_a7.png" alt="logo in the freed space" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">3D</div><div class="shots"><a class="shot r3d" href="../images/rev4-report/t3_corner_b.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/t3_corner_b.webp" alt="render before" loading="lazy"><span class="chip b">before</span></a><a class="shot r3d" href="../images/rev4-report/t3_corner_a4.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/t3_corner_a4.webp" alt="render after" loading="lazy"><span class="chip a">after</span></a><a class="shot r3d" href="../images/rev4-report/t3_logo_b5.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/t3_logo_b5.webp" alt="render before" loading="lazy"><span class="chip b">before</span></a><a class="shot r3d" href="../images/rev4-report/t3_logo_a7.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/t3_logo_a7.webp" alt="render after" loading="lazy"><span class="chip a">after</span></a></div></figure></div>
+  <p class="more">Details: <a href="#fixed">Review fixes applied</a> · <a href="#cost">Cost</a></p></article>
+<article class="chg"><div class="ct"><span class="no">7</span><h3>Part swaps, no layout change</h3><span class="pill p-ok">done</span></div>
+  <div class="tablewrap"><table><thead><tr><th>Part</th><th>Change</th><th>Why</th></tr></thead><tbody>
+  <tr><td>Q3</td><td>AO3407A → PMV32UP</td><td>Rated at −2.5 V gate drive; it carries the 2 A battery current (<code>PMV32UP.pdf</code> p.1–2).</td></tr>
+  <tr><td>FB2</td><td>MMZ1608B601C → BLM18PG121SN1D</td><td>The old bead was rated 500 mA on the 500 mA charger input; the new one is 2 A, 50 mΩ.</td></tr>
+  <tr><td>14 passives</td><td>→ JLCPCB Basic parts</td><td>Each Extended part has a setup fee: Extended lines 45 → 29.</td></tr>
+  <tr><td>J4</td><td>JST S2B-PH-SM4-TB → XYECONN XY-S2B-PH-SM4-TB</td><td>Out of stock; same land pattern. Check polarity with a real cable on board 1.</td></tr>
+  <tr><td>L1</td><td>LVS303015 → LVS303015H, then removed</td><td>Out of stock; later removed with the buck (card 3).</td></tr>
+  </tbody></table></div>
+  <p class="more">Details: <a href="#bom">BOM and parts</a></p></article>
+<article class="chg"><div class="ct"><span class="no">8</span><h3>Schematic readability</h3><span class="pill p-ok">done</span></div>
+  <p class="what">References, values, two notes and one label moved where they crowded other text or touched wires and symbol outlines: 41 field moves on 7 sheets, 2 notes nudged or reworded, 1 label one size smaller. Four local labels (RESET, PWRKEY, both CELL_STATUS_N) now sit at the end of a wire that runs under their text, like BOOT_MODE0. Nothing electrical changed: the netlist is identical, ERC unchanged, board in sync.</p><p class="why"><b>Why:</b> several fields sat on wires or on each other (R35/C24, R29/R31, C44, Q2, R34, the USB CC resistors), and a few notes and labels overlapped.</p>
+  <div class="views"><figure class="view"><div class="vh">Power: modem switch</div><div class="shots"><a class="shot sch" href="../images/rev4-report/sch_pow_sw_b.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_pow_sw_b.webp" alt="before" loading="lazy"><span class="chip b">before</span></a><a class="shot sch" href="../images/rev4-report/sch_pow_sw_a.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_pow_sw_a.webp" alt="after" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">Power: GNSS backup switch</div><div class="shots"><a class="shot sch" href="../images/rev4-report/sch_pow_q2_b.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_pow_q2_b.webp" alt="before" loading="lazy"><span class="chip b">before</span></a><a class="shot sch" href="../images/rev4-report/sch_pow_q2_a.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_pow_q2_a.webp" alt="after" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">Cellular: RESET and PWRKEY drivers</div><div class="shots"><a class="shot sch" href="../images/rev4-report/sch_cel_drv_b2.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_cel_drv_b2.webp" alt="before" loading="lazy"><span class="chip b">before</span></a><a class="shot sch" href="../images/rev4-report/sch_cel_drv_a2.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_cel_drv_a2.webp" alt="after" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">Main Controller: Modem Status</div><div class="shots"><a class="shot sch" href="../images/rev4-report/sch_mc_r34_b2.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_mc_r34_b2.webp" alt="before" loading="lazy"><span class="chip b">before</span></a><a class="shot sch" href="../images/rev4-report/sch_mc_r34_a2.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_mc_r34_a2.webp" alt="after" loading="lazy"><span class="chip a">after</span></a></div></figure><figure class="view"><div class="vh">Main Controller: GPIO17 label</div><div class="shots"><a class="shot sch" href="../images/rev4-report/sch_mc_lbl_b2.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_mc_lbl_b2.webp" alt="before" loading="lazy"><span class="chip b">before</span></a><a class="shot sch" href="../images/rev4-report/sch_mc_lbl_a2.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_mc_lbl_a2.webp" alt="after" loading="lazy"><span class="chip a">after</span></a></div><figcaption>CELL_STATUS_N is one size smaller (the 2.54 mm pin pitch leaves no other room) and now sits at the end of its wire, text over the wire.</figcaption></figure><figure class="view"><div class="vh">USB: CC resistors</div><div class="shots"><a class="shot sch" href="../images/rev4-report/sch_usb_cc_b.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_usb_cc_b.webp" alt="before" loading="lazy"><span class="chip b">before</span></a><a class="shot sch" href="../images/rev4-report/sch_usb_cc_a.webp" target="_blank" rel="noopener"><img src="../images/rev4-report/sch_usb_cc_a.webp" alt="after" loading="lazy"><span class="chip a">after</span></a></div></figure></div>
+  <p class="more">Details: <a href="#checks">Checks</a></p></article>
+</div>
+</section>
+<script>
+document.querySelectorAll('.cmp input').forEach(function(r){r.addEventListener('input',function(){r.parentNode.style.setProperty('--pos',r.value+'%')})});
+(function(){var tabs=[].slice.call(document.querySelectorAll('.whole [role=tab]'));
+function sel(t){tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on});}
+tabs.forEach(function(t,i){t.addEventListener('click',function(){sel(t)});t.addEventListener('keydown',function(e){var k=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(k){var n=tabs[(i+k+tabs.length)%tabs.length];sel(n);n.focus();e.preventDefault();}})});})();
+(function(){document.querySelectorAll('.orbit').forEach(function(o){
+ var n=12,i=0,mode='a',timer=null,stage=o.querySelector('.ostage'),rng=o.querySelector('input'),ang=o.querySelector('.oang'),play=o.querySelector('.oplay');
+ var ib=o.querySelector('.ob img'),ia=o.querySelector('.oa img'),pre=[];
+ function src(b,k){return '../images/rev4-report/o_'+b+'_'+(k*30)+'.webp'}
+ function show(k){i=(k+n)%n;ib.src=src('head',i);ia.src=src('now7',i);rng.value=i;ang.textContent=(i*30)+'°';
+  o.querySelectorAll('.othumbs button').forEach(function(t,j){t.setAttribute('aria-current',j===i?'true':'false')});}
+ function setMode(m){mode=m;o.dataset.mode=m;o.querySelectorAll('.omodes button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.m===m)});}
+ function warm(){for(var k=0;k<n;k++){['head','now7'].forEach(function(b){var im=new Image();im.src=src(b,k);pre.push(im)})}}
+ o.querySelectorAll('.omodes button').forEach(function(b){b.addEventListener('click',function(){setMode(b.dataset.m)})});
+ o.querySelector('.oprev').addEventListener('click',function(){show(i-1)});o.querySelector('.onext').addEventListener('click',function(){show(i+1)});
+ rng.addEventListener('input',function(){show(+rng.value)});
+ o.querySelectorAll('.othumbs button').forEach(function(t){t.addEventListener('click',function(){show(+t.dataset.i)})});
+ stage.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){show(i+1);e.preventDefault()}else if(e.key==='ArrowLeft'){show(i-1);e.preventDefault()}});
+ var x0=null,i0=0;stage.addEventListener('pointerdown',function(e){x0=e.clientX;i0=i;stage.setPointerCapture(e.pointerId)});
+ stage.addEventListener('pointermove',function(e){if(x0===null)return;var step=Math.round((e.clientX-x0)/(stage.clientWidth/14));show(i0-step)});
+ ['pointerup','pointercancel'].forEach(function(t){stage.addEventListener(t,function(){x0=null})});
+ play.addEventListener('click',function(){if(timer){clearInterval(timer);timer=null;play.setAttribute('aria-pressed','false');play.textContent='Play'}else{warm();timer=setInterval(function(){show(i+1)},700);play.setAttribute('aria-pressed','true');play.textContent='Pause'}});
+ var once=false;o.closest('.pane').addEventListener('transitionend',function(){});
+ setMode('a');show(0);
+ new MutationObserver(function(){if(!o.closest('.pane').hidden&&!once){once=true;warm()}}).observe(o.closest('.pane'),{attributes:true,attributeFilter:['hidden']});
+});})();
+</script><div class="part"><div class="eyebrow">Part 1</div><h2>TXB0102, RESET and STATUS</h2><p class="col muted">2026-11-17. U2 shrinks from a 4-channel TXB0104 (QFN-14) to a 2-channel TXB0102 (VSSOP-8) that carries only the modem UART. The space it frees next to U1 pin 16 holds a RESET driver, Q5. STATUS reaches GPIO17 through a FET inverter, Q6, instead of feeding 1.8 V into a 3.3 V input.</p></div>
+<section id="drivers">
+  <h2>How the drivers work</h2>
+  <div class="col">
+    <p>Both modem pins are pulled up to VBAT by 50 kΩ inside the module, so the ESP32 must never drive them directly. Q5 copies the existing Q4 PWRKEY circuit: a 1 k series resistor, a 10 k gate pull-down that keeps the FET off while the ESP32 is in reset, and an open drain on the modem pin. Q6 turns the modem's 1.8 V STATUS output into a 3.3 V logic level with the polarity inverted.</p>
+  </div>
+  <figure class="diagram" aria-label="RESET driver and STATUS inverter circuits">
+    <svg viewBox="0 0 900 330" role="img">
+      <text class="h" x="20" y="26">RESET driver (Cellular sheet)</text>
+      <rect class="box" x="300" y="40" width="130" height="150" rx="6"/>
+      <text class="s" x="312" y="58">A7670G (U1)</text>
+      <rect class="res" x="352" y="66" width="16" height="40"/><text class="s" x="374" y="90">50k</text>
+      <line class="w" x1="360" y1="66" x2="360" y2="54"/><text class="s" x="345" y="50">VBAT</text>
+      <line class="w" x1="360" y1="106" x2="360" y2="130"/><line class="w" x1="360" y1="130" x2="300" y2="130"/>
+      <text class="t" x="366" y="134">RESET</text><text class="s" x="366" y="150">pin 16</text>
+      <line class="w" x1="300" y1="130" x2="220" y2="130"/>
+      <line class="fet" x1="220" y1="130" x2="220" y2="160"/><line class="fet" x1="206" y1="150" x2="206" y2="190"/><line class="fet" x1="220" y1="190" x2="220" y2="220"/>
+      <line class="fet" x1="212" y1="155" x2="220" y2="155"/><line class="fet" x1="212" y1="185" x2="220" y2="185"/><line class="fet" x1="220" y1="155" x2="220" y2="185"/>
+      <text class="t" x="230" y="178">Q5</text>
+      <line class="w" x1="220" y1="220" x2="220" y2="240"/><line class="w" x1="208" y1="240" x2="232" y2="240"/><text class="s" x="210" y="256">GND</text>
+      <line class="w" x1="206" y1="170" x2="150" y2="170"/>
+      <rect class="res" x="100" y="162" width="40" height="16"/><text class="s" x="108" y="156">R31 1k</text>
+      <line class="w" x1="100" y1="170" x2="40" y2="170"/><text class="t" x="20" y="164">GPIO12</text>
+      <circle class="dot" cx="150" cy="170" r="3.5"/><line class="w" x1="150" y1="170" x2="150" y2="190"/>
+      <rect class="res" x="142" y="190" width="16" height="36"/><text class="s" x="98" y="214">R32 10k</text>
+      <line class="w" x1="150" y1="226" x2="150" y2="240"/><line class="w" x1="138" y1="240" x2="162" y2="240"/>
+      <text class="s" x="20" y="292">GPIO12 high → Q5 on → RESET pulled below 0.5 V (VIL, guide p.28)</text>
+      <text class="s" x="20" y="310">Hold 1.5 s. Never at the same time as GPIO9 / PWRKEY (guide p.26).</text>
+
+      <text class="h" x="480" y="26">STATUS inverter (Main Controller sheet)</text>
+      <rect class="box" x="480" y="110" width="110" height="70" rx="6"/>
+      <text class="s" x="490" y="128">A7670G (U1)</text><text class="t" x="490" y="150">STATUS</text><text class="s" x="490" y="166">pin 66, 1.8 V</text>
+      <line class="w" x1="590" y1="150" x2="700" y2="150"/>
+      <circle class="dot" cx="640" cy="150" r="3.5"/><line class="w" x1="640" y1="150" x2="640" y2="190"/>
+      <rect class="res" x="632" y="190" width="16" height="36"/><text class="s" x="594" y="214">R33 100k</text>
+      <line class="w" x1="640" y1="226" x2="640" y2="240"/><line class="w" x1="628" y1="240" x2="652" y2="240"/>
+      <line class="fet" x1="700" y1="130" x2="700" y2="170"/><line class="fet" x1="714" y1="130" x2="714" y2="170"/>
+      <line class="fet" x1="714" y1="135" x2="722" y2="135"/><line class="fet" x1="714" y1="165" x2="722" y2="165"/>
+      <line class="fet" x1="722" y1="100" x2="722" y2="135"/><line class="fet" x1="722" y1="165" x2="722" y2="220"/>
+      <text class="t" x="730" y="158">Q6</text>
+      <line class="w" x1="722" y1="220" x2="722" y2="240"/><line class="w" x1="710" y1="240" x2="734" y2="240"/><text class="s" x="712" y="256">GND</text>
+      <circle class="dot" cx="722" cy="100" r="3.5"/>
+      <line class="w" x1="722" y1="100" x2="722" y2="86"/><rect class="res" x="714" y="50" width="16" height="36"/><text class="s" x="736" y="72">R34 10k</text>
+      <line class="w" x1="722" y1="50" x2="722" y2="40"/><text class="s" x="706" y="36">+3V3</text>
+      <line class="w" x1="722" y1="100" x2="820" y2="100"/><text class="t" x="790" y="92">GPIO17</text>
+      <text class="s" x="480" y="292">Modem on: STATUS 1.8 V → Q6 on → GPIO17 low</text>
+      <text class="s" x="480" y="310">Modem off or unpowered: R33 holds the gate low → GPIO17 high</text>
+    </svg>
+  </figure>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Fact</th><th>Value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>TXB0102 DCU pinout</td><td>1 B2, 2 GND, 3 VCCA, 4 A2, 5 A1, 6 OE, 7 VCCB, 8 B1; matches the KiCad symbol</td><td><code>TXB0102_TI.pdf</code> p.3, Table 4-2</td></tr>
+      <tr><td>TXB0102 with VDD_1V8 off</td><td>"If either VCC input is at GND, all outputs are in the high-impedance state"; Ioff partial power-down</td><td><code>TXB0102_TI.pdf</code> p.1</td></tr>
+      <tr><td>Pull resistors on TXB I/O</td><td>Must be over 50 kΩ; none on the UART lines</td><td><code>TXB0102_TI.pdf</code> p.3, note C</td></tr>
+      <tr><td>A7670 RESET</td><td>50 kΩ to VBAT inside; Treset 1.5 s typical; VIL ≤ 0.5 V; open-collector reference circuit</td><td>A7670 hardware design V1.00 p.28, Table 11, Fig. 13</td></tr>
+      <tr><td>PWRKEY and RESET together</td><td>"It is forbidden to pull down both RESET key and PWRKEY ... at the same time"</td><td>A7670 hardware design V1.00 p.26</td></tr>
+      <tr><td>DMG1012UW at VGS 1.8 V</td><td>VGS(th) 0.5–1.0 V; RDS(on) ≤ 0.75 Ω at 1.8 V, so Q6 drain ≈ 0.25 mV at 0.33 mA</td><td><code>DMG1012UW-7.pdf</code> p.2</td></tr>
+      <tr><td>GPIO12, GPIO17</td><td>Not strapping pins (strapping: GPIO0, 3, 45, 46)</td><td><code>ESP32-S3_datasheet.pdf</code> p.32</td></tr>
+    </tbody>
+  </table></div>
+</section><section id="schematic">
+  <h2>Schematic</h2>
+  <div class="col"><p>U2 was swapped in place: the TXB0102's A1/A2/B1/B2 pins land on the existing TXD, RXD, CELL_TXD and CELL_RXD wires. The old channel 1/4 GND ties were removed; the channel 1 tie would otherwise have grounded the new OE pin. CELL_RESET was added back to the hierarchy, from GPIO12 through the root sheet to the Cellular sheet.</p></div>
+  <h3>Cellular sheet</h3>
+  <div class="pair sch">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/sch_before_cell.webp" alt="TXB0104 with channels 1 and 4 tied to GND, PWRKEY driver, old notes" loading="lazy"></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/sch_after_cell_r2.webp" alt="TXB0102, new RESET driver Q5, rewritten notes" loading="lazy"><figcaption>TXB0102 at U2's old position and the Q5 RESET driver, in a titled section box. The firmware notes moved to their own Modem Control box.</figcaption></figure>
+  </div>
+  <h3>U1 pin 16 and GPIO12</h3>
+  <div class="pair sch">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/sch_before_u1.webp" alt="U1 RESET pin with no-connect" loading="lazy"><figcaption>RESET had a no-connect flag.</figcaption></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/sch_after_u1_r2.webp" alt="U1 RESET pin labelled RESET" loading="lazy"><figcaption>RESET label, same style as the other U1 left-side labels.</figcaption></figure>
+  </div>
+  <h3>Main Controller sheet</h3>
+  <div class="pair sch">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/sch_before_mc.webp" alt="GPIO12 no-connect, GPIO17 to CELL_STATUS" loading="lazy"></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/sch_after_mc_r2.webp" alt="GPIO12 to CELL_RESET, GPIO17 to CELL_STATUS_N, Q6 inverter" loading="lazy"><figcaption>GPIO12 → CELL_RESET. GPIO17 → CELL_STATUS_N from the new Modem Status box (Q6).</figcaption></figure>
+  </div>
+  <h3>Root sheet</h3>
+  <div class="pair sch">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/sch_before_root.webp" alt="Root sheet without CELL_RESET" loading="lazy"></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/sch_after_root_r2.webp" alt="Root sheet with CELL_RESET pins wired" loading="lazy"><figcaption>CELL_RESET sheet pins on both blocks, wired.</figcaption></figure>
+  </div>
+</section><section id="u2">
+  <h2>Board: U2 and Q5</h2>
+  <div class="col">
+    <p>U2 sits at (128.9, 119.6) mm, rotated so its A pins face the TXD/RXD vias on the left and its B pins face the CELL_TXD/CELL_RXD vias on the right. VCCA and OE are both VDD_1V8, so one straight trace under the body links them. C12 (VCCA) and C13 (VCCB) sit next to their pins.</p>
+    <p>The DCU pin order puts CELL_TXD and CELL_RXD in opposite order to the incoming traces, so one crossing is unavoidable at any rotation. It is done with layers: the CELL_TXD via moved up its diagonal to (132.7, 118.25), and CELL_RXD passes under it on B.Cu.</p>
+    <p>Q5 is at (128.85, 116.0), with its drain about 2 mm from U1 pin 16. R31 and R32 are stacked to its left. The reference designators of U2 and the new parts are hidden on the silkscreen, like Q4, R29, R30, C11 and C12 in this area.</p>
+  </div>
+  <h3>Front copper</h3>
+  <div class="pair ba">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/before_u2_f.webp" alt="TXB0104 QFN and its routing west of U1" loading="lazy"></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/after_u2_f_r5.webp" alt="TXB0102, C12, C13 and the Q5 cluster west of U1" loading="lazy"></figure>
+  </div>
+  <h3>Back copper (seen from the top)</h3>
+  <div class="pair ba">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/before_u2_b.webp" alt="Back copper before" loading="lazy"></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/after_u2_b_r4.webp" alt="Back copper after" loading="lazy"><figcaption>TXD and RXD now end at vias beside their pads. VDD_1V8 drops from the C11/pin 15 node to a via under U2. CELL_RESET comes in at y = 112.7.</figcaption></figure>
+  </div>
+</section><section id="q6">
+  <h2>Board: Q6</h2>
+  <div class="col"><p>Neither end of the STATUS line had room. Next to pin 66 is the antenna CPWG keep-out. Below GPIO17 the crystal traces, the USB pair and the back-side test-point fan-out fill the space. Q6 went into free front copper north of the +BATT run, at x 150–157 mm. The B.Cu STATUS line is cut there: the west part stays CELL_STATUS (gate) and the east part becomes CELL_STATUS_N (drain, to GPIO17). R34 takes 3V3 from U6 pin 5. One GND via at (157.5, 90.5) keeps the B.Cu pour filled in the pocket the cut left.</p></div>
+  <h3>Front copper</h3>
+  <div class="pair ba">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/before_q6_f.webp" alt="Free area north of the +BATT trace" loading="lazy"></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/after_q6_f_r7.webp" alt="Q6, R33, R34 placed" loading="lazy"><figcaption>The "CELLULAR" label moved down to clear the parts.</figcaption></figure>
+  </div>
+  <h3>Back copper (seen from the top)</h3>
+  <div class="pair ba">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/before_q6_b.webp" alt="STATUS line on B.Cu before" loading="lazy"></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/after_q6_b_r5.webp" alt="STATUS line split into gate and drain sides" loading="lazy"></figure>
+  </div>
+</section><section id="status-tidy">
+  <h2>STATUS routing, tidied</h2>
+  <div class="col">
+    <p>Cleanup on 2026-11-18, done through the KiCad MCP. Only CELL_STATUS and CELL_STATUS_N changed, and every bend on both is now 45°.</p>
+    <ul class="tight">
+      <li><b>CELL_STATUS:</b> the via moved directly under the Q6 gate, so the front hop is straight instead of about 78°. On the back, the 0.45 mm stub and the 90° corner became one 45° diagonal into the existing run. At U1 pin 66 the via moved 0.03 mm so the drop is straight, with no tiny jog.</li>
+      <li><b>CELL_STATUS_N:</b> the via moved directly under R34 pin 2, so it drops straight from the pad with no T-junction. The back-side 90° turn became a 45° chamfer.</li>
+    </ul>
+  </div>
+  <h3>Back copper, seen from the top</h3>
+  <div class="pair ba">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/st_before_B.webp" alt="Back copper: STATUS drops with a stub and 90-degree turns" loading="lazy"></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/st_after_B_r3.webp" alt="Back copper: STATUS drops with 45-degree bends" loading="lazy"><figcaption>x 134–175 mm, y 83–99 mm. Left drop: CELL_STATUS. Right drop: CELL_STATUS_N.</figcaption></figure>
+  </div>
+  <h3>Front copper at Q6</h3>
+  <div class="pair ba">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/st_before_Fq6.webp" alt="Q6 front: angled gate hop and a T-junction down to the drain via" loading="lazy"></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/st_after_Fq6_r3.webp" alt="Q6 front: straight drops under the gate pad and under R34" loading="lazy"><figcaption>Gate via under Q6 pin 1 (left). Drain via under R34 pin 2 (right).</figcaption></figure>
+  </div>
+</section><section id="render3d">
+  <h2>3D views</h2>
+  <div class="col"><p>KiCad raytraced renders of the last commit and of the board after this change (the whole-board view is the current board), with every module model loaded (the project's own models were Git LFS placeholders in this clone and have been fetched).</p></div>
+  <h3>Whole board</h3>
+  <div class="pair">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/before_3d_iso.webp" alt="Angled render of the board before the change" loading="lazy"></figure>
+    <figure><div class="tag a">now</div><img src="../images/rev4-report/now_3d_iso_r8.webp" alt="Angled render of the current board: modem switch, J4 on top and the corner cut-out" loading="lazy"><figcaption>The current board, so it also shows the later fixes: the modem switch instead of the buck, J4 on top, and the corner cut-out.</figcaption></figure>
+  </div>
+  <h3>U2 and Q5, west of the modem</h3>
+  <div class="pair">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/before_3d_u2.webp" alt="Top render: TXB0104 QFN and Q4 above it" loading="lazy"></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/after_3d_u2_r8.webp" alt="Top render: TXB0102 VSSOP, C12, C13, and the Q5 driver with R31 and R32" loading="lazy"><figcaption>The VSSOP-8 takes a little less area than the QFN, and its routing is much shorter. That leaves room for Q5, R31 and R32 next to pin 16.</figcaption></figure>
+  </div>
+  <div class="pair">
+    <figure><div class="tag b">before · angled</div><img src="../images/rev4-report/before_3d_iso_u2.webp" alt="Angled close-up of U2 before" loading="lazy"></figure>
+    <figure><div class="tag a">after · angled</div><img src="../images/rev4-report/after_3d_iso_u2_r8.webp" alt="Angled close-up of U2 and Q5 after" loading="lazy"></figure>
+  </div>
+  <h3>Q6, north of the +BATT run</h3>
+  <div class="pair">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/before_3d_q6.webp" alt="Top render of the empty area under the CELLULAR label" loading="lazy"></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/after_3d_q6_r8.webp" alt="Top render with Q6, R33, R34 and the CELLULAR label moved down" loading="lazy"><figcaption>Q6 with R33 (left) and R34 (right). The "CELLULAR" label moved down below the parts.</figcaption></figure>
+  </div>
+  <div class="pair">
+    <figure><div class="tag b">before · angled</div><img src="../images/rev4-report/before_3d_iso_q6.webp" alt="Angled close-up of the Q6 area before" loading="lazy"></figure>
+    <figure><div class="tag a">after · angled</div><img src="../images/rev4-report/after_3d_iso_q6_r8.webp" alt="Angled close-up of the Q6 area after" loading="lazy"></figure>
+  </div>
+</section><section id="routes">
+  <h2>RESET and STATUS routes</h2>
+  <div class="col">
+    <p>GPIO12 is on U4's bottom row, behind two barriers: the CELL_* via column on B.Cu, and a 1 mm +BATT trace on F.Cu. CELL_RESET hops layers twice to get around them:</p>
+    <ul class="tight">
+      <li>B.Cu under +BATT;</li>
+      <li>F.Cu north across the CELL_TXD/RXD lines;</li>
+      <li>B.Cu down the free lane between the CELL_PWRKEY and CELL_TXD diagonals to Q5.</li>
+    </ul>
+  </div>
+  <figure class="single"><img src="../images/rev4-report/route_map_r4.webp" alt="Back copper with CELL_RESET, CELL_STATUS and CELL_STATUS_N highlighted" loading="lazy">
+    <div class="legend"><span><i style="background:#ff9f1c"></i>CELL_RESET</span><span><i style="background:#2ec4ff"></i>CELL_STATUS (1.8 V, gate side)</span><span><i style="background:#ff4fd8"></i>CELL_STATUS_N (3.3 V, to GPIO17)</span><span>solid = B.Cu, dashed = F.Cu, circle = via</span></div>
+    <figcaption>Back copper, x 121–175 mm, y 80–126 mm. Green boxes: the Q5 cluster (bottom left) and the Q6 cluster (top).</figcaption></figure>
+</section><div class="part"><div class="eyebrow">Part 2</div><h2>BOM and parts</h2><p class="col muted">2026-11-18. Stock check, replacement parts and the interactive BOM.</p></div>
+<section id="bom">
+  <h2>BOM and parts</h2>
+  <div class="col">
+    <p>On 2026-11-18 every BOM line was checked against the LCSC product page and JLCPCB's parts list. JLCPCB's stock is what its assembly service uses. Three lines were out of stock. L1 and J4 got in-stock parts that fit the existing footprints (L1 was later removed with the buck, see Part 3). U1 stays the A7670G-LABE because it is the variant with the US LTE bands. Every Datasheet link now opens a PDF, and the interactive BOM is our own.</p>
+  </div>
+
+  <h3>Stock on 2026-11-18</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Line</th><th>Part</th><th class="num">JLCPCB</th><th class="num">LCSC</th><th>Outcome</th></tr></thead>
+    <tbody>
+      <tr><td>U1</td><td>A7670G-LABE, C22462360</td><td class="num">0</td><td class="num">0</td><td><span class="pill p-high">kept, sourcing open</span> LCSC's third-party channel lists 2,115, delivered in 37–39 days</td></tr>
+      <tr class="gone"><td>L1</td><td>LVS303015-2R2M-N, C285837 → LVS303015H-2R2M-N, C280524</td><td class="num">875</td><td class="num">870</td><td>swapped, then <b>removed</b> with the buck</td></tr>
+      <tr class="cleared"><td>J4</td><td>JST S2B-PH-SM4-TB, C295747 → <b>XYECONN XY-S2B-PH-SM4-TB, C54582899</b></td><td class="num">2,560</td><td class="num">2,560</td><td><span class="pill p-ok">swapped</span> JST original: 13 at JLCPCB</td></tr>
+      <tr><td>Q4–Q6</td><td>DMG1012UW-7, C156390</td><td class="num">52</td><td class="num">–</td><td><span class="pill p-high">low stock</span> 282 in the morning, 52 by the evening of 2026-11-18. Q2 is removed now, so 3 per board: about 17 boards. Q6 needs a FET fully on at VGS 1.8 V.</td></tr>
+      <tr><td>R1–R3, R7</td><td>22 Ω 0402WGF220JTCE, C25092</td><td class="num">4.47 M</td><td class="num">0</td><td><span class="pill p-ok">OK at JLCPCB</span> Basic part there; only LCSC's own store is empty</td></tr>
+      <tr><td>other 54 lines</td><td></td><td colspan="2">at least 100 boards' worth</td><td><span class="pill p-ok">OK</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>U1: why the LABE variant</h3>
+  <div class="col"><p>Neither A7670G variant has GNSS or Bluetooth; the board uses the L96 for GNSS. The difference is the LTE bands. Only the LABE carries B12, B13, B25 and B26, which US networks rely on. In the US the LABE runs on LTE only, because 2G GSM has been switched off there.</p></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Bands</th><th>A7670G-LLSE</th><th>A7670G-LABE</th></tr></thead>
+    <tbody>
+      <tr><td>LTE-FDD B1, B2, B3, B4, B5, B7, B8, B20, B28, B66</td><td>yes</td><td>yes</td></tr>
+      <tr><td>LTE-FDD B12, B13, B18, B19, B25, B26</td><td>no</td><td><b>yes</b></td></tr>
+      <tr><td>LTE-TDD B34</td><td>yes</td><td>no</td></tr>
+      <tr><td>LTE-TDD B38–B41, GSM 850/900/1800/1900</td><td>yes</td><td>yes</td></tr>
+    </tbody>
+  </table></div>
+  <p class="hint">Source: <code>SIMCom_A7670X_R2_Hardware_Design_V1.09_2023-12_CN.pdf</code> p.12, table 4.</p>
+  <div class="callout warn"><b>Sourcing options for U1</b>
+    <ul class="tight">
+      <li>LCSC's third-party channel: 2,115 A7670G-LABE, delivered in 37–39 days. JLCPCB may need the modules shipped in for assembly.</li>
+      <li>LCSC "A7670G", C5846957: 117 in stock, but the listing names no variant. The photo shows FCC ID 2AJYU-8BAE003, which suggests the US-certified part. Use it only after LCSC confirms in writing that it ships A7670G-LABE.</li>
+      <li>US carrier certification of the module is not checked yet.</li>
+    </ul></div>
+
+  <h3>L1: the H version of the same inductor</h3>
+  <div class="callout warn">Superseded: the SY8089 buck and L1 were removed on 2026-11-18 when the modem moved to a battery switch (<a href="#fixed">Review fixes applied</a>). Kept here for the record.</div>
+  <div class="col"><p>L1 is the 2.2 µH inductor for U5, the SY8089 regulator that powers the modem from the battery. Every transmit burst passes through it. The H version is the same 3 × 3 × 1.5 mm part with a higher saturation current, and the board footprint is already the one drawn for it (<code>IND-SMD_L3.0-W3.0_LVS303015H-2R2M-N</code>).</p></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th></th><th class="num">LVS303015-2R2M-N (was)</th><th class="num">LVS303015H-2R2M-N (now)</th></tr></thead>
+    <tbody>
+      <tr><td>Saturation current, typ (min)</td><td class="num">1.20 A (1.08)</td><td class="num"><b>1.50 A (1.35)</b></td></tr>
+      <tr><td>Heating current, typ (min)</td><td class="num">2.30 A (2.07)</td><td class="num">1.80 A (1.62)</td></tr>
+      <tr><td>DC resistance</td><td class="num">79 mΩ</td><td class="num">75 mΩ</td></tr>
+    </tbody>
+  </table></div>
+  <p class="hint">Source: <code>LVS303015-2R2M-N.pdf</code> (Chilisin LVS series) p.10 and p.11. The heating current is the current for a 40 °C rise. 1.8 A is still well above the modem's average draw.</p>
+
+  <h3>J4: battery connector, same land pattern</h3>
+  <div class="col"><p>J4 is the LiPo connector. It was on the bottom side here; it is now on the top side, facing the corner cut-out (Part 3). Pin 1 is +LIPO, which goes to Q3; pin 2 is GND. The XYECONN part is a JST PH-compatible right-angle SMD header.</p></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Land pattern</th><th class="num">J4 footprint (JST)</th><th class="num">XYECONN drawing</th></tr></thead>
+    <tbody>
+      <tr><td>Signal pads</td><td class="num">1.0 × 3.5 mm, 2.0 mm pitch</td><td class="num">1.0 × 3.5 mm, 2.0 mm pitch</td></tr>
+      <tr><td>Mounting pads</td><td class="num">1.5 × 3.4 mm at ±3.35 mm</td><td class="num">1.5 × 3.5 mm at ±3.35 mm</td></tr>
+      <tr><td>Gap, signal to mounting pads</td><td class="num">2.3 mm</td><td class="num">2.2 mm</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn">This is the battery input, so a polarity mistake goes straight onto the board. Check the first board with a real PHR-2 battery cable before building more.</div>
+
+  <h3>Datasheet links</h3>
+  <div class="col"><p>53 of the 59 links used to open a web page or nothing at all. Every link was fetched and kept only if the server returned a PDF. Lines from LCSC now point at LCSC's current PDF for that exact part. The TI, Espressif, Microchip and Digikey links already worked and were kept. E1's TE link refuses scripted requests (HTTP 403), so it is unchanged and unverified.</p></div>
+
+  <h3>Interactive BOM, built from scratch</h3>
+  <div class="col">
+    <p><code>production/TeapotlabsBWLC1A_InteractiveBOM.html</code> is no longer the iBOM plugin's Rev 3 output. It is built by <code>hardware/tools/ibom/make_ibom.py</code>, which reads the board with KiCad's Python module and takes its lines from the production BOM and CPL. It will not build if the BOM, the CPL and the board disagree on any part, position, side or rotation. The output is a single 1.1 MB file that works offline.</p>
+    <p>Clicking a line highlights its parts on the board, and clicking a part selects its line. Each part can be ticked off as placed. The bottom view is mirrored, the way you see it when the board is flipped. The board is drawn in KiCad's layer colours, like the images above: front copper red, back copper blue, cream silkscreen on a dark background. It shows every track, via and copper pour, and the silkscreen comes from KiCad's own plotter, so text and dashed lines look exactly as they do in KiCad. Open the live version: <a href="../../hardware/kicad/production/TeapotlabsBWLC1A_InteractiveBOM.html">BWLC1A Rev 4 Interactive BOM</a>.</p>
+  </div>
+  <figure class="single"><img src="../images/rev4-report/ibom_desk_r11.webp" alt="Interactive BOM: table on the left, board in KiCad colours on the right with C4 and C21 highlighted in green, the 100 nF line ticked off" loading="lazy"><figcaption>The 1 µF line is selected, and its two capacitors are highlighted on the board. The 100 nF line is ticked off as placed.</figcaption></figure>
+  <div class="pair">
+    <figure><img src="../images/rev4-report/ibom_dark_r11.webp" alt="Dark theme, both sides shown, DMG1012UW line selected with three FETs highlighted" loading="lazy"><figcaption>Dark theme with both sides shown. A search for "DMG" highlights Q4–Q6 (Q2 is removed now).</figcaption></figure>
+    <figure><img src="../images/rev4-report/ibom_phone_r11.webp" alt="Phone layout with the board above the table" loading="lazy" style="max-width:300px;margin:auto"><figcaption>At phone width the board sits above the table.</figcaption></figure>
+  </div>
+</section><div class="part"><div class="eyebrow">Part 3</div><h2>Adversarial review and fixes</h2><p class="col muted">2026-11-18 to 2026-11-19. Three independent reviewers (electrical, PCB/production, fab tools) were told to break the design; findings are ranked by the product goal. First what was changed, then the original findings with their status.</p></div>
+<section id="fixed">
+  <h2>Review fixes applied</h2>
+  <p class="col">You chose items 1, 2 and 5, the cheap wins except DNP on the unused connectors, J4 on the top side, and then a cut-out for the battery cable. The fab items (copper-to-edge clearance, U1 paste) are on hold. Everything below is on branch <code>r4</code> and <b>not committed</b>. Part 3 below is the original review text: it describes the board before these fixes, with a status tag on each finding.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Finding</th><th>What changed</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>C25 47 µF on the buck FB <span class="pill p-crit">critical</span></td><td>The SY8089 buck is gone (U5, L1, R16, R17, C25 removed), so C25 is moot. See the next row.</td><td><code>power.kicad_sch</code></td></tr>
+      <tr><td>Modem supply sag (item 5)</td><td>The modem VBAT is now switched straight from the battery: Q7 PMV32UP P-FET, driven by Q8 2N7002 from CELL_EN. R35 100 k holds Q7 off. C44 1 µF gate–drain gives a soft start (~0.27 V/ms, ~0.24 A inrush into ~870 µF). R37 1 k bleeds VBAT below 100 mV in ~3 s after turn-off. VGS(on) = −0.91 × VBAT.</td><td><code>PMV32UP.pdf</code> p.1–2 (RDS(on) ≤ 75 mΩ at −2.5 V); <code>2N7002.pdf</code> p.2; A7670 guide p.22 Table 7 (VBAT 3.4–4.2 V)</td></tr>
+      <tr><td>R6 pulls GNSS reset to 3.3 V <span class="pill p-high">high</span></td><td>R6 is removed. Firmware must drive GPIO1 open-drain only.</td><td><code>L96-M33.pdf</code> p.15</td></tr>
+      <tr><td>Cheap wins</td><td>JP1 → +BATT (pins swapped, footprint rotated 180°) with the backup switch (Q1, Q2, R18, R19, TP31) removed; later JP1 itself was removed and V_BCKP goes straight to +BATT. Q3 → PMV32UP. FB2 → BLM18PG121SN1D (C14709). 14 passives moved to JLCPCB Basic parts. Extended lines 45 → 29.</td><td>JLCPCB parts API, 2026-11-18</td></tr>
+      <tr><td>J4 on the bottom (only bottom-side part)</td><td>J4 is on the top side, so the CPL has no bottom rows. The top logo moved to the empty antenna keep-out. Battery +/− marks are on top.</td><td><code>production/TeapotlabsBWLC1A_CPL.csv</code></td></tr>
+      <tr><td>Battery-cable cut-out (new)</td><td>The bottom-right corner is cut away: the edge steps in 3.5 mm from y = 117 mm down to the bottom edge, with rounded corners (1 mm, and 0.5 mm next to J4), so the PH cable drops straight past the board to the battery underneath. (This replaced a closed notch, at your request.) J4 sits 3.3 mm further in. U8, C35, R23 and Q3 moved left into the old label strip, and the label moved into the +BATT pour. TP23 and TP33 moved to the bottom row.</td><td><code>S2B-PH-SM4-TB_LF_SN.pdf</code> p.2–3 (plug 5.8 × 6.35 mm, header 6 mm deep)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Modem supply: buck → battery switch</h3>
+  <div class="pair sch">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/fx_sw_before_sch.png" alt="Schematic before: SY8089 buck U5 with L1, R16, R17 and C25 47 µF on the feedback node"><figcaption>SY8089 buck, with C25 47 µF on FB.</figcaption></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/fx_sw_after_sch_r2.png" alt="Schematic after: Q7 PMV32UP P-FET from +BATT to CELL_BATT, gate driven by Q8 2N7002 from CELL_EN, with R35, R36, C44 soft start and R37 bleeder"><figcaption>Q7 switches +BATT to CELL_BATT. Q8 drives it from CELL_EN, with soft start from C44/R36.</figcaption></figure>
+  </div>
+  <div class="pair ba">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/fx_sw_before_F.png" alt="Top copper before: U5 buck and inductor L1"><figcaption>, F.Cu: U5 and L1.</figcaption></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/fx_sw_after_F_r2.png" alt="Top copper after: Q7, Q8 and passives in the same area"><figcaption>, F.Cu: Q7, Q8, R35–R37 and C44 in the same footprint area.</figcaption></figure>
+  </div>
+
+  <h3>Battery corner: J4 on top, cut-out, charger moved</h3>
+  <div class="pair ba">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/fx_corner_before_F.png" alt="Top side before: charger U8, C35, Q3 next to the logo; J4 is on the bottom"><figcaption>, top: charger parts and Q3 sit by the logo, and J4 is on the bottom.</figcaption></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/fx_corner_after4_F.png" alt="Top side after: J4 on top, the board corner cut away in front of it down to the bottom edge, charger parts moved left into the former label strip"><figcaption>, top: J4 faces the cut-out. Its pads are 0.30 mm from the cut edge (measured) and the body face is 0.5 mm from it.</figcaption></figure>
+  </div>
+  <div class="pair ba">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/fx_corner_before_B.png" alt="Bottom side before: J4 mounted on the bottom"><figcaption>, bottom: J4 was the only bottom-side part.</figcaption></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/fx_corner_after3_B.png" alt="Bottom side after: only two short B.Cu tracks, STAT and a +BATT link, cross the GND plane"><figcaption>, bottom: only the STAT route and a 0.5 mm +BATT link (charge current, ≤ 500 mA) cross the GND plane.</figcaption></figure>
+  </div>
+  <div class="pair ba">
+    <figure><div class="tag b">before</div><img src="../images/rev4-report/fx_batt_before.png" alt="+BATT copper highlighted before: a 2.3 mm wide pour column feeds the strip to the modem switch"><figcaption>, +BATT highlighted: the battery current reached the modem through a 2.3 mm pour column.</figcaption></figure>
+    <figure><div class="tag a">after</div><img src="../images/rev4-report/fx_batt_after4.png" alt="+BATT copper highlighted after: a wider pour lane runs from Q3's source straight up to the strip, plus a short blue B.Cu link to the charger"><figcaption>: the lane runs from Q3's source straight to the strip and is about 3 mm wide. The blue line is the B.Cu link to U8 pin 3 and C35.</figcaption></figure>
+  </div>
+  <p class="src">Crops from <code>kicad-cli</code> SVG plots of the saved, refilled boards (before = commit f95b485, after = working tree). Green boxes mark the changed areas.</p>
+
+  <h3>Checks</h3>
+  <ul class="tight col">
+    <li>ERC: 4 errors, all pre-existing power-pin flags (was 5; U5's is gone). DRC: 126 (was 130; 4 library warnings went with U5/L1), same types as before, 0 unconnected, schematic parity clean.</li>
+    <li>Every layout change was first tried on a scratch copy until DRC was clean, then redone through the KiCad MCP. The real board's copper, footprints, zones, outline and texts match that copy exactly. pcbnew Python did what the MCP can't: zone outlines, the board outline, board texts and silk lines.</li>
+    <li>Cut-out: BOM unchanged; CPL changes only C35, J4, Q3, R23, U8. Turning the notch into a cut-out changed only the outline and the pour fills: the Edge.Cuts and four copper Gerbers.</li>
+    <li>BOM 53 lines / 112 parts. The iBOM was rebuilt and passed a browser smoke test.</li>
+  </ul>
+  <p class="col">Open items and firmware notes for all three parts are collected at the end: <a href="#open">Open items</a>, <a href="#firmware">Firmware</a>.</p>
+</section><section id="must">
+  <h2>Review: fix before ordering</h2>
+  <p class="col">The review as written on 2026-11-18, before any fix. Status tags: <span class="pill p-ok">fixed</span> <span class="pill p-med">on hold</span> <span class="pill p-low">open</span> <span class="pill p-cu">kept, your call</span>. The <span class="pill p-ok">re-checked</span> tag marks items I confirmed myself on the board and in the datasheet. Everything else is the reviewer's evidence, quoted with its source.</p>
+
+  <div class="find">
+    <div class="hd"><span class="pill p-crit">critical</span><b>C25 is 47 µF where the buck needs a 22 pF feed-forward capacitor</b><span class="pill p-ok">fixed</span><span class="pill p-ok">re-checked</span></div>
+    <div class="row"><span class="k">What</span><p>C25 connects the SY8089 FB node to CELL_BATT, in parallel with R16 (120 k). The datasheet puts Cff = 22 pF there. The part has been there since Rev 3, and both the electrical and PCB reviewers found it independently. It was most likely meant to be 47 pF.</p></div>
+    <div class="row"><span class="k">Effect</span><p>The modem rail ramps with τ = 120 k × 47 µF ≈ 5.6 s, so it reaches 3.4 V several seconds after CELL_EN instead of in 1 ms. The ESP32 waits awake through every modem wake, and firmware that pulses PWRKEY after 500 ms would hit a half-powered modem. At turn-off, C25 drags FB below its −0.3 V absolute maximum. Loop stability is also likely to suffer (not measured).</p></div>
+    <div class="row"><span class="k">Fix</span><p>Fit 22 pF C0G for C25. That's a value change only, on the same 0603 footprint. If more output bulk is wanted, add it from CELL_BATT to GND.</p></div>
+    <p class="src"><code>SY8089A1AAC.pdf</code> p.1 Fig. 1 and p.7 Table 1 (Cff 22 pF); p.3 FB absolute max. Board: C25 pads on Net-(U5-FB) and CELL_BATT.</p>
+  </div>
+
+  <div class="find">
+    <div class="hd"><span class="pill p-high">high</span><b>R6 pulls GNSS reset to the always-on 3.3 V</b><span class="pill p-ok">fixed</span><span class="pill p-ok">re-checked</span></div>
+    <div class="row"><span class="k">What</span><p>R6 (10 k) goes from +3V3 to GNSS_RESET (L96 pin 23, ESP32 GPIO1). The L96's own supply (GNSS_3V3) is switched off in sleep, and its regulator actively pulls that rail to ground.</p></div>
+    <div class="row"><span class="k">Effect</span><p>Whenever GNSS is off, R6 either back-feeds the unpowered L96 through its reset pin or burns 330 µA when the GPIO is held low. The estimate is about 0.3 mA, around ten times everything else in sleep combined. The size of the leak is unmeasured. The pin is also only rated to 3.1 V high.</p></div>
+    <div class="row"><span class="k">Fix</span><p>Don't fit R6. Drive RESET open-drain from GPIO1, as Quectel's reference does, or move the pull-up to GNSS_3V3. Also keep the L96 UART and EXTINT GPIOs low or high-Z while GNSS is off.</p></div>
+    <p class="src"><code>L96-M33.pdf</code> p.15 (RESET VIHmax 3.1 V, active low), p.26 Fig. 8; <code>TPS7A0333DBVR.pdf</code> p.7 (60 Ω active pull-down when disabled).</p>
+  </div>
+
+  <div class="find">
+    <div class="hd"><span class="pill p-high">high</span><b>Copper runs right to the board edge on all four layers</b><span class="pill p-med">on hold</span><span class="pill p-ok">re-checked</span></div>
+    <div class="row"><span class="k">What</span><p>The copper-to-edge clearance rule is 0 mm, so DRC can never flag this. The GND pours reach the outline, and 128 vias sit 0.1–0.2 mm from the edge.</p></div>
+    <div class="row"><span class="k">Effect</span><p>The fab will put the order on hold or pull the copper back itself. Inner-plane copper ends up exposed at the routed edge.</p></div>
+    <div class="row"><span class="k">Fix</span><p>Set the edge clearance to 0.3 mm (0.5 mm if the panel is V-scored), refill, and move the edge via rows about 0.5 mm inward.</p></div>
+    <p class="src"><code>bwlc1a.kicad_pro</code> <code>min_copper_edge_clearance: 0.0</code>; Gerber copper extent vs Edge.Cuts (PCB reviewer).</p>
+  </div>
+
+  <div class="find">
+    <div class="hd"><span class="pill p-high">high</span><b>The modem paste stencil doesn't follow SIMCom</b><span class="pill p-med">on hold</span></div>
+    <div class="row"><span class="k">What</span><p>The 20 inner 2.1 mm GND pads get full-size paste, and the 80 edge pads get 2.0 × 0.6 mm openings. SIMCom specifies a 2×2 split (about 58 % coverage) on the inner pads and 0.5 × 1.5 mm on the edge pads, with a 0.12–0.15 mm stencil. Several vias also sit within 0.05 mm of U1 pads.</p></div>
+    <div class="row"><span class="k">Effect</span><p>The modem, the most expensive part on the board, can float, tilt or bridge, which hurts yield.</p></div>
+    <div class="row"><span class="k">Fix</span><p>Draw custom paste windows on the U1 footprint per SIMCom Fig. 5, and pull the near-pad vias at least 0.15 mm clear.</p></div>
+    <p class="src"><code>SIMCom_A7672X_Series_Hardware_Design_V1.04_2023-02_EN.pdf</code> p.25 Fig. 5; F_Paste Gerber apertures (PCB reviewer).</p>
+  </div>
+
+  <div class="find">
+    <div class="hd"><span class="pill p-high">high</span><b>The modem supply sags on transmit bursts and strands battery capacity</b><span class="pill p-ok">fixed</span></div>
+    <div class="row"><span class="k">What</span><p>The modem needs 3.4–4.2 V with no more than 300 mV of droop. It draws about 2 A peaks on GSM and 0.5–0.64 A on LTE at full power. The buck is set to 3.87 V, so below a ~3.95 V battery it runs at 100 % duty and simply passes the battery through. The series resistance is about 0.3 Ω (buck FET, L1, FB1, Q3) plus the cell's own. L1 saturates at 1.35–1.5 A.</p></div>
+    <div class="row"><span class="k">Effect</span><p>GSM bursts work only near full charge. On LTE the modem needs about 3.7 V or more open-circuit, so the bottom of the cell goes unused. A brownout means a reboot and a retry, which costs energy.</p></div>
+    <div class="row"><span class="k">Fix</span><p>Firmware: lock the modem to LTE only. Hardware, your call:</p><ul class="tight"><li>feed modem VBAT from the battery through a low-RDS(on) load switch, which is cheaper and drops less;</li><li>or use a ≥ 2.5 A buck-boost;</li><li>or keep the buck and fit an inductor with Isat ≥ 3 A (needs a 4 × 4 mm footprint).</li></ul></div>
+    <p class="src">A7670 hardware design V1.00 p.22–23; A7670G CN p.24, p.53; <code>LVS303015H-2R2M-N.pdf</code> p.11; <code>SY8089A1AAC.pdf</code> p.4. The droop figures are estimates.</p>
+  </div>
+</section><section id="battery">
+  <h2>1-year battery budget</h2>
+  <div class="callout ok"><b>After the fixes:</b> the R6 back-feed and the backup-switch bias are gone (struck through below). The new modem switch adds at most ~1 µA when off (<code>PMV32UP.pdf</code> p.1–2 IDSS ≤ 1 µA; <code>2N7002.pdf</code> p.2 ≤ 80 nA). Sleep floor ≈ <b>28–41 µA</b>, about 250–360 mAh a year. Datasheet typicals, not measured.</div>
+  <p class="col">The motion wake path works: the LSM6DSO INT1 reaches ESP32 GPIO14, an RTC-capable pin that can wake the chip from deep sleep. The modem rail (CELL_EN) and the GNSS rail (GNSS_EN) switch fully off, with pull-downs. Here is what still draws current in deep sleep, from datasheet typical values:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Item in deep sleep</th><th class="num">Current</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>ESP32-S3 deep sleep, RTC on for wake</td><td class="num">8 µA</td><td>ESP32-S3-MINI-1 p.30</td></tr>
+      <tr><td>LSM6DSO accelerometer, low-power wake-up</td><td class="num">4.4–9.5 µA</td><td>LSM6DSO p.12 (1.6–52 Hz)</td></tr>
+      <tr><td>L96 backup (keeps hot starts)</td><td class="num">7 µA</td><td>L96-M33 p.11</td></tr>
+      <tr><td>MAX17048 hibernate</td><td class="num">3–5 µA</td><td>MAX17048 p.2</td></tr>
+      <tr><td>RT9080 3.3 V LDO</td><td class="num">2 µA</td><td>RT9080 p.1</td></tr>
+      <tr><td>TXB0102, charger, regulators off, ESD</td><td class="num">≤ 4 µA</td><td>their datasheets</td></tr>
+      <tr class="total"><td>Sleep floor after the fixes</td><td class="num">~27–40 µA</td><td>≈ 240–350 mAh per year</td></tr>
+      <tr class="gone"><td>R6 back-feed, as built</td><td class="num">+ ~270–330 µA</td><td>estimate; measure on board 1</td></tr>
+      <tr class="gone"><td>Backup switch Q1 held on via GPIO2 (JP1 default)</td><td class="num">+ 7.5 µA</td><td>R18/R19 1 M bias</td></tr>
+    </tbody>
+  </table></div>
+  <p class="col">Each motion event (a GNSS fix of about 20 s plus an LTE report of about 30 s) costs roughly 1.5 mAh. Those are assumptions, not measurements.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th class="num">Wake-ups / day</th><th class="num">Events / year</th><th class="num">Sleep / year</th><th class="num">Cell needed (70 % usable)</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td class="num">550 mAh</td><td class="num">300 mAh</td><td class="num">~1.2 Ah</td></tr>
+      <tr><td class="num">4</td><td class="num">2,200 mAh</td><td class="num">300 mAh</td><td class="num">~3.6 Ah</td></tr>
+      <tr><td class="num">10</td><td class="num">5,500 mAh</td><td class="num">300 mAh</td><td class="num">~8.3 Ah</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout ok"><b>Verdict.</b> One year is reachable at about four wake-ups a day on a 3–4 Ah LiPo. That needs three things: C25 and R6 fixed, the GNSS backup kept on so fixes are hot starts, and the modem locked to LTE. With R6 as built, the leak alone uses up about 2.6–3.2 Ah a year. The battery isn't specified anywhere yet; pick it with this table.</div>
+  <p class="src">Electrical reviewer's budget. Event energy, cell self-discharge and usable fraction are assumptions; measure sleep and event current on the first board.</p>
+</section><section id="should">
+  <h2>Review: should fix</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th></th><th>Finding</th><th>Fix</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill p-med">medium</span></td><td><span class="pill p-ok">fixed</span> <b>GNSS backup supply is off by default.</b> JP1 is bridged 1–2, so V_BCKP comes through Q1, which is only on while GPIO2 is held high. Every fix becomes a cold start (≈ 30 s × 25 mA). <span class="pill p-ok">re-checked</span></td><td>Bridge JP1 2–3 (backup straight from +BATT, within 1.5–4.5 V) and don't fit Q1, Q2, R18 and R19. That saves four parts and 7.5 µA.</td><td>L96-M33 p.11, p.15; board JP1</td></tr>
+      <tr><td><span class="pill p-med">medium</span></td><td><span class="pill p-low">open</span> <b>No battery under-voltage cut-off or ship mode.</b> U6 is always on, so a flat cell keeps feeding the ESP32 into brown-out reset loops.</td><td>At minimum, firmware uses the MAX17048 alert and goes into permanent sleep. Better: a cut-off or ship-mode switch on +BATT.</td><td>schematic topology</td></tr>
+      <tr><td><span class="pill p-med">medium</span></td><td><span class="pill p-ok">fixed</span> <b>Q3 (AO3407A) isn't rated at battery-level gate drive.</b> RDS(on) is specified only at −4.5 V and −10 V, yet it sits in the 2 A burst path.</td><td>Use PMV32UP, already in the BOM, rated at −2.5 V. Same SOT-23 pinout.</td><td>AO3407A p.1–2; PMV32UP p.1</td></tr>
+      <tr><td><span class="pill p-med">medium</span></td><td><span class="pill p-ok">fixed</span> <b>FB2 is a signal bead on the 500 mA charger input.</b> It's rated 500 mA max with 0.4 Ω, so it eats input headroom.</td><td>Use BLM21PG300SN1D (already in the BOM) or a 0 Ω link.</td><td>MMZ1608B601C p.1; MCP73831 p.15</td></tr>
+      <tr><td><span class="pill p-med">medium</span></td><td><span class="pill p-low">open</span> <b>Vias break into small pads.</b> Drills sit inside or within 0.05 mm of the openings on C3, C9, C10, C32, C33, C40, U1 pin 1 and about 25 more. The fab notes say "no via-in-pad".</td><td>Pull the vias 0.1–0.15 mm clear, or pay for plugged vias.</td><td>PCB reviewer, polygon distances</td></tr>
+      <tr><td><span class="pill p-med">medium</span></td><td><span class="pill p-low">moot</span> <b>The SY8089 input and ground pins connect through single thermal spokes.</b> The input cap C23 is 3.3 mm from the IN pin.</td><td>Solid zone connection on U5 pins 2 and 4, C23, C24, C26, C27, Q3 and J4. Move C23 next to pin 4.</td><td>SY8089A1AAC p.7 layout notes</td></tr>
+      <tr><td><span class="pill p-med">medium</span></td><td><span class="pill p-cu">kept, your call</span> <b>The L96 sits only ~2.9 mm from the ground edge</b>, where Quectel asks for ≥ 10 mm on each side, next to the LTE antenna clearance. That means longer fixes. GNSS relocation was already deferred by you; this is the specific rule it breaks.</td><td>Your decision, unchanged. Revisit if fix times are poor on the bench.</td><td>L96-M33 p.39 §4.3</td></tr>
+      <tr><td><span class="pill p-med">medium</span></td><td><span class="pill p-low">open</span> <b>Placement-file rotations are raw KiCad orientations</b>, with no per-package offsets.</td><td>Check every polarised part in JLCPCB's placement preview before confirming the order.</td><td>CPL vs footprints</td></tr>
+    </tbody>
+  </table></div>
+</section><section id="cost">
+  <h2>Review: cost</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Item</th><th>Saving</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill p-ok">fixed</span> <b>J4 is the only bottom-side part</b>, so the order needs paid two-sided assembly and a second stencil for one 2-pin connector. <span class="pill p-ok">re-checked</span></td><td>Second-side setup and stencil</td><td>Move J4 to the top, hand-solder it, or use a through-hole JST-PH.</td></tr>
+      <tr><td><span class="pill p-ok">fixed</span> <b>45 of 57 LCSC lines are JLCPCB "Extended" parts</b>, each with a setup fee. E1 and U3 need global sourcing.</td><td>Roughly 14 fees (amount not verified)</td><td>Done: 45 → 29 Extended. Still open: merge duplicate values (the 100 nF 0603 into the 0402 line, the two 1 µF lines).</td></tr>
+      <tr><td><span class="pill p-cu">kept, your call</span> <b>J6/J7 u.FL connectors are fitted but unused.</b> Their only links, R27 and R28, aren't fitted. <span class="pill p-ok">re-checked</span></td><td>2 connectors + 1 Extended line</td><td>Mark J6 and J7 DNP unless you'll use the external-antenna option.</td></tr>
+      <tr><td><span class="pill p-ok">fixed</span> <b>GNSS backup switch</b> (Q1, Q2, R18, R19)</td><td>4 parts</td><td>Remove it with the JP1 2–3 change above.</td></tr>
+      <tr><td><span class="pill p-cu">kept, your call</span> <b>Optional parts:</b> J5 (Qwiic), D5/D6 LEDs, MAX17048</td><td>Depends on use</td><td>Drop them if the product doesn't use them; a switched ADC divider can replace the fuel gauge.</td></tr>
+    </tbody>
+  </table></div>
+</section><section id="low">
+  <h2>Review: lower priority</h2>
+  <ul class="tight col">
+    <li><b>Antenna match values:</b> TE measured with 12 nH / 4.7 pF, but the board has 10 nH / 3.3 pF. Our notes said those were TE's values; that's wrong. Start from 12/4.7 and tune with a VNA. <span class="pill p-ok">re-checked</span> (TE datasheet p.6 note 5)</li>
+    <li><b>L96 I/O at 2.8 V vs ESP32 at 3.3 V:</b> high levels aren't guaranteed in either direction (L96 VOH 2.4 V vs ESP32 VIH 2.475 V; ESP32 3.3 V into L96 VIHmax 3.1 V). It typically works.</li>
+    <li><b>TXB0102:</b> TI wants OE held low until both rails are up, and external pull-ups above 50 kΩ. Don't enable the ESP32's 45 kΩ pull-up on the RX pin.</li>
+    <li><b>Modem power-off:</b> firmware should wait at least 1.2 s after CELL_EN goes low before powering it back up, and always send <code>AT+CPOF</code> before cutting power.</li>
+    <li><b>Reverse-battery protection</b> is defeated while USB is connected (the charger lifts Q3's source).</li>
+    <li><b>Charger thermals:</b> U8's ground pad is on thermal relief, so charging slows when hot. Use a solid connection and 3–4 vias.</li>
+    <li><b>Fuel gauge accuracy:</b> the MAX17048 senses through Q3 and the shared +BATT copper. Run a dedicated trace.</li>
+    <li><b>32.768 kHz crystal:</b> 12 pF caps against a 12.5 pF load spec, so it runs fast. Use about 18–22 pF.</li>
+    <li><b>No fiducials, tooling or mounting holes;</b> several pads within 1 mm of the edge, and J3 overhangs by 0.88 mm. Needs a tab-routed panel. <span class="pill p-ok">re-checked</span> (no fiducials)</li>
+    <li><b>Seven parts have no courtyard</b> (U1, J1, J6, J7, L1, SW1, SW2), and the missing-courtyard rule is set to "ignore".</li>
+    <li><b>Fixes to the fab notes:</b> the outline is 50.0 × 83.75 mm, not 50.1. The stack-up should be the fab's standard stack (the CPWG still lands at 48–51 Ω). Drop <code>User_Comments.gbr</code> from the zip.</li>
+    <li><b>Labelling:</b> TP7 and TP8 are labelled "GPIO46" but connect to JAM_DET and GEO_FENCE; there's no VDD_1V8 test point; the FG_INT open-drain line needs the RTC pull-up enabled in sleep.</li>
+  </ul>
+</section><section id="tools">
+  <h2>Review: fab tools</h2>
+  <p class="col">Today's outputs are correct: a fresh run reproduces the production BOM, placement file and Gerbers exactly. The gaps are in what the tools would let through on bad input.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th></th><th>Gap</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill p-high">high</span></td><td>A fitted part with an empty or "-" MPN is silently dropped from the BOM and the placement file. A renamed MPN field empties the BOM with no error.</td><td>Drop only parts marked DNP; any other part without an MPN is an error.</td></tr>
+      <tr><td><span class="pill p-high">high</span></td><td>A duplicate reference on the board doubles a placement and miscounts the PCBWay quantity.</td><td>Fail on any duplicate reference in the board or the position files.</td></tr>
+      <tr><td><span class="pill p-high">high</span></td><td>Nothing compares the BOM's value and footprint with the board's, so a wrong part can ship.</td><td>Compare them in the iBOM cross-check and in the post-processor.</td></tr>
+      <tr><td><span class="pill p-med">medium</span></td><td>Conflicting supplier numbers inside one BOM group get concatenated into one cell. A <code>kicad-cli</code> layer error still returns success. <code>rm -rf $O</code> is unquoted, so a path with a space deletes the wrong folders.</td><td>Validate groups, check the zip's exact file list, use <code>set -euo pipefail</code> and quoted paths.</td></tr>
+      <tr><td><span class="pill p-med">medium</span></td><td>iBOM: "placed" marks are shared by every iBOM opened from disk. Text such as <code>&lt;!--&lt;script&gt;</code> in a CSV field breaks the page.</td><td>Key storage on the board revision; escape <code>&lt; &gt; &amp;</code> in the embedded data.</td></tr>
+      <tr><td><span class="pill p-low">low</span></td><td>Keyboard selection with "Hide placed" on; Space acting on the last toolbar control; <code>javascript:</code> links not filtered; "unspecified" footprints labelled THT; a few small rounding and contrast items.</td><td>Small code fixes.</td></tr>
+    </tbody>
+  </table></div>
+</section><section id="passed">
+  <h2>Review: what held up</h2>
+  <ul class="tight col">
+    <li>The board's pad nets match the schematic netlist on every footprint. DRC: 130 known items, 0 unconnected, parity clean.</li>
+    <li>Pinouts match the datasheets for every IC and FET checked: U1, U2, U4–U11, Q1–Q6.</li>
+    <li>SY8089 output is 3.87 V (3.81–3.93 V across its reference tolerance).</li>
+    <li>The 50 Ω antenna feed recomputes to 48–51 Ω with a field solver. The E1 keep-out matches TE's drawing, and the inner ground planes are solid.</li>
+    <li>The PWRKEY/RESET drivers and the STATUS inverter work at these voltages. ESP32 power-up glitches can't trigger them. The UART direction through U2 is correct.</li>
+    <li>The SIM circuit, modem VBAT decoupling and bulk capacitance match SIMCom's reference. Unused modem pins are handled per the guide.</li>
+    <li>ESP32: EN RC, strapping pins, PSRAM pin left free and USB wiring are all correct. The IMU wake reaches an RTC GPIO.</li>
+    <li>The modem and GNSS rails switch fully off with no leak path through the drivers.</li>
+    <li>BOM, placement file and PCBWay files agree: 116 parts. Gerber and drill origins agree, and the layer set is complete.</li>
+  </ul>
+</section><section id="plan">
+  <h2>Review plan, with status</h2>
+  <p class="col">Ordered by impact per effort, with what happened to each step.</p>
+  <ol class="plan col">
+    <li><b>Value and jumper changes:</b> <span class="pill p-ok">done</span> C25 (moot, buck removed), R6 removed, V_BCKP straight to +BATT (JP1, Q1/Q2/R18/R19/TP31 removed), Q3 → PMV32UP, FB2 → BLM18PG121SN1D. <span class="pill p-cu">kept</span> J6/J7 fitted. <span class="pill p-low">open</span> L3/C43 → 12 nH / 4.7 pF; crystal caps C20/C22 → 18–22 pF.</li>
+    <li><b>Fab blockers:</b> <span class="pill p-med">on hold</span> 0.3 mm copper-to-edge and the U1 paste windows (you said "not now"; both must be fixed before ordering). <span class="pill p-low">open</span> vias clear of small pads.</li>
+    <li><b>Cost:</b> <span class="pill p-ok">done</span> J4 on the top side, 14 passives to Basic (45 → 29 Extended). <span class="pill p-low">open</span> merging duplicate value lines.</li>
+    <li><b>Layout polish:</b> <span class="pill p-low">moot</span> U5 connections (buck removed). <span class="pill p-low">open</span> U8 and Q3/J4 solid connections, fuel-gauge sense trace, courtyards, fiducials.</li>
+    <li><b>Decisions:</b> <span class="pill p-ok">done</span> modem powered by a battery switch; fuel gauge, J5 and LEDs kept. <span class="pill p-low">open</span> battery size; cut-off or ship mode.</li>
+    <li><b>Tools:</b> <span class="pill p-low">open</span> harden <code>make_ibom.py</code> and the export script; move the export script into the repo.</li>
+    <li><b>Firmware notes:</b> collected under <a href="#firmware">Firmware</a>.</li>
+  </ol>
+</section><section id="unknown">
+  <h2>Review: not checked</h2>
+  <ul class="tight col">
+    <li><b>Needs a board on the bench:</b> real sleep current (especially R6), buck stability, modem droop on bursts, antenna return loss, GNSS fix time.</li>
+    <li><b>Needs JLCPCB's tools:</b> per-package rotation offsets and bottom-side convention, edge and panel rules, Extended fee amounts.</li>
+    <li><b>Scanned datasheets:</b> pinouts of the SIM socket, USB-C, J4 clone and buttons, and J4's pin-1 polarity against a real cable.</li>
+    <li><b>Prices:</b> the BOM has no price column, so the cost figures are relative.</li>
+  </ul>
+</section><div class="part"><div class="eyebrow">Part ·</div><h2>Checks, firmware and open items</h2><p class="col muted">For all three parts.</p></div>
+<section id="checks">
+  <h2>Checks</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Check</th><th>Result</th><th></th></tr></thead>
+    <tbody>
+      <tr class="cleared"><td><b>Current state (2026-11-19)</b></td><td>ERC 3 errors (pre-existing power-pin flags) / 508 warnings. DRC 119 on saved fills, 0 unconnected, schematic parity clean. BOM 53 lines / 112 parts, CPL 112 rows with none on the bottom. Production files and iBOM regenerated from this board. Nothing committed.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>Review fixes (2026-11-18)</td><td>ERC 5 → 4 errors (U5's went with it); DRC 130 → 126 (4 library warnings went with U5/L1); layout prototyped on a scratch copy, replayed through the MCP, copper identical. See <a href="#fixed">Review fixes applied</a>.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>Cable cut-out (2026-11-19)</td><td>DRC 126 same types, 0 unconnected, parity clean; only the outline and pour fills changed; J4 pads 0.30 mm from the cut edge. BOM/CPL identical; Gerbers changed only Edge.Cuts and the four copper layers.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>Cut-out corners rounded (2026-11-19)</td><td>Inside corner 1.0 mm, top outside corner 1.0 mm, bottom outside corner 0.5 mm (1.0 mm would come within 0.20 mm of J4's mounting pad). DRC 126 same types, 0 unconnected, parity clean; only the outline and pour fills changed; J4 mounting pads 0.30 / 0.40 mm from the edge. BOM/CPL identical; Gerbers changed only Edge.Cuts and the four copper layers.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>CHRG label knockout (2026-11-19)</td><td>White background (knockout) like the other section labels, moved 0.06 mm down to centre it: 0.21 mm to D11's pads and 0.20 mm to J4's mounting pad. DRC 126 same types, 0 unconnected, parity clean; only that text changed; only the F.Silkscreen Gerber changed.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>Schematic tidy (2026-11-19)</td><td>41 Reference/Value moves on 7 sheets through the KiCad MCP; 2 notes and 1 label by minimal text edit (no MCP tool). RESET, PWRKEY and both CELL_STATUS_N labels re-anchored at the end of a wire that runs under the text (MCP delete/add label + add wire), like BOOT_MODE0. Crowded items (under 0.6 mm to text or 0.5 mm to lines, measured from the plotted SVG) 28 → 5; the rest are a label pair at the 2.54 mm pin pitch, one note inside the ESP32 library symbol, and R21 near lines but readable. Netlist identical, ERC unchanged (4 / 517), DRC 126, 0 unconnected, parity clean.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>R6 and backup switch removed; logo rotated (2026-11-19)</td><td>R6, Q1, Q2, R18, R19 and TP31 deleted from schematic and board, with the GNSS_VBCKP and GNSS_VBCKP_EN nets (labels, sheet pins, 29 tracks/vias, the JP1-pin-3 pour); no-connects on GPIO2 and JP1 pin 3. Netlist diff exactly those parts and nets. ERC 4 errors (same) / 509 warnings; DRC 120 (6 items left with the parts), no new items, 0 unconnected, parity clean. BOM and CPL identical (the parts were already not fitted). Top logo rotated 90° CCW.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>JP1 removed; logo at 180° (2026-11-19)</td><td>JP1 deleted; the +BATT hierarchical label moved onto the V_BCKP wire, so L96 pin 8, C16 and C17 are on +BATT. Board: JP1 footprint gone, its V_BCKP tracks and vias moved to +BATT, a 0.5 mm link from the +BATT trunk to them. Netlist diff exactly that; ERC 3 errors (one power-pin error gone) / 508, no new items; DRC 119 (JP1 library warning gone), no new items, 0 unconnected, parity clean. BOM and CPL identical. Top logo turned to 180°.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>Logo moved next to the GPS; bottom antenna note removed (2026-11-19)</td><td>Top logo moved to (146.68, 80.3), into the area freed by the backup switch and JP1, still at 180°. The TP24 label moved under its pad, because it overlapped the logo. The bottom-silkscreen "ANT OPTION" note is deleted. DRC 119, no new items, 0 unconnected, parity clean. Gerber diff: only F and B silkscreen changed; BOM and CPL identical.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>Logo turned upright (2026-11-19)</td><td>Top logo rotated 180° (orientation 0) in the same spot, bbox unchanged (142.1–150.3 × 77.45–83.0). DRC 119, no new items, 0 unconnected, parity clean. Gerber diff: only F silkscreen; BOM and CPL identical.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>Logo scaled to fit (2026-11-19)</td><td>Top logo scaled to 62% (5.1 × 3.4 mm) and centred horizontally between U7 (x 141.57) and the TP24 label (x 148.97): bbox 142.73–147.82 × 79.86–83.30, 1.15 mm each side. Its right edge prints over the mask-covered +BATT trace, which is fine for silkscreen. New project footprint <code>bwlc1a:TeapotLogo_Small</code> so it matches its library entry; the bottom logo keeps <code>TeapotLogo</code>. TP24 label restored to its original place. DRC 119, no new items, 0 unconnected, parity clean. Gerber diff: only F silkscreen; BOM and CPL identical.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>ERC (TXB step)</td><td>5 errors, unchanged (pre-existing power_pin_not_driven; U2's is now on pin 3). +4 off-grid warnings on the new root wire and RESET stub, matching the existing sheet-pin grid; +1 lib_symbol_mismatch on the new +3V3 symbol.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>DRC (TXB step)</td><td>128 → 130. The only new items are 2 silk-on-silk overlaps where Q6's outline crosses the decorative section line at y = 86.2. No clearance, courtyard or copper errors.</td><td><span class="pill p-med">cosmetic</span></td></tr>
+      <tr><td>Unconnected / parity</td><td>0 unconnected; schematic parity clean. J3 shield nets restored after the sync.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>Netlist diff vs HEAD</td><td>Only: the U2 pin remap; U1.16 → RESET; U4.16 → CELL_RESET; U4.21 → CELL_STATUS_N; the new Q5, Q6, R31–R34.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>Copper diff vs HEAD</td><td>Only TXD, RXD, CELL_TXD, CELL_RXD, VDD_1V8, +3V3, GND (old U2 stubs), CELL_STATUS(_N), CELL_RESET, RESET and the Q5 gate changed. CELL_ANT, the CPWG feed and E1 are untouched. Embedded font present.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>Production</td><td>BOM 59 lines / 116 parts, CPL 116, Gerber zip with the same 17 file names. New lines: Q5/Q6 on DMG1012UW, R31 on 1k, R32/R34 on 10k, R33 100k (0402WGF1003TCE, C25741), U2 TXB0102DCUR.</td><td><span class="pill p-ok">done</span></td></tr>
+      <tr><td>STATUS tidy (2026-11-18)</td><td>Copper diff covers only CELL_STATUS and CELL_STATUS_N; pad nets identical; every bend on both nets 45°. DRC 130 unchanged, 0 unconnected, parity clean. BOM and CPL identical; Gerber copper, PTH drill and test netlist regenerated.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>BOM update (2026-11-18)</td><td>Board copper, pad nets and placement identical before and after; only J3's three shield-pad nets moved, restored to match HEAD after the sync. ERC 5 errors / 516 warnings and DRC 130 unchanged; 0 unconnected; parity clean. The BOM diff touches only L1, J4 and the Datasheet column. CPL, drill and test netlist are byte-identical, and the Gerbers differ only in their date stamps.</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>LCSC stock (2026-11-17)</td><td>TXB0102DCUR C60709: 63,145. 100k C25741: 1.89 M. 1k C25543: 603 k. DMG1012UW-7 C156390: 295, 282 on 11-18 (about 70 boards; watch it). Full recheck on 11-18 under <a href="#bom">BOM and parts</a>. The old 10k (0402WGF1002TCE, C25744) was out of stock, so all nine 10k resistors now use FOJAN FRC0402F1002TS, C2906861 (22.5 M in stock). Only that BOM line changed.</td><td><span class="pill p-ok">available</span></td></tr>
+      <tr><td>On a real board</td><td>Not measured yet. PWRKEY, RESET and STATUS behaviour should be checked on the first Rev 4 boards.</td><td><span class="pill p-low">open</span></td></tr>
+    </tbody>
+  </table></div>
+</section><section id="firmware">
+  <h2>Firmware</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Signal</th><th>Pin</th><th>Use</th></tr></thead>
+    <tbody>
+      <tr><td>PWRKEY</td><td><code>GPIO9</code></td><td>Active-high. About 1 s high = on, ≥ 2.5 s = off.</td></tr>
+      <tr><td>RESET</td><td><code>GPIO12</code></td><td>Active-high, hold 1.5 s. Use only when the modem stops responding. Never high while GPIO9 is high.</td></tr>
+      <tr><td>STATUS</td><td><code>GPIO17</code></td><td>Inverted: low = modem on. External 10 k pull-up fitted, so the internal pull setting does not matter.</td></tr>
+      <tr><td>UART</td><td><code>GPIO10/11</code></td><td>Unchanged (CELL_TXD / CELL_RXD through U2). Don't enable the ESP32's internal pull-up on RX (TXB0102 wants &gt; 50 kΩ).</td></tr>
+      <tr><td>Modem supply</td><td><code>GPIO13</code> CELL_EN</td><td>High switches the battery to the modem (~15 ms soft start), then PWRKEY. Always <code>AT+CPOF</code> before CELL_EN low; wait ≥ 5 s before switching it on again (R37 bleeds VBAT below 100 mV in ~3 s).</td></tr>
+      <tr><td>GNSS reset</td><td><code>GPIO1</code></td><td>No pull-up any more: drive open-drain only, never push-pull high (L96 RESET VIH max 3.1 V).</td></tr>
+      <tr><td>GNSS backup</td><td><code>GPIO2</code></td><td>No-connect now (backup switch removed): V_BCKP is always on from +BATT directly.</td></tr>
+      <tr><td>Sleep</td><td>—</td><td>LTE only; keep the L96 UART/EXTINT pins low or high-Z while GNSS is off; enable the RTC pull-up on FG_INT in sleep; use the MAX17048 alert for a low-battery shutdown.</td></tr>
+    </tbody>
+  </table></div>
+</section><section id="open">
+  <h2>Open items</h2>
+  <ul class="tight col">
+    <li><b>Nothing is committed.</b> Changed: every schematic sheet, the board, BOM/CPL/Gerber zip, the interactive BOM, plus the new <code>hardware/tools/ibom/</code> generator and the datasheet folder.</li>
+    <li><b>Sourcing:</b> U1 A7670G-LABE has 0 JLCPCB stock (LCSC third-party channel 37–39 days, or written confirmation that C5846957 is LABE). DMG1012UW-7 (Q4–Q6) has 52, about 17 boards; Q6 needs a part fully on at VGS 1.8 V.</li>
+    <li><b>Before ordering:</b> copper-to-edge clearance and the U1 paste windows (on hold); check polarised parts in JLCPCB's placement preview.</li>
+    <li><b>First board:</b> J4 polarity with a real PHR-2 cable; sleep current; modem-switch inrush and VBAT droop on transmit; PWRKEY, RESET and STATUS behaviour; antenna match with a VNA.</li>
+    <li><b>Undecided review items:</b> L3/C43 and crystal caps (value changes), duplicate BOM lines, vias in small pads, solid connections at U8/Q3/J4, fuel-gauge sense trace, cut-off/ship mode, fiducials, courtyards, tool hardening. See <a href="#plan">Review plan</a>.</li>
+    <li>The README Rev 4 notes draft needs the RESET/STATUS lines and the modem switch before you approve it.</li>
+    <li>Optional: shorten the decorative silk line at y = 86.2 to clear the two cosmetic DRC warnings.</li>
+  </ul>
+</section>
+</main>
+</div>
+</div>
