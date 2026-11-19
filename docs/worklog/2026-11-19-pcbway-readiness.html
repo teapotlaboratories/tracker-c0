@@ -1,0 +1,256 @@
+<title>BWLC1A PCBWay Readiness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (~74ch) with figure rows that break out to 1180px; same identity as the Rev 4 change report. */
+:root{
+  --paper:#f6f5f1; --panel:#ffffff; --ink:#1d2321; --muted:#5c6763; --rule:#d9dcd6;
+  --mask:#a3262a; --copper:#a8662b; --ok:#3f6b2a; --warn:#9a6a00; --bad:#a3262a;
+  --tint-bad:#f6e3e1; --tint-ok:#e7efdf; --tint-warn:#f5ecd6; --tint-cu:#f3e6d8; --code-bg:#eceee8;
+  --display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#141716; --panel:#1b1f1d; --ink:#e6e8e3; --muted:#9aa49f; --rule:#2e3431;
+  --mask:#e0675f; --copper:#d79a5e; --ok:#9cbd6e; --warn:#e0b04a; --bad:#e0675f;
+  --tint-bad:#3a2120; --tint-ok:#23301c; --tint-warn:#352c16; --tint-cu:#33271b; --code-bg:#232825; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141716; --panel:#1b1f1d; --ink:#e6e8e3; --muted:#9aa49f; --rule:#2e3431;
+  --mask:#e0675f; --copper:#d79a5e; --ok:#9cbd6e; --warn:#e0b04a; --bad:#e0675f;
+  --tint-bad:#3a2120; --tint-ok:#23301c; --tint-warn:#352c16; --tint-cu:#33271b; --code-bg:#232825; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1180px;margin:0 auto}
+.col{max-width:74ch}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.65rem;font-weight:700;margin:0 0 .4rem}
+h3{font-size:1.1rem;font-weight:600;margin-top:1.4rem}
+p{margin:.6rem 0}
+code,.mono{font-family:var(--mono);font-size:.88em}
+code{background:var(--code-bg);padding:.05em .35em;border-radius:3px}
+a{color:var(--mask)}
+.eyebrow{font:500 .75rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+header.top{padding-block:44px 26px;border-bottom:1px solid var(--rule);display:grid;gap:16px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;font:400 .85rem/1.4 var(--mono);color:var(--muted)}
+.meta b{color:var(--ink);font-weight:500}
+.lede{font-size:1.08rem;max-width:70ch}
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.v{border:1px solid var(--rule);background:var(--panel);border-radius:4px;padding:12px 14px;min-width:0;border-top:3px solid var(--ok)}
+.v.warn{border-top-color:var(--warn)} .v.open{border-top-color:var(--bad)}
+.v .k{font:500 .75rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.v .t{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:2px 0 4px}
+.v p{margin:0;font-size:.92rem}
+section{padding-block:34px 6px;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+.tbl{overflow-x:auto;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
+th{font:600 .78rem var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--panel)}
+td.num{text-align:right;white-space:nowrap}
+.pill{display:inline-block;font:500 .72rem var(--mono);padding:2px 7px;border-radius:999px;white-space:nowrap}
+.p-ok{background:var(--tint-ok);color:var(--ok)} .p-warn{background:var(--tint-warn);color:var(--warn)}
+.p-bad{background:var(--tint-bad);color:var(--bad)} .p-cu{background:var(--tint-cu);color:var(--copper)}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px;margin:14px 0}
+figure{margin:0;min-width:0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;background:#0f1419}
+figcaption{font-size:.84rem;color:var(--muted);margin-top:6px}
+figcaption b{color:var(--ink);font-weight:600}
+.narrow{max-width:420px}
+.tall{display:grid;grid-template-columns:repeat(2,minmax(0,170px));gap:14px;margin:14px 0}
+ul.tight{margin:.4rem 0;padding-left:1.2rem} ul.tight li{margin:.25rem 0}
+pre{background:var(--code-bg);padding:10px 12px;border-radius:4px;overflow-x:auto;font:400 .85rem/1.5 var(--mono);margin:10px 0}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.84rem;color:var(--muted);margin-top:6px}
+.sw{display:inline-block;width:12px;height:12px;border-radius:2px;vertical-align:-1px;margin-right:5px}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Teapot Laboratories · BWLC1A Rev 4 · production check</div>
+  <h1>Ready for PCBWay</h1>
+  <p class="lede">The BOM and CPL were checked line by line against the board and the schematic, the two open fab issues are fixed (copper pulled back from the board edge, and U1 now gets SIMCom's stencil), three hard-to-get part lines are swapped for in-stock equivalents, and the production files are rebuilt by a script that now lives in the repo. Everything here is on branch <code>r4</code>, committed on top of <code>f7fa18f</code>.</p>
+  <div class="meta"><span>Date <b>2026-11-19</b></span><span>Check script <b>PASS</b></span><span>DRC <b>119</b>, none new (copper-to-edge rule now 0.3 mm)</span><span>ERC <b>3 / 508</b>, none new</span><span>Unconnected <b>0</b></span><span>Parity <b>clean</b></span></div>
+</header>
+
+<section id="summary">
+  <h2>Summary</h2>
+  <div class="verdict">
+    <div class="v"><div class="k">BOM and CPL</div><div class="t">Verified</div><p>53 lines, 112 parts, 112 placements. Every fitted part appears once, with matching part number, value, footprint, position, rotation and side.</p></div>
+    <div class="v"><div class="k">Board edge</div><div class="t">Fixed</div><p>Copper stays 0.3 mm from the outline on all four layers. 104 edge vias moved inward, 6 removed.</p></div>
+    <div class="v"><div class="k">U1 stencil</div><div class="t">Fixed</div><p>The modem's 124 pads now get SIMCom's stencil openings (A7670G guide p.23).</p></div>
+    <div class="v"><div class="k">Stock</div><div class="t">3 lines swapped</div><p>C30/C31 and R1/R2/R3/R7 (zero at LCSC) and Q4/Q5/Q6 (none at Digi-Key or Mouser) now use in-stock equivalents.</p></div>
+    <div class="v warn"><div class="k">Still open</div><div class="t">4 items</div><p>Vias touching U1 pads, U1 supply, panel and fiducials, the courtyard overlaps. See the last section.</p></div>
+  </div>
+</section>
+
+<section id="bom">
+  <h2>BOM and CPL verification</h2>
+  <div class="col">
+  <p>The check is now <code>hardware/tools/fab/check_production.py</code>. It loads the board with KiCad's Python API, exports the schematic netlist, and compares both with <code>TeapotlabsBWLC1A_BOM.csv</code>, <code>TeapotlabsBWLC1A_CPL.csv</code> and the PCBWay BOM and positions inside the Gerber zip. It exits with an error on any mismatch.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Check</th><th>Result</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>Fitted parts (part number set, not DNP) vs BOM</td><td>112 board parts, 112 in the BOM, each exactly once</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>Qty column vs reference count, empty fields</td><td>53 lines; every line has manufacturer, part number, value, footprint and a distributor number: 50 LCSC, 1 Mouser (E1), 2 Digi-Key (U3; Q4/Q5/Q6)</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>BOM part number, value, footprint vs schematic and board</td><td>All agree</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>CPL vs board</td><td>112 rows; position, rotation and side match each footprint in the drill/place origin frame, the same frame as the Gerbers; all points inside the outline</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>PCBWay BOM and positions (in the zip)</td><td>53 groups; same parts, part numbers, positions and rotations as the BOM and CPL</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>Zip contents</td><td>Fabrication layers only: 4 copper, paste, mask, silk, outline, PTH/NPTH drill, IPC-D-356 netlist</td><td><span class="pill p-ok">pass</span></td></tr>
+      <tr><td>Package vs part number</td><td>U6 RT9080 is TSOT-23-5 on a SOT-23-5 land: same pitch, lead span and body length (RT9080-33GJ5.pdf p.13)</td><td><span class="pill p-ok">ok</span></td></tr>
+      <tr><td>Assembly side</td><td>All 112 placements on the top. J2 on the bottom is a Tag-Connect pad pattern with no part.</td><td><span class="pill p-ok">ok</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="col">
+  <h3>Centroids</h3>
+  <p>The CPL gives each part's footprint origin. Five parts have an origin more than 0.1 mm from the centre of their pads. I compared each with its body outline: for J3 and U3 the origin is the body centre, and the pads are off-centre because they sit at one end. E1, J6 and J7 are within 0.4 mm of the body centre. No change needed; PCBWay's placement preview confirms these.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Part</th><th>Origin to pad centre</th><th>Origin to body centre</th><th>Reading</th></tr></thead>
+    <tbody>
+      <tr><td>J3 USB-C</td><td class="num">1.46 mm</td><td class="num">0.00 mm</td><td>Signal pads at the back of the receptacle</td></tr>
+      <tr><td>E1 antenna</td><td class="num">1.45 mm</td><td class="num">0.38 mm</td><td>Feed and ground pads at one end of a 38 mm part</td></tr>
+      <tr><td>U3 L96</td><td class="num">0.89 mm</td><td class="num">0.00 mm</td><td>Uneven pad rows</td></tr>
+      <tr><td>J6, J7 u.FL</td><td class="num">0.29 mm</td><td class="num">0.36 mm</td><td>Origin on the centre pin</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="stock">
+  <h2>Stock and part swaps</h2>
+  <div class="col">
+  <p>I read every LCSC product page on 2026-11-19. All 50 LCSC part numbers match their listing (manufacturer and part number). PCBWay buys from its own suppliers, so LCSC stock is a guide, but a part at zero there usually means a substitution question in the quote.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Line</th><th>Was</th><th>Stock</th><th>Now</th><th>Stock</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>C30, C31</td><td>Samsung CL10A105KB8NNNC, 1 µF 50 V X5R 0603 (C15849)</td><td class="num">0</td><td>Samsung <b>CL10B105KA8NNNC</b>, 1 µF 25 V X7R 0603 (C29936)</td><td class="num">3,889,600</td><td><span class="pill p-ok">swapped</span></td></tr>
+      <tr><td>R1, R2, R3, R7</td><td>Uniroyal 0402WGF220JTCE, 22 Ω 1 % 0402 (C25092)</td><td class="num">0</td><td>Yageo <b>RC0402FR-0722RL</b>, 22 Ω 1 % 1/16 W 0402 (C114765)</td><td class="num">7,880,300</td><td><span class="pill p-ok">swapped</span></td></tr>
+      <tr><td>Q4, Q5, Q6</td><td>Diodes DMG1012UW-7, N-FET SOT-323 (LCSC C156390)</td><td class="num">LCSC 52<br>Digi-Key 0</td><td>Diodes <b>DMN2710UW-7</b>, N-FET SOT-323 (Digi-Key 31-DMN2710UW-7CT-ND)</td><td class="num">Digi-Key 1,572</td><td><span class="pill p-ok">swapped</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="col">
+  <ul class="tight">
+    <li><b>C30/C31</b> are the input and output capacitors of the GNSS LDO (TPS7A0333). It needs at least 0.5 µF effective on the output (TPS7A0333DBVR.pdf p.5). The X7R part loses less capacitance under DC bias than the old X5R one: about −13 % at 4.2 V against −27 % (Samsung DC-bias curves). That is about 0.67 µF worst case on the input and 0.70 µF on the output.</li>
+    <li><b>R1/R2/R3/R7</b> are the SIM-line series resistors and the 32 kHz crystal resistor. The Yageo part has the same value, tolerance and power rating (Yageo RC0402 datasheet p.4–5), on the same 0402 land.</li>
+    <li>Only those fields changed in the schematic (connectivity identical, ERC unchanged). In the BOM, exactly lines 11, 32 and 34 changed; the CPL is identical.</li>
+  </ul>
+  <h3>Other lines to watch</h3>
+  <ul class="tight">
+    <li><b>U1 A7670G-LABE</b>: 16 at LCSC. E1 (TE 2108784-1) is sourced from Mouser and U3 (L96-M33) from Digi-Key.</li>
+    <li>Lower but fine for small runs: C4/C21/C44 (700), D11 (1,800), U8 MCP73831 (2,890), PMV32UP (3,880).</li>
+  </ul>
+  </div>
+</section>
+
+<section id="fets">
+  <h2>Q4/Q5/Q6: modem control FETs</h2>
+  <div class="col">
+  <p>These three N-FETs drive the modem's PWRKEY and RESET (Q4, Q5) and invert its 1.8 V STATUS output (Q6). Q6 has to be fully on with only 1.8 V on its gate, and it sits with 3.3 V on its drain during sleep, so its off-state leakage counts against the one-year battery budget. LCSC had 52 of the DMG1012UW-7 (about 17 boards), Digi-Key had none, and Mouser had no listing.</p>
+  <p>Diodes' DMN2710UW-7 matches the DMG1012UW-7 on every limit in its datasheet. Its top-view drawing (p.1) has the same pin arrangement, so it drops onto the same SOT-323 land. It also costs a quarter of the LCSC price. Digi-Key is already a supplier in the BOM (for U3).</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>DMG1012UW-7 (was)</th><th>DMN2710UW-7 (now)</th><th>DMG1012UWQ-7 (option)</th><th>WNM2021-3/TR (rejected)</th></tr></thead>
+    <tbody>
+      <tr><td>Threshold V<sub>GS(th)</sub></td><td>0.5–1.0 V</td><td>0.5–1.0 V</td><td>0.5–1.0 V</td><td>0.45–0.85 V</td></tr>
+      <tr><td>R<sub>DS(on)</sub> max at V<sub>GS</sub> 1.8 V</td><td>0.75 Ω</td><td>0.75 Ω</td><td>0.75 Ω</td><td>0.46 Ω</td></tr>
+      <tr><td>Off-state leakage I<sub>DSS</sub> max</td><td>100 nA</td><td>100 nA</td><td>100 nA</td><td><b>1 µA</b>: up to +1 µA of sleep current</td></tr>
+      <tr><td>Stock, 2026-11-19</td><td>LCSC 52, Digi-Key 0</td><td>Digi-Key 1,572</td><td>Digi-Key 2</td><td>LCSC 88,520</td></tr>
+      <tr><td>Price at 100+ (USD)</td><td class="num">0.5564 (LCSC)</td><td class="num">0.1065 (Digi-Key)</td><td class="num">0.1555 (Digi-Key)</td><td></td></tr>
+      <tr><td>Source</td><td>DMG1012UW-7.pdf p.2</td><td>DMN2710UW.pdf p.1–2</td><td>DMG1012UWQ datasheet p.2</td><td>WNM2021-3.pdf p.3</td></tr>
+    </tbody>
+  </table></div>
+  <div class="col"><p class="muted">Mouser figures (3,415 DMN2710UW-7, 2,858 DMG1012UWQ-7) came through Octopart and could not be confirmed on mouser.com, and Mouser prices could not be read. Stock moves daily; re-check before the order.</p></div>
+</section>
+
+<section id="edge">
+  <h2>Copper pulled back from the board edge</h2>
+  <div class="col">
+  <p>The copper-to-edge rule was 0 mm, so DRC never flagged the GND pours that ran right to the outline on all four layers, or the 110 vias whose copper sat 0.10–0.30 mm from the edge. A fab routes the outline through that copper, which exposes the inner planes at the edge, and usually puts the order on hold.</p>
+  <ul class="tight">
+    <li>Rule set to <b>0.3 mm</b> and every pour refilled: the GND fills now stop 0.3 mm from the outline on F.Cu, In1, In2 and B.Cu.</li>
+    <li><b>104 GND stitching vias</b> moved straight inward by up to 0.22 mm, so their copper is 0.32 mm from the edge. None carries a track.</li>
+    <li><b>6 vias removed</b>: five on the right edge between the edge and the J3 shield and J5 mounting pads, and one beside TP29. With the edge rule there is no room for them; the stitching row keeps its 1 mm pitch elsewhere.</li>
+    <li>The LTE antenna feed and the E1 keep-out are unchanged (track geometry identical). The copper diff contains only GND vias and pours.</li>
+  </ul>
+  </div>
+  <div class="pair">
+    <figure><img src="../images/pcbway-readiness/edge_FCu_head.webp" alt="Top copper at the top edge before: pour reaches the outline"><figcaption><b>Before</b> · top copper, top edge above the GNSS area: the pour reaches the outline</figcaption></figure>
+    <figure><img src="../images/pcbway-readiness/edge_FCu_now.webp" alt="Top copper at the top edge after: 0.3 mm gap"><figcaption><b>After</b> · 0.3 mm of bare laminate at the edge; the via row sits 0.12 mm further in</figcaption></figure>
+    <figure><img src="../images/pcbway-readiness/edge_In1_head.webp" alt="Inner layer 1 before"><figcaption><b>Before</b> · inner ground plane In1</figcaption></figure>
+    <figure><img src="../images/pcbway-readiness/edge_In1_now.webp" alt="Inner layer 1 after"><figcaption><b>After</b> · In1 pulled back the same way, so no plane copper is exposed by routing</figcaption></figure>
+  </div>
+  <div class="tall">
+    <figure><img src="../images/pcbway-readiness/edge_j3_head.webp" alt="Right edge at J3 and J5 before"><figcaption><b>Before</b> · right edge at J5 and J3</figcaption></figure>
+    <figure><img src="../images/pcbway-readiness/edge_j3_now.webp" alt="Right edge at J3 and J5 after"><figcaption><b>After</b> · the circled vias are removed</figcaption></figure>
+  </div>
+</section>
+
+<section id="paste">
+  <h2>U1 modem stencil</h2>
+  <div class="col">
+  <p>U1 (SIMCom A7670G, LGA-124) had full paste on every pad. That over-pastes the twenty 2.1 mm ground pads, so the module can float, tilt or bridge. The footprint now carries SIMCom's stencil openings from the A7670G hardware design guide V1.00, Fig. 5 (p.23). Our pad geometry matches SIMCom's Fig. 4 (p.22), so the openings drop straight in.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Pads</th><th>Pad</th><th>Stencil opening</th><th>Paste coverage</th></tr></thead>
+    <tbody>
+      <tr><td>80 edge pads</td><td>0.6 × 2.0 mm</td><td>0.6 × 2.5 mm obround, inner end flush, 0.5 mm past the outer end</td><td>127 %</td></tr>
+      <tr><td>20 inner GND pads</td><td>2.1 × 2.1 mm</td><td>Four 0.8 mm squares, 0.15 mm inset, 0.2 mm gaps</td><td>58 %</td></tr>
+      <tr><td>24 small pads</td><td>1.1 × 0.9 mm</td><td>Two 0.45 × 0.75 mm openings, 0.10 mm gap</td><td>68 %</td></tr>
+    </tbody>
+  </table></div>
+  <div class="col"><p>The change is in the project library footprint <code>LGA-124_L24.0-W24.0-P1.0-A7670C-LASS</code> and the board copy, identically, so DRC shows no library mismatch. SIMCom specifies a <b>0.12–0.15 mm</b> stencil; choose 0.12 mm on the PCBWay order.</p></div>
+  <div class="pair">
+    <figure><img src="../images/pcbway-readiness/u1_paste_head.webp" alt="U1 paste before: full pads"><figcaption><b>Before</b> · top-left corner of U1, paste (amber) on every full pad</figcaption></figure>
+    <figure><img src="../images/pcbway-readiness/u1_paste_now.webp" alt="U1 paste after: SIMCom openings"><figcaption><b>After</b> · split openings on the inner and small pads; edge-pad paste runs 0.5 mm past the pad (orange)</figcaption></figure>
+    <figure><img src="../images/pcbway-readiness/simcom_fig5.webp" alt="SIMCom A7670G recommended stencil, Fig. 5"><figcaption><b>Source</b> · SIMCom A7670G hardware design guide V1.00, Fig. 5, p.23</figcaption></figure>
+  </div>
+  <div class="key"><span><span class="sw" style="background:#787f89"></span>pad (mask opening)</span><span><span class="sw" style="background:#ffb84d"></span>paste on the pad</span><span><span class="sw" style="background:#ff6e3c"></span>paste past the pad</span></div>
+</section>
+
+<section id="files">
+  <h2>Production files</h2>
+  <div class="col">
+  <p>The export pipeline now lives in the repo, so anyone can rebuild and re-check the PCBWay files:</p>
+  <pre>hardware/tools/fab/export_production.sh   # BOM, CPL, Gerber zip, interactive BOM
+python3 hardware/tools/fab/check_production.py   # PASS / FAIL before any order</pre>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>File</th><th>Change from <code>f7fa18f</code></th></tr></thead>
+    <tbody>
+      <tr><td><code>TeapotlabsBWLC1A_BOM.csv</code></td><td>Lines 11 (C30/C31), 32 (Q4/Q5/Q6) and 34 (R1/R2/R3/R7) only</td></tr>
+      <tr><td><code>TeapotlabsBWLC1A_CPL.csv</code></td><td>Identical</td></tr>
+      <tr><td><code>TeapotlabsBWLC1A_Gerber.zip</code></td><td>Copper (4 layers), F.Paste, PTH drill, IPC netlist, PCBWay BOM and positions changed; masks, silkscreens, outline, NPTH unchanged; <code>User_Comments.gbr</code> removed (it carried KiCad's stack-up table, whose core thickness disagreed with the fab notes)</td></tr>
+      <tr><td><code>TeapotlabsBWLC1A_ManufacturingInfo.txt</code></td><td>Board size corrected to <b>50.0 × 83.75 mm</b> (measured on the outline centreline). The file said 50.1 × 83.75; the last commit made it 83.85, which was the bounding box including the 0.1 mm outline stroke. The README had the same error and is fixed too.</td></tr>
+      <tr><td><code>TeapotlabsBWLC1A_InteractiveBOM.html</code></td><td>Rebuilt from the new board and BOM</td></tr>
+    </tbody>
+  </table></div>
+  <h3>For the PCBWay order</h3>
+  <div class="col">
+  <ul class="tight">
+    <li>PCB: upload <code>TeapotlabsBWLC1A_Gerber.zip</code>. 4 layers, 1.6 mm, 50.0 × 83.75 mm, impedance control (50 Ω coplanar feed on L1, see the manufacturing notes), tented vias.</li>
+    <li>Assembly: top side only, 112 parts. Upload <code>TeapotlabsBWLC1A_BOM.csv</code> and <code>TeapotlabsBWLC1A_CPL.csv</code>; the zip also carries PCBWay-format copies.</li>
+    <li>Stencil: 0.12 mm (U1 needs 0.12–0.15 mm).</li>
+  </ul>
+  </div>
+</section>
+
+<section id="open">
+  <h2>Still open</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Item</th><th>What</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Vias touching U1 pads</td><td>26 via-pad pairs where a via's copper ring overlaps a U1 edge pad by up to 0.16 mm. All on the pad's own net (GND, and PWRKEY on pad 1). The drill holes stay outside the pad openings, except PWRKEY by about 0.007 mm, and the vias are tented, so solder can't run down them. PCBWay's check may still ask about "via in pad". Moving them 0.1–0.2 mm clears it.</td><td><span class="pill p-warn">your call</span></td></tr>
+      <tr><td>U1 supply</td><td>A7670G-LABE: 16 at LCSC today. Confirm PCBWay can source it, or supply it yourself.</td><td><span class="pill p-warn">check in quote</span></td></tr>
+      <tr><td>Panel and fiducials</td><td>No fiducials on the board, and J3 overhangs the right edge by 0.88 mm. PCBWay normally panelizes with rails that carry fiducials; the J3 edge needs routing, not V-scoring. You chose to leave the order notes as they are.</td><td><span class="pill p-cu">left as is</span></td></tr>
+      <tr><td>Courtyard overlaps</td><td>The 7 DRC errors are courtyard overlaps around U3 and TP29, courtyard lines only, no body overlap.</td><td><span class="pill p-cu">known</span></td></tr>
+          </tbody>
+  </table></div>
+  <div class="col"><p class="muted">Housekeeping: pushing the LFS images earlier also installed four Git LFS hooks in the local clone. Without git-lfs installed, they would have blocked every later push, so they are removed. Install git-lfs (<code>sudo apt install git-lfs</code>, then <code>git lfs install</code>) before working with the LFS files again.</p></div>
+</section>
+</div>

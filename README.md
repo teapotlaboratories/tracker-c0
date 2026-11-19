@@ -18,7 +18,7 @@ back to sleep with the modem and GNSS fully powered off.
 | **Charging** | USB-C (J3), MCP73831 linear charger (U8), 500 mA |
 | **LTE antenna** | TE 2108784-1 PCB antenna (E1), or a u.FL connector (J6/J7) selected by resistors |
 | **Expansion** | Qwiic / STEMMA QT I²C connector (J5), Tag-Connect TC2050 JTAG pads (J2), reset and boot buttons (SW1, SW2) |
-| **Board** | 83.85 × 50.1 mm, 4 layers, 1.6 mm, 50 Ω coplanar antenna feed, all parts on the top side |
+| **Board** | 83.75 × 50.0 mm, 4 layers, 1.6 mm, 50 Ω coplanar antenna feed, all parts on the top side |
 
 ## Gallery
 
@@ -153,15 +153,25 @@ Production files are in [`hardware/kicad/production/`](hardware/kicad/production
 | File | Contents |
 |---|---|
 | `TeapotlabsBWLC1A_Gerber.zip` | Gerbers, PTH/NPTH drill, IPC-D-356 netlist, PCBWay BOM and positions |
-| `TeapotlabsBWLC1A_BOM.csv` | Bill of materials: 53 lines, 112 parts, with LCSC part numbers |
+| `TeapotlabsBWLC1A_BOM.csv` | Bill of materials: 53 lines, 112 parts, with LCSC, Mouser or Digi-Key part numbers |
 | `TeapotlabsBWLC1A_CPL.csv` | Pick-and-place positions (top side only) |
 | `TeapotlabsBWLC1A_ManufacturingInfo.txt` | Board spec, stack-up and impedance notes for the fab |
 | `TeapotlabsBWLC1A_InteractiveBOM.html` | Interactive BOM for hand assembly and inspection (open in a browser) |
 
 Board spec: 4 layers, 1.6 mm, S1000H TG150, 5/5 mil, 0.3 mm minimum hole, tented vias, red solder mask with white
 silkscreen. The LTE antenna feed is a 50 Ω coplanar waveguide on L1 (0.33 mm trace, 0.2 mm gap, referenced to L2),
-so order with impedance control. The interactive BOM is rebuilt from the board, BOM and CPL with
-[`hardware/tools/ibom/make_ibom.py`](hardware/tools/ibom/make_ibom.py).
+so order with impedance control. Copper stays 0.3 mm from the board edge. Use a 0.12 mm stencil: U1 (A7670G) carries
+SIMCom's recommended stencil openings, which need 0.12 to 0.15 mm.
+
+Rebuild and check the production files with KiCad 10 installed:
+
+```
+hardware/tools/fab/export_production.sh          # BOM, CPL, Gerber zip, interactive BOM
+python3 hardware/tools/fab/check_production.py   # board, BOM, CPL and PCBWay files must agree (PASS/FAIL)
+```
+
+The production check for PCBWay (BOM and CPL verification, board-edge and stencil fixes, part swaps) is in
+[`docs/worklog/2026-11-19-pcbway-readiness.html`](docs/worklog/2026-11-19-pcbway-readiness.html).
 
 ## What changed in Rev 4
 
@@ -186,6 +196,7 @@ repository and open it in a browser; GitHub shows HTML files as source.
 hardware/
   kicad/          KiCad 10 project, libraries, 3D models
     production/   Gerbers, BOM, CPL, manufacturing notes, interactive BOM
+  tools/fab/      Production export and pre-order check
   tools/ibom/     Interactive BOM generator
 docs/
   images/         README images and report images (Git LFS)
