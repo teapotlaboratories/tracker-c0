@@ -2412,7 +2412,7 @@
 		(fields_autoplaced yes)
 		(uuid "06b99f5c-9f21-4448-a4a7-eab27c3b3710")
 		(property "Reference" "U11"
-			(at 110.5409 120.65 0)
+			(at 111.176 120.65 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2423,7 +2423,7 @@
 			)
 		)
 		(property "Value" "LSM6DSOTR"
-			(at 110.5409 123.19 0)
+			(at 111.176 123.19 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2445,7 +2445,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/2108070730_STMicroelectronics-LSM6DSOTR_C2655100.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/9b8183d12f183970849d8eecce406049.pdf?productCode=C2655100"
 			(at 111.125 121.92 0)
 			(hide yes)
 			(show_name no)
@@ -2814,7 +2814,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/106fb934f95f063b695dad1b31b1eab8.pdf?productCode=C2906861"
 			(at 86.995 97.79 0)
 			(hide yes)
 			(show_name no)
@@ -2825,7 +2825,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "10kΩ ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 86.995 97.79 0)
 			(hide yes)
 			(show_name no)
@@ -2836,7 +2836,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "UNI-ROYAL(Uniroyal Elec)"
+		(property "Manufacturer" "FOJAN"
 			(at 86.995 97.79 0)
 			(hide yes)
 			(show_name no)
@@ -2847,7 +2847,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGF1002TCE"
+		(property "Manufacturer Part Number" "FRC0402F1002TS"
 			(at 86.995 97.79 0)
 			(hide yes)
 			(show_name no)
@@ -2869,7 +2869,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C25744"
+		(property "Distributor Part Number" "C2906861"
 			(at 86.995 97.79 0)
 			(hide yes)
 			(show_name no)
@@ -2880,7 +2880,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C2906861.html"
 			(at 86.995 97.79 0)
 			(hide yes)
 			(show_name no)
@@ -2995,7 +2995,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C1525"
 			(at 105.41 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -3330,7 +3330,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C1525"
 			(at 200.66 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -3511,7 +3511,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C1525"
 			(at 85.725 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -3769,7 +3769,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL10A106KP8NNNC_C19702.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C19702"
 			(at 127 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -4122,7 +4122,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_JST-SM04B-SRSS-TB-LF-SN_C160404.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/40c649e22fa9bda892cfec952005fd51.pdf?productCode=C160404"
 			(at 179.07 121.92 0)
 			(hide yes)
 			(show_name no)
@@ -4315,7 +4315,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL10A226MP8NUNE_C86295.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C59461"
 			(at 116.84 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -4326,7 +4326,7 @@
 				)
 			)
 		)
-		(property "Description" "10V 22uF X5R ±20% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS"
+		(property "Description" "22uF ±20% 6.3V Ceramic Capacitor X5R 0603"
 			(at 116.84 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -4348,7 +4348,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "CL10A226MP8NUNE"
+		(property "Manufacturer Part Number" "CL10A226MQ8NRNC"
 			(at 116.84 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -4370,7 +4370,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C86295"
+		(property "Distributor Part Number" "C59461"
 			(at 116.84 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -4381,7 +4381,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL10A226MP8NUNE_C86295.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C59461.html"
 			(at 116.84 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -4804,7 +4804,7 @@
 				(justify bottom)
 			)
 		)
-		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/2106070437_Analog-Devices-Inc--Maxim-Integrated-MAX17048G-T10_C2682616.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/6ea2434b9fcbd476e93afe7bcb1f53c0.pdf?productCode=C2682616"
 			(at 175.26 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -5346,9 +5346,49 @@
 		)
 		(uuid "1dd25c20-3db2-4328-9474-2cb39480d169")
 	)
+	(polyline
+		(pts
+			(xy 220.98 54.61) (xy 220.98 71.12)
+		)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(uuid "ccca77da-5180-4926-a2c5-c058f4ffa65a")
+	)
+	(polyline
+		(pts
+			(xy 220.98 71.12) (xy 261.62 71.12)
+		)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(uuid "31086ecb-e308-4a2c-92db-8dbbc6a344c8")
+	)
+	(polyline
+		(pts
+			(xy 261.62 54.61) (xy 220.98 54.61)
+		)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(uuid "e370149e-1112-426e-9661-d1c6420823c9")
+	)
+	(polyline
+		(pts
+			(xy 261.62 71.12) (xy 261.62 54.61)
+		)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(uuid "b2c36285-d4b5-4334-8e7a-e9c03d44f696")
+	)
 	(text "Sheets Connection"
 		(exclude_from_sim no)
-		(at 233.68 69.85 0)
+		(at 223.52 69.85 0)
 		(effects
 			(font
 				(size 1.27 1.27)

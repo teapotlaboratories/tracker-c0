@@ -35,16 +35,6 @@
 	)
 	(wire
 		(pts
-			(xy 224.79 96.52) (xy 240.03 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "01fc5de6-3a38-45e9-82ac-107dfe0fb7f5")
-	)
-	(wire
-		(pts
 			(xy 68.58 102.235) (xy 97.917 102.235)
 		)
 		(stroke
@@ -122,26 +112,6 @@
 			(type default)
 		)
 		(uuid "10c639b6-827c-4339-b5c0-d488d7a2b46d")
-	)
-	(wire
-		(pts
-			(xy 88.9 67.31) (xy 96.52 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1d91eff9-91d7-443a-b709-767db715d9c1")
-	)
-	(wire
-		(pts
-			(xy 88.9 83.82) (xy 88.9 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1df8ada9-c0ad-40dc-b10d-3eb8a124195e")
 	)
 	(wire
 		(pts
@@ -525,16 +495,6 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 83.82) (xy 97.917 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a9c5325d-df92-4a8d-8634-dd4f6054eb56")
-	)
-	(wire
-		(pts
 			(xy 86.36 86.36) (xy 97.917 86.36)
 		)
 		(stroke
@@ -582,16 +542,6 @@
 			(type default)
 		)
 		(uuid "c4293c16-adb4-41d0-8cf8-429bc0886305")
-	)
-	(wire
-		(pts
-			(xy 125.73 60.96) (xy 139.7 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d03dfada-79c6-45de-aec8-df1b131eb749")
 	)
 	(wire
 		(pts
@@ -793,16 +743,6 @@
 		)
 		(uuid "6475b062-f0d5-4f95-949c-cca18b167223")
 	)
-	(label "GNSS_VBCKP"
-		(at 139.7 60.96 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "84b0cb09-2f62-44c8-b71c-83a24bec63d3")
-	)
 	(label "GNSS_3V3"
 		(at 240.03 88.9 180)
 		(effects
@@ -822,16 +762,6 @@
 			(justify left bottom)
 		)
 		(uuid "c67b3df7-f181-43e6-894a-71b4929a3895")
-	)
-	(label "GNSS_VBCKP"
-		(at 240.03 96.52 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "ecf9b960-9e56-449f-a662-b1fbbb2cc821")
 	)
 	(label "+BATT"
 		(at 240.03 104.14 180)
@@ -960,16 +890,6 @@
 				(justify left)
 			)
 		)
-		(pin "GNSS_VBCKP_EN" output
-			(at 97.917 83.82 180)
-			(uuid "50d84dca-3606-460b-a3f3-3dea86aa0db5")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
 		(pin "+3V3" input
 			(at 132.715 77.47 90)
 			(uuid "f2fd767b-5cc0-4165-8bef-cb0d59b14d1e")
@@ -1085,6 +1005,16 @@
 				(path "/388039b1-99cc-430f-bd4a-010573fde798"
 					(page "4")
 				)
+			)
+		)
+		(pin "CELL_RESET" output
+			(at 153.67 94.615 0)
+			(uuid "a6d6d42d-aa33-496d-a404-ba784b10a008")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 	)
@@ -1209,16 +1139,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
-			)
-		)
-		(pin "GNSS_VBCKP" input
-			(at 224.79 96.52 0)
-			(uuid "fa2e2c50-94b6-4ccb-b233-fc2322c1d288")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 			)
 		)
 		(pin "+BATT" input
@@ -1394,26 +1314,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-			)
-		)
-		(pin "GNSS_VBCKP_EN" input
-			(at 96.52 67.31 180)
-			(uuid "4c639b78-e17f-4c11-8f1b-eb9bc2ea3440")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "GNSS_VBCKP" output
-			(at 125.73 60.96 0)
-			(uuid "0b86c3e2-eaae-48d8-9064-3da5c7a5e1d9")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 			)
 		)
 		(pin "CELL_BATT" output
@@ -1611,7 +1511,17 @@
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
+			)
+		)
+		(pin "CELL_RESET" input
+			(at 188.595 75.565 180)
+			(uuid "0ec030bb-738a-44af-8853-ddd0b131789f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 	)
@@ -1795,6 +1705,36 @@
 			(justify left bottom)
 		)
 		(uuid "f899adbb-8eb7-41bc-85f1-49834693e420")
+	)
+	(wire
+		(pts
+			(xy 153.67 94.615) (xy 176.53 94.615)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b61292b3-007f-4cd2-9fc3-17aeb9dc6573")
+	)
+	(wire
+		(pts
+			(xy 176.53 94.615) (xy 176.53 75.565)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c521672-6f68-4d7f-9dcd-418b3d10e47d")
+	)
+	(wire
+		(pts
+			(xy 176.53 75.565) (xy 188.595 75.565)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "01cfc90a-174e-471b-9cf5-93b261912ee6")
 	)
 	(sheet_instances
 		(path "/"

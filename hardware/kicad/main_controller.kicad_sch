@@ -3445,6 +3445,402 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Transistor_FET:DMG1012T"
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "Q"
+				(at 5.08 1.905 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "DMG1012T"
+				(at 5.08 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-523"
+				(at 5.08 -1.905 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds31783.pdf"
+				(at 5.08 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Description" "20V Vds, 0.63 Id, N-Channel MOSFET with ESD protection, SOT-523"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "N-Channel MOSFET"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SOT?523*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "DMG1012T_0_1"
+				(polyline
+					(pts
+						(xy 2.54 -3.81) (xy -2.286 -3.81) (xy -2.286 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "DMG1012T_1_1"
+				(circle
+					(center -2.286 0)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.016 -4.318) (xy -0.889 -4.191) (xy -0.889 -3.429) (xy -0.762 -3.302)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.889 -3.81) (xy -0.254 -4.191) (xy -0.254 -3.429) (xy -0.889 -3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 1.905) (xy 0.254 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 0) (xy -2.54 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 2.286) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 0.508) (xy 0.762 -0.508)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.27) (xy 0.762 -2.286)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.778) (xy 3.302 -1.778) (xy 3.302 1.778) (xy 0.762 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.016 0) (xy 2.032 0.381) (xy 2.032 -0.381) (xy 1.016 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.143 -3.81) (xy 0.508 -3.429) (xy 0.508 -4.191) (xy 1.143 -3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -3.302) (xy 1.143 -3.429) (xy 1.143 -4.191) (xy 1.016 -4.318)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 1.651 0)
+					(radius 2.794)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 2.54) (xy 2.54 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.54 1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 2.54 -1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -2.54) (xy 2.54 0) (xy 0.762 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.54 -3.81)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.794 0.508) (xy 2.921 0.381) (xy 3.683 0.381) (xy 3.81 0.254)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.302 0.381) (xy 2.921 -0.254) (xy 3.683 -0.254) (xy 3.302 0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "G"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "S"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 5.08 270)
+					(length 2.54)
+					(name "D"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(rectangle
 		(start 24.003 140.081)
@@ -3505,6 +3901,18 @@
 			(type none)
 		)
 		(uuid "9ef2f120-2334-40e9-b057-2b7fa18ea82c")
+	)
+	(rectangle
+		(start 187.96 139.7)
+		(end 249.555 164.465)
+		(stroke
+			(width 0.5)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "6d6fdb80-0944-4897-b976-adac6e55d3eb")
 	)
 	(text "ESP32-S3-MINI-N4R2 (Quad SPI)\n"
 		(exclude_from_sim no)
@@ -3568,7 +3976,7 @@
 	)
 	(text "Octal SPI"
 		(exclude_from_sim no)
-		(at 104.775 118.745 0)
+		(at 104.14 118.745 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3853,12 +4261,6 @@
 		(uuid "9e36644f-5129-42da-b731-5ea244ef0b58")
 	)
 	(junction
-		(at 179.07 64.77)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ae1d8c31-4750-490c-8679-4ff10dbe13e1")
-	)
-	(junction
 		(at 66.675 164.465)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4096,16 +4498,6 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 36.83) (xy 179.07 36.195)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1ca9f5c7-50a8-416f-98f0-4fc46fb84084")
-	)
-	(wire
-		(pts
 			(xy 38.735 115.57) (xy 68.58 115.57)
 		)
 		(stroke
@@ -4113,16 +4505,6 @@
 			(type default)
 		)
 		(uuid "1d9a74f6-7217-4881-b73e-e29f2f3bdcce")
-	)
-	(wire
-		(pts
-			(xy 160.02 67.31) (xy 187.96 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "20433ed9-8629-45a1-8ca1-6a3ba9738df0")
 	)
 	(wire
 		(pts
@@ -4463,16 +4845,6 @@
 			(type default)
 		)
 		(uuid "5f15cbe3-2262-4d5a-94f7-012dd221d5e1")
-	)
-	(wire
-		(pts
-			(xy 179.07 41.91) (xy 179.07 64.77)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5f6c247a-bfd4-4de3-b105-c328ec42927d")
 	)
 	(wire
 		(pts
@@ -5449,17 +5821,6 @@
 		)
 		(uuid "2f189a5e-a053-4f7a-a922-bd2cdecedf6b")
 	)
-	(hierarchical_label "CELL_STATUS"
-		(shape input)
-		(at 168.91 100.33 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "3aa11d3a-2055-48fd-9c97-8392cdfcd30b")
-	)
 	(hierarchical_label "FG_INT"
 		(shape input)
 		(at 168.91 102.87 0)
@@ -5624,17 +5985,6 @@
 			(justify left)
 		)
 		(uuid "d69dd462-0e52-496a-a585-9b8da3e6e345")
-	)
-	(hierarchical_label "GNSS_VBCKP_EN"
-		(shape output)
-		(at 187.96 67.31 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "e0c74bbe-92c7-4fbf-b0b3-bcad9403d137")
 	)
 	(hierarchical_label "CELL_TXD"
 		(shape input)
@@ -5907,7 +6257,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_XUNPU-TS-1088-AR02016_C720477.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0475ac02febf455ca9ddcfb380b0df0d.pdf?productCode=C720477"
 			(at 245.11 113.03 0)
 			(hide yes)
 			(show_name no)
@@ -6151,7 +6501,7 @@
 		(dnp no)
 		(uuid "0d04cb74-9bbf-4d76-a39b-e5199c48b892")
 		(property "Reference" "C21"
-			(at 240.665 48.26 0)
+			(at 241.3 48.26 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6162,7 +6512,7 @@
 			)
 		)
 		(property "Value" "1u"
-			(at 242.57 52.705 0)
+			(at 243.205 52.705 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6183,7 +6533,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL05A105KP5NNNC_C14445.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C52923"
 			(at 236.855 50.165 0)
 			(hide yes)
 			(show_name no)
@@ -6194,7 +6544,7 @@
 				)
 			)
 		)
-		(property "Description" "10V 1uF X5R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS"
+		(property "Description" "1uF ±10% 25V Ceramic Capacitor X5R 0402"
 			(at 236.855 50.165 0)
 			(hide yes)
 			(show_name no)
@@ -6216,7 +6566,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "CL05A105KP5NNNC"
+		(property "Manufacturer Part Number" "CL05A105KA5NQNC"
 			(at 236.855 50.165 0)
 			(hide yes)
 			(show_name no)
@@ -6238,7 +6588,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C14445"
+		(property "Distributor Part Number" "C52923"
 			(at 236.855 50.165 0)
 			(hide yes)
 			(show_name no)
@@ -6249,7 +6599,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL05A105KP5NNNC_C14445.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C52923.html"
 			(at 236.855 50.165 0)
 			(hide yes)
 			(show_name no)
@@ -6551,7 +6901,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/106fb934f95f063b695dad1b31b1eab8.pdf?productCode=C2906861"
 			(at 195.58 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -6562,7 +6912,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "10kΩ ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 195.58 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -6573,7 +6923,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "UNI-ROYAL(Uniroyal Elec)"
+		(property "Manufacturer" "FOJAN"
 			(at 195.58 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -6584,7 +6934,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGF1002TCE"
+		(property "Manufacturer Part Number" "FRC0402F1002TS"
 			(at 195.58 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -6606,7 +6956,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C25744"
+		(property "Distributor Part Number" "C2906861"
 			(at 195.58 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -6617,7 +6967,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C2906861.html"
 			(at 195.58 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -6919,7 +7269,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0402WGJ0472TCE_C25940.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C25900"
 			(at 44.45 107.315 0)
 			(hide yes)
 			(show_name no)
@@ -6930,7 +7280,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±5% 4.7kΩ 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "4.7kΩ ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 44.45 107.315 0)
 			(hide yes)
 			(show_name no)
@@ -6952,7 +7302,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGJ0472TCE"
+		(property "Manufacturer Part Number" "0402WGF4701TCE"
 			(at 44.45 107.315 0)
 			(hide yes)
 			(show_name no)
@@ -6974,7 +7324,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C25940"
+		(property "Distributor Part Number" "C25900"
 			(at 44.45 107.315 0)
 			(hide yes)
 			(show_name no)
@@ -6985,7 +7335,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGJ0472TCE_C25940.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C25900.html"
 			(at 44.45 107.315 0)
 			(hide yes)
 			(show_name no)
@@ -7195,7 +7545,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C1525"
 			(at 104.14 36.195 0)
 			(hide yes)
 			(show_name no)
@@ -7641,7 +7991,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2404180925_Seiko-Epson-Q13FC13500004_C32346.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/d4d1bd2e87b2e72a8e8e7fe7d590f4c0.pdf?productCode=C32346"
 			(at 45.085 52.705 0)
 			(hide yes)
 			(show_name no)
@@ -8131,25 +8481,25 @@
 		(dnp no)
 		(uuid "349fa834-e4dd-41e4-98c3-f3888def0431")
 		(property "Reference" "TP10"
-			(at 160.02 31.75 0)
+			(at 161.29 31.75 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Value" "TXD"
-			(at 160.02 34.29 0)
+			(at 161.29 34.29 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
@@ -8429,7 +8779,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1811100910_Lite-On-LTST-C191KGKT_C125098.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/1767ff17728a42c5853b108db014defc.pdf?productCode=C125098"
 			(at 162.56 121.92 90)
 			(hide yes)
 			(show_name no)
@@ -8684,7 +9034,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2205311900_UNI-ROYAL-Uniroyal-Elec-0402WGF220JTCE_C25092.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C25092"
 			(at 57.785 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -9155,7 +9505,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_FH--Guangdong-Fenghua-Advanced-Tech-0402CG120J500NT_C1547.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/09fe2daf22580a99fa7fea93ccb20fb7.pdf?productCode=C1547"
 			(at 39.37 48.895 0)
 			(hide yes)
 			(show_name no)
@@ -9336,7 +9686,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL10A106KP8NNNC_C19702.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C19702"
 			(at 94.615 36.195 0)
 			(hide yes)
 			(show_name no)
@@ -9484,7 +9834,7 @@
 		(dnp no)
 		(uuid "54e62eb0-26a7-4d56-817f-817e266e1085")
 		(property "Reference" "TP14"
-			(at 51.435 98.425 0)
+			(at 50.8 97.79 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9495,7 +9845,7 @@
 			)
 		)
 		(property "Value" "GPIO35"
-			(at 52.705 107.95 90)
+			(at 52.07 108.585 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9892,7 +10242,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2301051530_TECH-PUBLIC-ESD5651N_C5342369.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/2c19d3aab1c204b8ee5264d715f0d2cc.pdf?productCode=C5342369"
 			(at 88.9 177.165 0)
 			(hide yes)
 			(show_name no)
@@ -10211,101 +10561,6 @@
 			(project "bwlc1a"
 				(path "/388039b1-99cc-430f-bd4a-010573fde798/3774d0f3-a7e5-4b39-9680-0f9041fc211b"
 					(reference "TP22")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 179.07 36.195 0)
-		(mirror y)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "70c1831e-e5b5-422a-ada2-b29906de8e90")
-		(property "Reference" "#PWR033"
-			(at 179.07 40.005 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 175.895 32.385 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 179.07 36.195 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 179.07 36.195 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 179.07 36.195 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "32eaaa45-5332-4a14-9436-572cc109e220")
-		)
-		(instances
-			(project "bwlc1a"
-				(path "/388039b1-99cc-430f-bd4a-010573fde798/3774d0f3-a7e5-4b39-9680-0f9041fc211b"
-					(reference "#PWR033")
-					(unit 1)
-				)
-			)
-			(project "plantpal"
-				(path "/59b4123e-c7be-466b-a5db-658b8f0c1171"
-					(reference "#PWR049")
-					(unit 1)
-				)
-				(path "/59b4123e-c7be-466b-a5db-658b8f0c1171/0bc89df9-c404-42cc-aab4-4237df7294d4"
-					(reference "#PWR063")
-					(unit 1)
-				)
-			)
-			(project "bwlr1e"
-				(path "/630c8da6-5464-4eef-824d-89618087f4b4"
-					(reference "#PWR0134")
 					(unit 1)
 				)
 			)
@@ -10913,7 +11168,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1810231512_Lite-On-LTST-C191KRKT_C125099.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/d51ae7f7d38f4d17a71913c8d2030d23.pdf?productCode=C125099"
 			(at 170.18 121.92 90)
 			(hide yes)
 			(show_name no)
@@ -11171,7 +11426,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_XUNPU-TS-1088-AR02016_C720477.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0475ac02febf455ca9ddcfb380b0df0d.pdf?productCode=C720477"
 			(at 250.19 50.165 0)
 			(hide yes)
 			(show_name no)
@@ -11319,7 +11574,7 @@
 		(dnp no)
 		(uuid "831e56ec-2019-4b5d-8d0b-104ce60432eb")
 		(property "Reference" "TP11"
-			(at 164.465 31.75 0)
+			(at 165.1 31.75 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11330,7 +11585,7 @@
 			)
 		)
 		(property "Value" "RXD"
-			(at 164.465 34.29 0)
+			(at 165.1 34.29 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11575,186 +11830,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 179.07 39.37 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "84c1bd5b-5293-4fb0-9b80-87971ffacdea")
-		(property "Reference" "R6"
-			(at 176.53 39.37 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "10k"
-			(at 176.53 34.925 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 179.07 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.pdf"
-			(at 179.07 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS"
-			(at 179.07 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "UNI-ROYAL(Uniroyal Elec)"
-			(at 179.07 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer Part Number" "0402WGF1002TCE"
-			(at 179.07 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Distributor" "LCSC"
-			(at 179.07 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Distributor Part Number" "C25744"
-			(at 179.07 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.html"
-			(at 179.07 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Id" ""
-			(at 179.07 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacture" ""
-			(at 179.07 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacture Part Number" ""
-			(at 179.07 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Type" ""
-			(at 179.07 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "3bc49aec-89b3-4ca3-9395-987c1e78be15")
-		)
-		(pin "2"
-			(uuid "80fbb629-d7b5-4ce4-bce7-f1599f0531a7")
-		)
-		(instances
-			(project "bwlc1a"
-				(path "/388039b1-99cc-430f-bd4a-010573fde798/3774d0f3-a7e5-4b39-9680-0f9041fc211b"
-					(reference "R6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 80.645 180.975 0)
 		(unit 1)
@@ -11843,7 +11918,7 @@
 		(dnp no)
 		(uuid "a30f9d7e-bd75-4514-9f1c-be5400049dc9")
 		(property "Reference" "TP15"
-			(at 57.15 98.425 0)
+			(at 56.515 97.79 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11854,7 +11929,7 @@
 			)
 		)
 		(property "Value" "GPIO34"
-			(at 58.42 108.585 90)
+			(at 57.785 108.585 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12612,7 +12687,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206231830_TECH-PUBLIC-ESDA6V1W5_C3040609.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/5450ddd25002671c4f0e27c9fe6c003b.pdf?productCode=C3040609"
 			(at 64.77 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -12799,7 +12874,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2205311845_UNI-ROYAL-Uniroyal-Elec-0402WGJ0102TCE_C25543.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C11702"
 			(at 170.18 127 0)
 			(hide yes)
 			(show_name no)
@@ -12810,7 +12885,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±5% 1kΩ 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "1kΩ ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 170.18 127 0)
 			(hide yes)
 			(show_name no)
@@ -12832,7 +12907,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGJ0102TCE"
+		(property "Manufacturer Part Number" "0402WGF1001TCE"
 			(at 170.18 127 0)
 			(hide yes)
 			(show_name no)
@@ -12854,7 +12929,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C25543"
+		(property "Distributor Part Number" "C11702"
 			(at 170.18 127 0)
 			(hide yes)
 			(show_name no)
@@ -12865,7 +12940,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGJ0102TCE_C25543.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C11702.html"
 			(at 170.18 127 0)
 			(hide yes)
 			(show_name no)
@@ -13270,7 +13345,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0402WGJ0472TCE_C25940.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C25900"
 			(at 38.735 107.315 0)
 			(hide yes)
 			(show_name no)
@@ -13281,7 +13356,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±5% 4.7kΩ 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "4.7kΩ ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 38.735 107.315 0)
 			(hide yes)
 			(show_name no)
@@ -13303,7 +13378,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGJ0472TCE"
+		(property "Manufacturer Part Number" "0402WGF4701TCE"
 			(at 38.735 107.315 0)
 			(hide yes)
 			(show_name no)
@@ -13325,7 +13400,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C25940"
+		(property "Distributor Part Number" "C25900"
 			(at 38.735 107.315 0)
 			(hide yes)
 			(show_name no)
@@ -13336,7 +13411,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGJ0472TCE_C25940.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C25900.html"
 			(at 38.735 107.315 0)
 			(hide yes)
 			(show_name no)
@@ -13450,7 +13525,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/106fb934f95f063b695dad1b31b1eab8.pdf?productCode=C2906861"
 			(at 189.23 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -13461,7 +13536,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "10kΩ ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 189.23 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -13472,7 +13547,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "UNI-ROYAL(Uniroyal Elec)"
+		(property "Manufacturer" "FOJAN"
 			(at 189.23 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -13483,7 +13558,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGF1002TCE"
+		(property "Manufacturer Part Number" "FRC0402F1002TS"
 			(at 189.23 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -13505,7 +13580,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C25744"
+		(property "Distributor Part Number" "C2906861"
 			(at 189.23 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -13516,7 +13591,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C2906861.html"
 			(at 189.23 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -13786,7 +13861,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/106fb934f95f063b695dad1b31b1eab8.pdf?productCode=C2906861"
 			(at 245.11 34.925 0)
 			(hide yes)
 			(show_name no)
@@ -13797,7 +13872,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "10kΩ ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 245.11 34.925 0)
 			(hide yes)
 			(show_name no)
@@ -13808,7 +13883,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "UNI-ROYAL(Uniroyal Elec)"
+		(property "Manufacturer" "FOJAN"
 			(at 245.11 34.925 0)
 			(hide yes)
 			(show_name no)
@@ -13819,7 +13894,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGF1002TCE"
+		(property "Manufacturer Part Number" "FRC0402F1002TS"
 			(at 245.11 34.925 0)
 			(hide yes)
 			(show_name no)
@@ -13841,7 +13916,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C25744"
+		(property "Distributor Part Number" "C2906861"
 			(at 245.11 34.925 0)
 			(hide yes)
 			(show_name no)
@@ -13852,7 +13927,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C2906861.html"
 			(at 245.11 34.925 0)
 			(hide yes)
 			(show_name no)
@@ -14498,7 +14573,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2301051530_TECH-PUBLIC-ESD5651N_C5342369.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/2c19d3aab1c204b8ee5264d715f0d2cc.pdf?productCode=C5342369"
 			(at 80.645 177.165 0)
 			(hide yes)
 			(show_name no)
@@ -14677,7 +14752,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0402WGF5101TCE_C25905.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C25905"
 			(at 240.03 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -14881,7 +14956,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2205311845_UNI-ROYAL-Uniroyal-Elec-0402WGJ0102TCE_C25543.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C11702"
 			(at 162.56 127 0)
 			(hide yes)
 			(show_name no)
@@ -14892,7 +14967,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±5% 1kΩ 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "1kΩ ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 162.56 127 0)
 			(hide yes)
 			(show_name no)
@@ -14914,7 +14989,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGJ0102TCE"
+		(property "Manufacturer Part Number" "0402WGF1001TCE"
 			(at 162.56 127 0)
 			(hide yes)
 			(show_name no)
@@ -14936,7 +15011,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C25543"
+		(property "Distributor Part Number" "C11702"
 			(at 162.56 127 0)
 			(hide yes)
 			(show_name no)
@@ -14947,7 +15022,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGJ0102TCE_C25543.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C11702.html"
 			(at 162.56 127 0)
 			(hide yes)
 			(show_name no)
@@ -15029,7 +15104,7 @@
 		(dnp no)
 		(uuid "eb6e6c12-4911-47b0-a08f-f6aa02d8a5b3")
 		(property "Reference" "TP16"
-			(at 62.865 98.425 0)
+			(at 62.865 97.79 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15040,7 +15115,7 @@
 			)
 		)
 		(property "Value" "GPIO33"
-			(at 64.135 107.95 90)
+			(at 63.5 108.585 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15324,7 +15399,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_FH--Guangdong-Fenghua-Advanced-Tech-0402CG120J500NT_C1547.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/09fe2daf22580a99fa7fea93ccb20fb7.pdf?productCode=C1547"
 			(at 39.37 56.515 0)
 			(hide yes)
 			(show_name no)
@@ -15814,7 +15889,7 @@
 		(dnp no)
 		(uuid "feb13470-cdc7-497f-86ca-18c3ced77aea")
 		(property "Reference" "R11"
-			(at 185.42 119.38 90)
+			(at 185.42 120.65 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15846,7 +15921,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/106fb934f95f063b695dad1b31b1eab8.pdf?productCode=C2906861"
 			(at 182.88 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -15857,7 +15932,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "10kΩ ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 182.88 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -15868,7 +15943,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "UNI-ROYAL(Uniroyal Elec)"
+		(property "Manufacturer" "FOJAN"
 			(at 182.88 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -15879,7 +15954,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGF1002TCE"
+		(property "Manufacturer Part Number" "FRC0402F1002TS"
 			(at 182.88 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -15901,7 +15976,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C25744"
+		(property "Distributor Part Number" "C2906861"
 			(at 182.88 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -15912,7 +15987,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C2906861.html"
 			(at 182.88 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -15982,8 +16057,749 @@
 			)
 		)
 	)
+	(wire
+		(pts
+			(xy 160.01999999999998 92.71) (xy 168.91 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2c9e4981-19d1-4eac-b386-08f18034e56c")
+	)
+	(hierarchical_label "CELL_RESET"
+		(shape output)
+		(at 168.91 92.71 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2d649b60-254d-4ab0-8391-f6035ab010bb")
+	)
+	(symbol
+		(lib_id "Transistor_FET:DMG1012T")
+		(at 226.06 153.67 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7a1d67bf-6cf4-43d5-8cfe-df604c0b0d7b")
+		(property "Reference" "Q6"
+			(at 233.68 152.39999999999998 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "DMG1012UW"
+			(at 233.68 157.48 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-323_SC-70"
+			(at 231.14 151.765 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/52adfdffbe5dc83878e9a5aaf518813b.pdf?productCode=C156390"
+			(at 231.14 149.85999999999999 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "20V 1A 450mΩ@4.5V,600mA 290mW 1V@250uA 1PCSNChannel SOT-323-3 MOSFETs ROHS"
+			(at 226.06 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Diodes Incorporated"
+			(at 226.06 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer Part Number" "DMG1012UW-7"
+			(at 226.06 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Distributor" "LCSC"
+			(at 226.06 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Distributor Part Number" "C156390"
+			(at 226.06 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/MOSFETs_Diodes-Incorporated-DMG1012UW-7_C156390.html"
+			(at 226.06 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e3490037-e499-4017-abbf-23ddad6bb50b")
+		)
+		(pin "2"
+			(uuid "c12a26b3-f704-4167-81e1-eb3718d3d9a0")
+		)
+		(pin "3"
+			(uuid "26e2f493-2f1b-43db-9589-4d7e172a4e90")
+		)
+		(instances
+			(project "bwlc1a"
+				(path "/388039b1-99cc-430f-bd4a-010573fde798/3774d0f3-a7e5-4b39-9680-0f9041fc211b"
+					(reference "Q6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 213.36 156.21 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "18480cb3-5f44-4314-99c9-5710c2426ad7")
+		(property "Reference" "R33"
+			(at 211.455 155.57500000000002 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "100k"
+			(at 211.455 157.48000000000002 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 213.36 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C25741"
+			(at 213.36 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 100kΩ 0402 Chip Resistor - Surface Mount ROHS"
+			(at 213.36 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL(Uniroyal Elec)"
+			(at 213.36 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer Part Number" "0402WGF1003TCE"
+			(at 213.36 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Distributor" "LCSC"
+			(at 213.36 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Distributor Part Number" "C25741"
+			(at 213.36 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C25741.html"
+			(at 213.36 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "97542833-6fef-4228-9f60-2be63d7c1ef0")
+		)
+		(pin "2"
+			(uuid "17f1ad60-591e-47d7-9b96-64739f42d51e")
+		)
+		(instances
+			(project "bwlc1a"
+				(path "/388039b1-99cc-430f-bd4a-010573fde798/3774d0f3-a7e5-4b39-9680-0f9041fc211b"
+					(reference "R33")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 228.6 146.05 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c37281f1-48b8-423b-bd45-f22c3c292a1c")
+		(property "Reference" "R34"
+			(at 222.6 147.32 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10k"
+			(at 226.695 147.32 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 228.6 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/106fb934f95f063b695dad1b31b1eab8.pdf?productCode=C2906861"
+			(at 228.6 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "10kΩ ±1% 62.5mW 0402 Thick Film Resistor"
+			(at 228.6 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "FOJAN"
+			(at 228.6 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer Part Number" "FRC0402F1002TS"
+			(at 228.6 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Distributor" "LCSC"
+			(at 228.6 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Distributor Part Number" "C2906861"
+			(at 228.6 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C2906861.html"
+			(at 228.6 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3a74cee8-180f-46a2-826b-4156af4f97a9")
+		)
+		(pin "2"
+			(uuid "eb218f77-e2b1-46ee-92db-54dfd8d662c9")
+		)
+		(instances
+			(project "bwlc1a"
+				(path "/388039b1-99cc-430f-bd4a-010573fde798/3774d0f3-a7e5-4b39-9680-0f9041fc211b"
+					(reference "R34")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 228.6 143.51 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "8475f75b-2372-4b7e-94b8-750e5139e8c2")
+		(property "Reference" "#PWR0158"
+			(at 228.6 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 230.505 143.51 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 228.6 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 228.6 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 228.6 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e870597c-9727-4105-b055-441f296c0585")
+		)
+		(instances
+			(project "bwlc1a"
+				(path "/388039b1-99cc-430f-bd4a-010573fde798/3774d0f3-a7e5-4b39-9680-0f9041fc211b"
+					(reference "#PWR0158")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 213.36 158.75 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "ae090323-6c7e-4103-8b44-019687d1274f")
+		(property "Reference" "#PWR0159"
+			(at 213.36 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 213.36 161.925 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 213.36 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 213.36 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 213.36 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "642093df-1b12-4c74-aaf4-581ac6743777")
+		)
+		(instances
+			(project "bwlc1a"
+				(path "/388039b1-99cc-430f-bd4a-010573fde798/3774d0f3-a7e5-4b39-9680-0f9041fc211b"
+					(reference "#PWR0159")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 228.6 158.75 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "80d97443-3e2d-4cfa-8ed3-7c4033d022cc")
+		(property "Reference" "#PWR0160"
+			(at 228.6 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 228.6 161.925 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 228.6 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 228.6 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 228.6 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4f6e8903-c14f-4357-be5c-c3b7546c15c7")
+		)
+		(instances
+			(project "bwlc1a"
+				(path "/388039b1-99cc-430f-bd4a-010573fde798/3774d0f3-a7e5-4b39-9680-0f9041fc211b"
+					(reference "#PWR0160")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 205.74 153.67) (xy 213.36 153.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd914b10-7062-42ae-9986-68bab6e8bc7b")
+	)
+	(wire
+		(pts
+			(xy 213.36 153.67) (xy 220.98 153.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cd3e3f4e-1ce9-4faa-ade1-65687ce64613")
+	)
+	(junction
+		(at 213.36 153.67)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b73c8545-e907-45e0-bc49-c3284986d2c3")
+	)
+	(hierarchical_label "CELL_STATUS"
+		(shape input)
+		(at 205.74 153.67 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8b24f481-01e4-449b-9c73-38b9896effe3")
+	)
+	(text "Modem Status"
+		(exclude_from_sim no)
+		(at 190.5 145.415 0)
+		(effects
+			(font
+				(size 3 3)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "74fceb6a-bfa0-4a99-b510-f36ea9e4b7c5")
+	)
+	(wire
+		(pts
+			(xy 228.6 148.59) (xy 231.14 148.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f17aa421-5321-4163-a01b-623c9a5cda88")
+	)
+	(junction
+		(at 228.6 148.59)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b5369216-72dc-4bb7-9ef2-9af1b96100a2")
+	)
+	(wire
+		(pts
+			(xy 168.91 100.33) (xy 172.72 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "953d8222-4326-49cf-8747-c6430158348c")
+	)
+	(wire
+		(pts
+			(xy 231.14 148.59) (xy 245.11 148.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47354fe1-1559-4a0e-9149-f38c78fac5fb")
+	)
+	(label "CELL_STATUS_N"
+		(at 172.72 100.33 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right bottom)
+		)
+		(uuid "796af9c7-9066-4319-95c2-2801f52cffeb")
+	)
+	(label "CELL_STATUS_N"
+		(at 245.11 148.59 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "47daf04c-d999-4db0-835b-cd5334275b86")
+	)
 	(no_connect
-		(at 160.01999999999998 92.71)
-		(uuid "7247a550-7c6b-4f40-bc95-a29113792c84")
+		(at 160.02 67.31)
+		(uuid "ceb60395-5d44-46fa-bd30-6abaf31b431a")
 	)
 )

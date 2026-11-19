@@ -1483,7 +1483,7 @@
 	)
 	(text "Capacitor"
 		(exclude_from_sim no)
-		(at 192.024 85.598 0)
+		(at 192.024 84.455 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1794,7 +1794,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010130_UNI-ROYAL-Uniroyal-Elec-0402WGJ0000TCE_C21376.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C17168"
 			(at 148.59 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -1805,7 +1805,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±5% 0Ω 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "0Ω ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 148.59 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -1827,7 +1827,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGJ0000TCE"
+		(property "Manufacturer Part Number" "0402WGF0000TCE"
 			(at 148.59 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -1849,7 +1849,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C21376"
+		(property "Distributor Part Number" "C17168"
 			(at 148.59 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -1860,7 +1860,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGJ0000TCE_C21376.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C17168.html"
 			(at 148.59 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -2546,7 +2546,7 @@
 			)
 		)
 		(property "Value" "DNP"
-			(at 128.905 93.472 90)
+			(at 129.54 93.472 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2714,7 +2714,7 @@
 		(dnp no)
 		(uuid "6d1f6980-4fd7-46b9-8a53-e10b20bd9b33")
 		(property "Reference" "C43"
-			(at 191.77 87.63 90)
+			(at 191.77 86.995 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2744,7 +2744,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1811081612_Murata-Electronics-GRM1555C1H3R3CA01D_C76968.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0fdfdb0f4d7947a757b62781ea12b1a7.pdf?productCode=C76968"
 			(at 191.77 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -3135,7 +3135,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010130_UNI-ROYAL-Uniroyal-Elec-0402WGJ0000TCE_C21376.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C17168"
 			(at 132.08 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -3146,7 +3146,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±5% 0Ω 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "0Ω ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 132.08 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -3168,7 +3168,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGJ0000TCE"
+		(property "Manufacturer Part Number" "0402WGF0000TCE"
 			(at 132.08 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -3190,7 +3190,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C21376"
+		(property "Distributor Part Number" "C17168"
 			(at 132.08 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -3201,7 +3201,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGJ0000TCE_C21376.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C17168.html"
 			(at 132.08 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -3648,7 +3648,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2012231509_BAT-WIRELESS-BWIPX-1-001E_C496552.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0f95c38d39d985c2c39b379176823b9e.pdf?productCode=C496552"
 			(at 115.57 100.33 0)
 			(hide yes)
 			(show_name no)
@@ -3829,7 +3829,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2012231509_BAT-WIRELESS-BWIPX-1-001E_C496552.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0f95c38d39d985c2c39b379176823b9e.pdf?productCode=C496552"
 			(at 165.1 100.33 0)
 			(hide yes)
 			(show_name no)
@@ -4089,7 +4089,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1912111437_Murata-Electronics-LQG15HS10NG02D_C464435.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/f7f4bfb5076ec80be8ed0da4de93c140.pdf?productCode=C464435"
 			(at 199.39 96.52 0)
 			(hide yes)
 			(show_name no)

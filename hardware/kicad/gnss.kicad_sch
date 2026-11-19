@@ -1901,7 +1901,7 @@
 		)
 		(uuid "8bf7460c-7611-4be1-82ab-da7a873e9898")
 	)
-	(text "GNSS\nSystem		Band 		Frequency\n----------------------------------------\nGPS			L1 C/A		1574.397-1576.443 MHz\nBeiDou		B1I			1559.052-1563.144 MHz\nGLONASS		L1			1597.781-1605.656 MHz\nGalileo		E1			1573.374-1577.466 MHz\nQZSS		L1 C/A		1574.397-1576.443 MHz"
+	(text "GNSS\nSystem\t\tBand \t\tFrequency\n----------------------------------------\nGPS\t\t\tL1 C/A\t\t1574.397-1576.443 MHz\nBeiDou\t\tB1I\t\t\t1559.052-1563.144 MHz\nGLONASS\t\tL1\t\t\t1597.781-1605.656 MHz\nGalileo\t\tE1\t\t\t1573.374-1577.466 MHz\nQZSS\t\tL1 C/A\t\t1574.397-1576.443 MHz"
 		(exclude_from_sim no)
 		(at 153.67 145.288 0)
 		(effects
@@ -2103,16 +2103,6 @@
 	)
 	(wire
 		(pts
-			(xy 190.5 66.04) (xy 186.69 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "aff07710-fcfe-46c9-952b-9db341669584")
-	)
-	(wire
-		(pts
 			(xy 237.49 132.08) (xy 234.95 132.08)
 		)
 		(stroke
@@ -2140,16 +2130,6 @@
 			(type default)
 		)
 		(uuid "c62c0df6-5097-4b26-b915-6ff0df4eeca3")
-	)
-	(wire
-		(pts
-			(xy 190.5 76.2) (xy 186.69 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c6a7501e-f27f-4455-b20b-1423b833a3aa")
 	)
 	(wire
 		(pts
@@ -2267,17 +2247,6 @@
 		)
 		(uuid "5c66eabc-d71b-4637-af0a-62554257e045")
 	)
-	(hierarchical_label "GNSS_VBCKP"
-		(shape input)
-		(at 190.5 76.2 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "6a3ca8b0-e21f-4da3-830a-6754e92f57d1")
-	)
 	(hierarchical_label "GNSS_STAT"
 		(shape output)
 		(at 146.05 91.44 0)
@@ -2291,7 +2260,7 @@
 	)
 	(hierarchical_label "+BATT"
 		(shape input)
-		(at 190.5 66.04 0)
+		(at 190.5 71.12 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2355,7 +2324,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C1525"
 			(at 157.48 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -2611,7 +2580,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010130_UNI-ROYAL-Uniroyal-Elec-0402WGJ0000TCE_C21376.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C17168"
 			(at 148.59 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -2622,7 +2591,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±5% 0Ω 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "0Ω ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 148.59 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -2644,7 +2613,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGJ0000TCE"
+		(property "Manufacturer Part Number" "0402WGF0000TCE"
 			(at 148.59 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -2666,7 +2635,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C21376"
+		(property "Distributor Part Number" "C17168"
 			(at 148.59 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -2677,7 +2646,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGJ0000TCE_C21376.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C17168.html"
 			(at 148.59 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -3207,7 +3176,7 @@
 		(dnp no)
 		(uuid "8a979745-4ff8-4b81-a1c5-35fa754dcc43")
 		(property "Reference" "D4"
-			(at 179.705 57.785 90)
+			(at 180.34 57.785 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3218,7 +3187,7 @@
 			)
 		)
 		(property "Value" "ESD5651N"
-			(at 180.975 59.055 0)
+			(at 181.61 59.055 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3239,7 +3208,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2301051530_TECH-PUBLIC-ESD5651N_C5342369.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/2c19d3aab1c204b8ee5264d715f0d2cc.pdf?productCode=C5342369"
 			(at 177.8 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -3575,7 +3544,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL10A106KP8NNNC_C19702.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C19702"
 			(at 167.64 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -3755,7 +3724,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C1525"
 			(at 157.48 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -4485,135 +4454,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Jumper:SolderJumper_3_Bridged12")
-		(at 186.69 71.12 270)
-		(mirror x)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "f8203d01-7182-41d0-8b3b-8a6b9bb86930")
-		(property "Reference" "JP1"
-			(at 189.23 72.3901 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "SolderJumper_3_Bridged12"
-			(at 189.23 69.8501 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm"
-			(at 186.69 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 186.69 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "3-pole Solder Jumper, pins 1+2 closed/bridged"
-			(at 186.69 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Id" ""
-			(at 186.69 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacture" ""
-			(at 186.69 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacture Part Number" ""
-			(at 186.69 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Type" ""
-			(at 186.69 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "3"
-			(uuid "939be1cb-7edc-4abf-b054-b88b0379b3e8")
-		)
-		(pin "2"
-			(uuid "f174c696-34b4-437e-a021-e34168e61fd4")
-		)
-		(pin "1"
-			(uuid "5e62fee4-6b85-466d-8759-15827b8240fc")
-		)
-		(instances
-			(project ""
-				(path "/388039b1-99cc-430f-bd4a-010573fde798/6908783c-0fa0-46ec-befb-a4abfbcaa74b"
-					(reference "JP1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 167.64 73.66 0)
 		(unit 1)
@@ -4657,7 +4497,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL10A475KP8NNNC_C1705.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C19666"
 			(at 167.64 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -4668,7 +4508,7 @@
 				)
 			)
 		)
-		(property "Description" "10V 4.7uF X5R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS"
+		(property "Description" "4.7uF ±10% 16V Ceramic Capacitor X5R 0603"
 			(at 167.64 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -4734,7 +4574,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL10A475KP8NNNC_C1705.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C19666.html"
 			(at 167.64 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -4745,7 +4585,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C1705"
+		(property "Distributor Part Number" "C19666"
 			(at 167.64 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -4767,7 +4607,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "CL10A475KP8NNNC"
+		(property "Manufacturer Part Number" "CL10A475KO8NNNC"
 			(at 167.64 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -4792,5 +4632,15 @@
 				)
 			)
 		)
+	)
+	(wire
+		(pts
+			(xy 182.88 71.12) (xy 190.5 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a3d1cc49-f1a3-4f82-884a-53dfa47754ce")
 	)
 )

@@ -3878,7 +3878,7 @@
 		(dnp no)
 		(uuid "11f5d46c-be56-48ef-a898-6f5183b4915c")
 		(property "Reference" "R23"
-			(at 179.705 86.36 90)
+			(at 180.34 86.36 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3908,7 +3908,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RC0402FR-072KL_C60488.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C4109"
 			(at 177.8 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -3919,7 +3919,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 2kΩ 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "2kΩ ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 177.8 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -3930,7 +3930,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "YAGEO"
+		(property "Manufacturer" "UNI-ROYAL(Uniroyal Elec)"
 			(at 177.8 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -3941,7 +3941,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "RC0402FR-072KL"
+		(property "Manufacturer Part Number" "0402WGF2001TCE"
 			(at 177.8 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -3963,7 +3963,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C60488"
+		(property "Distributor Part Number" "C4109"
 			(at 177.8 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -3974,7 +3974,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO-RC0402FR-072KL_C60488.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C4109.html"
 			(at 177.8 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -4765,7 +4765,7 @@
 		(dnp no)
 		(uuid "4ef189bb-f87e-4836-8636-14f730cb912e")
 		(property "Reference" "D10"
-			(at 113.665 71.755 90)
+			(at 114.3 71.755 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4776,7 +4776,7 @@
 			)
 		)
 		(property "Value" "ESDBW5V0A1"
-			(at 114.935 73.025 0)
+			(at 115.57 73.025 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4797,7 +4797,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2209151800_Leiditech-ESDBW5V0A1_C5173252.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/37cc3b9a4497e2236341ba9bf414c0a3.pdf?productCode=C5173252"
 			(at 111.76 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -5377,7 +5377,7 @@
 		(dnp no)
 		(uuid "66e525ce-673d-4e7d-8922-5d10856b5c03")
 		(property "Reference" "R21"
-			(at 96.52 78.105 90)
+			(at 97.155 78.105 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5387,7 +5387,7 @@
 			)
 		)
 		(property "Value" "5k1"
-			(at 100.965 78.105 90)
+			(at 101.6 78.105 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5407,7 +5407,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0402WGF5101TCE_C25905.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C25905"
 			(at 99.695 76.2 0)
 			(hide yes)
 			(show_name no)
@@ -5585,7 +5585,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2205251630_Korean-Hroparts-Elec-TYPE-C-31-M-12_C165948.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/9e56b777c022540fcce7c7f67825f55e.pdf?productCode=C165948"
 			(at 85.09 83.82 0)
 			(hide yes)
 			(show_name no)
@@ -5810,7 +5810,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C1525"
 			(at 132.715 73.025 0)
 			(hide yes)
 			(show_name no)
@@ -6169,7 +6169,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL10A106KP8NNNC_C19702.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C19702"
 			(at 166.37 79.375 0)
 			(hide yes)
 			(show_name no)
@@ -6348,7 +6348,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2403081022_RUILON-Shenzhen-Ruilongyuan-Elec-SMD0805P075TF_C20979.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/951ee7e7633b21be8a3dcd4b194a4f2d.pdf?productCode=C20979"
 			(at 138.43 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -6663,7 +6663,7 @@
 		(dnp no)
 		(uuid "a1e87fac-badd-4462-a75a-2ee0037c8245")
 		(property "Reference" "R22"
-			(at 208.28 80.645 90)
+			(at 206.375 80.645 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6673,7 +6673,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 208.28 84.455 90)
+			(at 205.105 84.455 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6693,7 +6693,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2205311845_UNI-ROYAL-Uniroyal-Elec-0402WGJ0102TCE_C25543.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C11702"
 			(at 208.28 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -6704,7 +6704,7 @@
 				)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±5% 1kΩ 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "1kΩ ±1% 62.5mW 0402 Thick Film Resistor"
 			(at 208.28 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -6726,7 +6726,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402WGJ0102TCE"
+		(property "Manufacturer Part Number" "0402WGF1001TCE"
 			(at 208.28 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -6748,7 +6748,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C25543"
+		(property "Distributor Part Number" "C11702"
 			(at 208.28 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -6759,7 +6759,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_UNI-ROYAL-Uniroyal-Elec-0402WGJ0102TCE_C25543.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C11702.html"
 			(at 208.28 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -6951,7 +6951,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL10A106KP8NNNC_C19702.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C19702"
 			(at 227.33 79.375 0)
 			(hide yes)
 			(show_name no)
@@ -7131,7 +7131,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2108132230_TECH-PUBLIC-USBLC6-2SC6_C2827654.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/fc4eb899b8e4021ee1843f8c3ea5a928.pdf?productCode=C2827654"
 			(at 126.365 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -7300,7 +7300,7 @@
 				)
 			)
 		)
-		(property "Value" "MMZ1608B601CTAH0"
+		(property "Value" "BLM18PG121SN1D"
 			(at 124.46 64.77 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7321,7 +7321,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_TDK-MMZ1608B601CTAH0_C97120.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/fa365b03943947af82e802e86ce28761.pdf?productCode=C14709"
 			(at 127 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -7332,7 +7332,7 @@
 				)
 			)
 		)
-		(property "Description" "400mΩ ±25% 600Ω@100MHz 0603 Ferrite Beads ROHS"
+		(property "Description" "120Ω@100MHz 1 Line Ferrite Bead 0603 2A 50mΩ"
 			(at 127 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -7343,7 +7343,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "TDK"
+		(property "Manufacturer" "Murata Electronics"
 			(at 127 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -7354,7 +7354,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "MMZ1608B601CTAH0"
+		(property "Manufacturer Part Number" "BLM18PG121SN1D"
 			(at 127 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -7376,7 +7376,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C97120"
+		(property "Distributor Part Number" "C14709"
 			(at 127 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -7387,7 +7387,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Ferrite-Beads_TDK-MMZ1608B601CTAH0_C97120.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C14709.html"
 			(at 127 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -7513,7 +7513,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-CC0402KRX7R9BB103_C60133.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C15195"
 			(at 120.015 73.025 0)
 			(hide yes)
 			(show_name no)
@@ -7524,7 +7524,7 @@
 				)
 			)
 		)
-		(property "Description" "50V 10nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS"
+		(property "Description" "10nF ±10% 50V Ceramic Capacitor X7R 0402"
 			(at 120.015 73.025 0)
 			(hide yes)
 			(show_name no)
@@ -7535,7 +7535,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "YAGEO"
+		(property "Manufacturer" "Samsung Electro-Mechanics"
 			(at 120.015 73.025 0)
 			(hide yes)
 			(show_name no)
@@ -7546,7 +7546,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "CC0402KRX7R9BB103"
+		(property "Manufacturer Part Number" "CL05B103KB5NNNC"
 			(at 120.015 73.025 0)
 			(hide yes)
 			(show_name no)
@@ -7568,7 +7568,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C60133"
+		(property "Distributor Part Number" "C15195"
 			(at 120.015 73.025 0)
 			(hide yes)
 			(show_name no)
@@ -7579,7 +7579,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_YAGEO-CC0402KRX7R9BB103_C60133.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C15195.html"
 			(at 120.015 73.025 0)
 			(hide yes)
 			(show_name no)
@@ -7705,7 +7705,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2203301730_EKINGLUX-E6C0603SEAC1UDA_C375450.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/4b7455c7c4ef852ab450e4030063118d.pdf?productCode=C375450"
 			(at 213.995 76.2 90)
 			(hide yes)
 			(show_name no)
@@ -7853,7 +7853,7 @@
 		(dnp no)
 		(uuid "e0e47acf-b0e7-4d25-9e03-bfbc825fd37f")
 		(property "Reference" "R20"
-			(at 96.52 71.755 90)
+			(at 96.52 70.485 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7863,7 +7863,7 @@
 			)
 		)
 		(property "Value" "5k1"
-			(at 100.965 71.755 90)
+			(at 100.965 70.485 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7883,7 +7883,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0402WGF5101TCE_C25905.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C25905"
 			(at 99.695 73.66 0)
 			(hide yes)
 			(show_name no)

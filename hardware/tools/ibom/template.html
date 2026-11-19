@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!--FRAG-START-->
+<title>{{TITLE}}</title>
+<style>
+/* Layout: sticky header; BOM list on the left, board viewer pinned on the right; stacked (board first) on narrow screens. */
+:root {
+  --bg: #f5f4f3; --panel: #ffffff; --fg: #1e1b1b; --muted: #6a6462; --line: #e2dedc; --chip: #efecea;
+  --accent: #0d7f79; --accent-ink: #ffffff; --accent-soft: #d9efed;
+  --ok: #2f7d3b; --ok-soft: #e1f0e3;
+  /* board drawing: KiCad layer colours on a dark stage, as in the design-review images; same in both page themes */
+  --stage: #0f1419; --board: #151c23; --edge: #d0d2cd; --cu-f: #c83434; --cu-b: #4d7fc4;
+  --silk-f: #f2eda1; --silk-b: #e8b2a7; --hole: #f4f4f4; --body: #1b1d22;
+  --hl: #3dff1f; --hl-fill: rgba(61, 255, 31, .32); --stage-ink: #a7b0b8;
+  --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-data: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141213; --panel: #1c1a1b; --fg: #ece8e6; --muted: #9c9593; --line: #302b2c; --chip: #2a2627;
+    --accent: #3cc8be; --accent-ink: #0b1716; --accent-soft: #173533; --ok: #6cc47a; --ok-soft: #1c3320;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141213; --panel: #1c1a1b; --fg: #ece8e6; --muted: #9c9593; --line: #302b2c; --chip: #2a2627;
+  --accent: #3cc8be; --accent-ink: #0b1716; --accent-soft: #173533; --ok: #6cc47a; --ok-soft: #1c3320;
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.45 var(--font-ui); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--panel); }
+button, input, select { font: inherit; color: inherit; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.app { display: flex; flex-direction: column; min-height: 100%; }
+header.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--panel); border-bottom: 1px solid var(--line);
+  padding-block: 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px;
+}
+.brand { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+.brand h1 { margin: 0; font-size: 17px; letter-spacing: .01em; text-wrap: balance; }
+.brand .sub { color: var(--muted); font-size: 12.5px; }
+.progress { display: flex; align-items: center; gap: 10px; margin-left: auto; font-variant-numeric: tabular-nums; }
+.progress .bar { width: 140px; height: 6px; border-radius: 3px; background: var(--chip); overflow: hidden; }
+.progress .bar i { display: block; height: 100%; width: 0; background: var(--ok); transition: width .2s; }
+.progress span { font-size: 12.5px; color: var(--muted); }
+.progress b { color: var(--fg); font-weight: 600; }
+.iconbtn { border: 1px solid var(--line); background: var(--panel); border-radius: var(--r); padding: 4px 10px; cursor: pointer; font-size: 12.5px; }
+.iconbtn:hover { border-color: var(--muted); }
+
+main.split {
+  flex: 1; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 16px;
+  padding-block: 16px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.pane { min-width: 0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); display: flex; flex-direction: column; }
+.pane.board { position: sticky; top: 72px; align-self: start; height: calc(100vh - 92px); min-height: 420px; }
+.bar-tools { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.seg button { border: 0; background: transparent; padding: 4px 10px; cursor: pointer; font-size: 12.5px; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.tog { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; color: var(--muted); cursor: pointer; user-select: none; }
+.tog input { accent-color: var(--accent); margin: 0; }
+.search { flex: 1 1 180px; min-width: 0; border: 1px solid var(--line); background: var(--bg); border-radius: var(--r); padding: 5px 10px; }
+.search::placeholder { color: var(--muted); }
+.spacer { flex: 1; }
+
+.views { flex: 1; min-height: 0; display: grid; gap: 1px; background: var(--line); }
+.views.both { grid-template-rows: 1fr 1fr; }
+.view { position: relative; background: var(--stage); min-height: 0; overflow: hidden; touch-action: none; }
+.view svg { width: 100%; height: 100%; display: block; cursor: grab; }
+.view svg.drag { cursor: grabbing; }
+.view .tag { position: absolute; left: 10px; top: 8px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--stage-ink); pointer-events: none; }
+.view .hint { position: absolute; right: 10px; bottom: 8px; font-size: 11px; color: var(--stage-ink); pointer-events: none; }
+.tip { position: fixed; z-index: 20; pointer-events: none; background: var(--fg); color: var(--bg); font: 12px/1.3 var(--font-data); padding: 4px 7px; border-radius: 4px; white-space: nowrap; }
+
+/* board drawing */
+.view svg#sF { --cu: var(--cu-f); --silkc: var(--silk-f); }
+.view svg#sB { --cu: var(--cu-b); --silkc: var(--silk-b); }
+.edge { fill: var(--board); stroke: var(--edge); stroke-width: 1px; vector-effect: non-scaling-stroke; fill-rule: evenodd; }
+.zone { fill: var(--cu); fill-rule: evenodd; pointer-events: none; }
+.trk line, .trk path { stroke: var(--cu); stroke-linecap: round; fill: none; }
+.trk circle { fill: var(--cu); }
+.trk circle.drill { fill: var(--hole); }
+.silk { color: var(--silkc); pointer-events: none; }
+.fp .crt { fill: transparent; stroke: none; }
+.fp .pad { fill: var(--cu); fill-rule: evenodd; }
+.fp .p1 { fill: none; stroke: var(--hole); stroke-width: 1px; vector-effect: non-scaling-stroke; opacity: 0; }
+.fp .hole { fill: var(--hole); }
+.fp.bom { cursor: pointer; }
+.fp.bom:hover .crt { stroke: var(--hl); stroke-width: 1px; vector-effect: non-scaling-stroke; stroke-dasharray: 3 2; }
+.fp.placed .crt { fill: var(--body); fill-opacity: .85; }
+.fp.placed .pad { opacity: .3; }
+.fp.hl .crt { fill: var(--hl-fill); stroke: var(--hl); stroke-width: 2px; vector-effect: non-scaling-stroke; stroke-dasharray: none; }
+.fp.hl .pad { fill: var(--hl); opacity: 1; }
+.fp.hl .p1 { opacity: 1; }
+.lbl { font-family: var(--font-data); fill: var(--silkc); text-anchor: middle; dominant-baseline: central; pointer-events: none; paint-order: stroke; stroke: var(--stage); stroke-width: .12px; }
+.lbl.hl { fill: var(--hl); stroke: var(--stage); stroke-width: .3px; font-weight: 700; }
+.hide-silk .silk, .hide-trk .trk, .hide-zone .zone, .hide-lbl .lbl { display: none; }
+
+/* BOM table */
+.tablewrap { flex: 1; overflow: auto; min-height: 0; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th { position: sticky; top: 0; z-index: 1; background: var(--panel); text-align: left; font-weight: 600; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding: 8px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+tbody tr.line { cursor: pointer; }
+tbody tr.line td { padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tbody tr.line:hover td { background: var(--bg); }
+tbody tr.line.sel td { background: var(--accent-soft); }
+tbody tr.line.done td { color: var(--muted); }
+tbody tr.line.done .val { text-decoration: line-through; text-decoration-color: var(--ok); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.chk { width: 28px; }
+td.chk input { width: 16px; height: 16px; accent-color: var(--ok); margin: 2px 0 0; cursor: pointer; }
+.id { color: var(--muted); font-variant-numeric: tabular-nums; }
+.val { font-weight: 600; }
+.desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: var(--muted); font-size: 12px; font-weight: 400; max-width: 26ch; }
+tr.sel .desc { -webkit-line-clamp: unset; }
+.mono { font-family: var(--font-data); font-size: 12.5px; }
+.sm { display: block; color: var(--muted); font-size: 12px; }
+.refs { display: flex; flex-wrap: wrap; gap: 3px; width: 17ch; }
+.col-pkg .sm { max-width: 12ch; }
+.ref { font: 12px/1.5 var(--font-data); background: var(--chip); border: 1px solid transparent; border-radius: 4px; padding: 0 5px; cursor: pointer; }
+.ref:hover { border-color: var(--muted); }
+.ref.on { background: var(--ok-soft); color: var(--ok); }
+.ref.bot::after { content: " B"; color: var(--muted); font-size: 10px; }
+tr.detail td { padding: 4px 8px 12px 44px; border-bottom: 1px solid var(--line); background: var(--accent-soft); }
+.det { display: grid; gap: 8px; font-size: 12.5px; }
+.det .kv { display: flex; flex-wrap: wrap; gap: 4px 18px; color: var(--muted); }
+.det .kv b { color: var(--fg); font-weight: 600; }
+.det table { width: auto; font-size: 12px; }
+.det th, .det td { padding: 2px 14px 2px 0; text-align: left; border: 0; position: static; background: none; font-variant-numeric: tabular-nums; }
+.det td.n { text-align: right; font-family: var(--font-data); }
+.section td { padding: 14px 8px 6px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line); }
+.empty td { padding: 24px 8px; color: var(--muted); text-align: center; }
+.foot { padding: 8px 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11.5px; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.danger[data-armed="1"] { border-color: #c0392b; color: #c0392b; }
+
+@media (max-width: 900px) {
+  main.split { grid-template-columns: minmax(0, 1fr); }
+  .pane.board { position: relative; top: 0; height: 62vh; order: -1; }
+  .progress { margin-left: 0; }
+  .col-ds { display: none; } .refs { width: 13ch; }
+}
+@media (max-width: 520px) { .col-pkg { display: none; } .progress .bar { width: 90px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<!--CUT--></head>
+<body><!--/CUT-->
+<div class="app" id="app">
+  <header class="top">
+    <div class="brand"><h1 id="ttl"></h1><span class="sub" id="sub"></span></div>
+    <div class="progress" aria-live="polite">
+      <div class="bar" aria-hidden="true"><i id="pbar"></i></div>
+      <span><b id="pdone">0</b> of <b id="ptotal">0</b> parts placed</span>
+    </div>
+    <button class="iconbtn" id="theme" type="button" title="Switch light / dark">Theme</button>
+  </header>
+  <main class="split">
+    <section class="pane list" aria-label="Bill of materials">
+      <div class="bar-tools">
+        <input class="search" id="q" type="search" placeholder="Filter: ref, value, MPN, LCSC no. (press /)" aria-label="Filter the BOM">
+        <div class="seg" role="group" aria-label="Side">
+          <button type="button" data-side="all" aria-pressed="true">All</button>
+          <button type="button" data-side="F" aria-pressed="false">Top</button>
+          <button type="button" data-side="B" aria-pressed="false">Bottom</button>
+        </div>
+        <label class="tog"><input type="checkbox" id="hideDone"> Hide placed</label>
+        <label class="tog"><input type="checkbox" id="showNo"> Not fitted</label>
+      </div>
+      <div class="tablewrap" id="tw">
+        <table>
+          <thead><tr>
+            <th title="Placed"></th><th class="num">#</th><th>Refs</th><th class="num">Qty</th><th>Value</th>
+            <th class="col-pkg">Package</th><th>MPN · Maker</th><th>Supplier</th><th class="col-ds">Data</th>
+          </tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="foot"><span id="src"></span><span>↑/↓ select · Space mark placed · Esc clear</span>
+        <button class="iconbtn danger" id="reset" type="button">Clear placed marks</button></div>
+    </section>
+    <section class="pane board" aria-label="Board view">
+      <div class="bar-tools">
+        <div class="seg" role="group" aria-label="View">
+          <button type="button" data-view="F" aria-pressed="true">Top</button>
+          <button type="button" data-view="B" aria-pressed="false">Bottom</button>
+          <button type="button" data-view="FB" aria-pressed="false">Both</button>
+        </div>
+        <label class="tog"><input type="checkbox" id="tSilk" checked> Silkscreen</label>
+        <label class="tog"><input type="checkbox" id="tTrk" checked> Tracks</label>
+        <label class="tog"><input type="checkbox" id="tZone" checked> Pours</label>
+        <label class="tog"><input type="checkbox" id="tLbl"> Refs</label>
+        <span class="spacer"></span>
+        <button class="iconbtn" id="fit" type="button">Fit</button>
+      </div>
+      <div class="views" id="views">
+        <div class="view" id="vF"><svg id="sF" role="img" aria-label="Top side"></svg><span class="tag">Top</span><span class="hint">scroll to zoom · drag to pan</span></div>
+        <div class="view" id="vB"><svg id="sB" role="img" aria-label="Bottom side, mirrored"></svg><span class="tag">Bottom · seen from below</span><span class="hint">scroll to zoom · drag to pan</span></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="tip" id="tip" hidden></div>
+<script>
+"use strict";
+const D = /*IBOM_DATA*/null;
+const KEY = "bwlc1a-ibom-v2";
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+/* ---------- state ---------- */
+const st = { placed: new Set(), view: "F", side: "all", q: "", hideDone: false, showNo: false, silk: true, trk: true, zone: true, lbl: false, sel: null, selRef: null };
+function load() {
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || "{}");
+    if (Array.isArray(s.placed)) st.placed = new Set(s.placed);
+    for (const k of ["view", "side", "hideDone", "showNo", "silk", "trk", "zone", "lbl"]) if (k in s) st[k] = s[k];
+  } catch (e) { /* storage unavailable: start fresh */ }
+}
+function save() {
+  try {
+    localStorage.setItem(KEY, JSON.stringify({ placed: [...st.placed], view: st.view, side: st.side, hideDone: st.hideDone, showNo: st.showNo, silk: st.silk, trk: st.trk, zone: st.zone, lbl: st.lbl }));
+  } catch (e) { /* ignore */ }
+}
+
+/* ---------- data ---------- */
+const FP = new Map(D.fps.map((f) => [f.ref, f]));
+const LINE = new Map(D.lines.map((l) => [l.id, l]));
+const totalParts = D.lines.reduce((n, l) => n + l.refs.length, 0);
+const [bx, by, bw, bh] = D.bbox;
+const MIRROR = 2 * bx + bw; // back view: x -> MIRROR - x
+const noFit = D.fps.filter((f) => f.line == null && f.pads.length);
+const shortPkg = (fp) => (fp || "").split(":").pop().replace(/_(\d+)Metric$/, "").replace(/_/g, " ");
+const lineSide = (l) => { const s = new Set(l.refs.map((r) => FP.get(r)?.side)); return s.size > 1 ? "FB" : [...s][0]; };
+
+/* ---------- board ---------- */
+function drawSide(side) {
+  const svg = $("s" + side);
+  const m = 2;
+  svg.setAttribute("viewBox", `${bx - m} ${by - m} ${bw + 2 * m} ${bh + 2 * m}`);
+  svg.dataset.home = svg.getAttribute("viewBox");
+  const t = D.tracks[side];
+  let trk = "";
+  for (const [x1, y1, x2, y2, w] of t.segs) trk += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke-width="${w}"/>`;
+  for (const [x1, y1, xm, ym, x2, y2, w] of t.arcs) trk += `<path d="M${x1} ${y1} Q${2 * xm - (x1 + x2) / 2} ${2 * ym - (y1 + y2) / 2} ${x2} ${y2}" stroke-width="${w}"/>`;
+  for (const [x, y, d, h] of t.vias) trk += `<circle cx="${x}" cy="${y}" r="${d / 2}"/><circle class="drill" cx="${x}" cy="${y}" r="${h / 2}"/>`;
+  let fps = "";
+  for (const f of D.fps) {
+    const pads = f.pads.filter((p) => p[0] === side).map((p) => p[1]).join("");
+    const own = f.side === side;
+    if (!own && !pads) continue;
+    if (!own) { fps += `<g class="fp other"><path class="pad" d="${pads}"/><path class="hole" d="${f.holes.join("")}"/></g>`; continue; }
+    const bom = f.line != null;
+    const p1 = f.pin1.filter((p) => p[0] === side).map((p) => p[1]).join("");
+    fps += `<g class="fp ${bom ? "bom" : "nobom"}" data-ref="${esc(f.ref)}">` +
+      `<path class="crt" d="${bom ? f.outline : ""}"/>` +
+      `<path class="pad" d="${pads}"/>` + (p1 ? `<path class="p1" d="${p1}"/>` : "") +
+      (f.holes.length ? `<path class="hole" d="${f.holes.join("")}"/>` : "") + `</g>`;
+  }
+  const flip = side === "B" ? ` transform="translate(${MIRROR} 0) scale(-1 1)"` : "";
+  let lbl = "";
+  for (const f of D.fps) {
+    if (f.side !== side || f.line == null) continue;
+    const x = side === "B" ? MIRROR - f.cx : f.cx;
+    lbl += `<text class="lbl" data-ref="${esc(f.ref)}" x="${x}" y="${f.cy}" font-size="0.62">${esc(f.ref)}</text>`;
+  }
+  svg.innerHTML = `<g${flip}><path class="edge" d="${D.edge}"/><path class="zone" d="${D.zones[side]}"/><g class="trk">${trk}</g>` +
+    `${fps}<g class="silk">${D.silk[side]}</g></g>${lbl}`;
+}
+
+function applyBoardClasses() {
+  const hlRefs = new Set(st.selRef ? [st.selRef] : st.sel != null ? LINE.get(st.sel).refs : []);
+  for (const g of document.querySelectorAll(".fp[data-ref]")) {
+    const r = g.dataset.ref;
+    g.classList.toggle("placed", st.placed.has(r));
+    g.classList.toggle("hl", hlRefs.has(r));
+  }
+  for (const t of document.querySelectorAll(".lbl")) t.classList.toggle("hl", hlRefs.has(t.dataset.ref));
+  for (const v of ["F", "B"]) {
+    const wrap = $("v" + v);
+    wrap.classList.toggle("hide-silk", !st.silk);
+    wrap.classList.toggle("hide-trk", !st.trk);
+    wrap.classList.toggle("hide-zone", !st.zone);
+    wrap.classList.toggle("hide-lbl", !st.lbl);
+  }
+}
+
+function setView(v) {
+  st.view = v;
+  $("vF").hidden = v === "B";
+  $("vB").hidden = v === "F";
+  $("views").classList.toggle("both", v === "FB");
+  for (const b of document.querySelectorAll("[data-view]")) b.setAttribute("aria-pressed", String(b.dataset.view === v));
+  save();
+}
+
+/* zoom and pan per view (wheel, drag, pinch; double-click resets) */
+function zoomable(svg) {
+  const vb = () => svg.getAttribute("viewBox").split(" ").map(Number);
+  const setVb = (a) => svg.setAttribute("viewBox", a.map((n) => n.toFixed(3)).join(" "));
+  const toSvg = (cx, cy) => { const r = svg.getBoundingClientRect(); const [x, y, w, h] = vb(); const s = Math.max(w / r.width, h / r.height);
+    const ox = x - (r.width * s - w) / 2, oy = y - (r.height * s - h) / 2; return [ox + (cx - r.left) * s, oy + (cy - r.top) * s, s]; };
+  const zoomAt = (cx, cy, k) => { const [x, y, w, h] = vb(); const [px, py] = toSvg(cx, cy);
+    const nw = Math.min(Math.max(w * k, 2), bw * 4), f = nw / w; setVb([px - (px - x) * f, py - (py - y) * f, w * f, h * f]); };
+  svg.addEventListener("wheel", (e) => { e.preventDefault(); zoomAt(e.clientX, e.clientY, Math.exp(e.deltaY * (e.deltaMode ? 0.05 : 0.0015))); }, { passive: false });
+  const ptrs = new Map(); let moved = 0, pinch0 = 0;
+  svg.addEventListener("pointerdown", (e) => { ptrs.set(e.pointerId, [e.clientX, e.clientY]); moved = 0; svg.setPointerCapture(e.pointerId);
+    if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; pinch0 = Math.hypot(a[0] - b[0], a[1] - b[1]); } });
+  svg.addEventListener("pointermove", (e) => {
+    if (!ptrs.has(e.pointerId)) return;
+    const [lx, ly] = ptrs.get(e.pointerId); ptrs.set(e.pointerId, [e.clientX, e.clientY]);
+    if (ptrs.size === 1) {
+      const dx = e.clientX - lx, dy = e.clientY - ly; moved += Math.abs(dx) + Math.abs(dy);
+      if (moved > 4) { svg.classList.add("drag"); const [x, y, w, h] = vb(); const s = toSvg(0, 0)[2]; setVb([x - dx * s, y - dy * s, w, h]); }
+    } else if (ptrs.size === 2) {
+      const [a, b] = [...ptrs.values()]; const d = Math.hypot(a[0] - b[0], a[1] - b[1]); moved = 99;
+      if (pinch0) zoomAt((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, pinch0 / d); pinch0 = d;
+    }
+  });
+  const up = (e) => { ptrs.delete(e.pointerId); pinch0 = 0; svg.classList.remove("drag"); };
+  svg.addEventListener("pointerup", (e) => { const wasClick = moved <= 4 && ptrs.size === 1; up(e); if (wasClick) boardClick(e); });
+  svg.addEventListener("pointercancel", up);
+  svg.addEventListener("dblclick", () => setVb(svg.dataset.home.split(" ").map(Number)));
+}
+
+function boardClick(e) {
+  const g = document.elementsFromPoint(e.clientX, e.clientY).map((el) => el.closest && el.closest(".fp[data-ref]")).find(Boolean);
+  if (!g) { select(null); return; }
+  const f = FP.get(g.dataset.ref);
+  if (f.line == null) return;
+  select(f.line, f.ref, true);
+}
+
+const tip = $("tip");
+function hover(e) {
+  const g = e.target.closest && e.target.closest(".fp[data-ref]");
+  if (!g || e.buttons) { tip.hidden = true; return; }
+  const f = FP.get(g.dataset.ref);
+  tip.textContent = f.line != null ? `${f.ref} · ${f.val} · line ${f.line}${st.placed.has(f.ref) ? " · placed" : ""}` : `${f.ref} · ${f.val} · not fitted`;
+  tip.hidden = false;
+  const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8);
+  tip.style.left = x + "px"; tip.style.top = (e.clientY + 16) + "px";
+}
+
+/* ---------- table ---------- */
+function row(l) {
+  const refs = l.refs.map((r) => `<button type="button" class="ref${FP.get(r)?.side === "B" ? " bot" : ""}" data-ref="${esc(r)}" title="Mark ${esc(r)} placed">${esc(r)}</button>`).join("");
+  const sup = l.link ? `<a class="mono" href="${esc(l.link)}" target="_blank" rel="noopener">${esc(l.dpn)}</a>` : `<span class="mono">${esc(l.dpn)}</span>`;
+  const ds = l.ds ? `<a href="${esc(l.ds)}" target="_blank" rel="noopener">PDF</a>` : "";
+  return `<tr class="line" data-id="${l.id}"><td class="chk"><input type="checkbox" aria-label="Line ${l.id} placed"></td>` +
+    `<td class="num id">${l.id}</td><td><div class="refs">${refs}</div></td><td class="num">${l.qty}</td>` +
+    `<td><span class="val">${esc(l.val)}</span><span class="desc">${esc(l.desc)}</span></td>` +
+    `<td class="col-pkg"><span class="sm">${esc(shortPkg(l.fp))}</span></td>` +
+    `<td><span class="mono">${esc(l.mpn)}</span><span class="sm">${esc(l.mfr)}</span></td>` +
+    `<td>${sup}<span class="sm">${esc(l.dist)}</span></td><td class="col-ds">${ds}</td></tr>` +
+    `<tr class="detail" data-for="${l.id}" hidden><td colspan="9"></td></tr>`;
+}
+function detail(l) {
+  const r = l.refs.map((ref) => { const f = FP.get(ref);
+    return `<tr><td class="mono">${esc(ref)}</td><td>${f.side === "B" ? "bottom" : "top"}</td><td class="n">${f.x.toFixed(2)}</td><td class="n">${f.y.toFixed(2)}</td><td class="n">${f.rot.toFixed(1)}°</td><td>${st.placed.has(ref) ? "placed" : ""}</td></tr>`; }).join("");
+  return `<div class="det"><div class="kv"><span>Footprint <b class="mono">${esc(l.fp)}</b></span><span>Manufacturer <b>${esc(l.mfr)}</b></span></div>` +
+    `<table><thead><tr><th>Ref</th><th>Side</th><th>X mm</th><th>Y mm</th><th>Rot</th><th></th></tr></thead><tbody>${r}</tbody></table>` +
+    `<div class="sm">X/Y/rotation as in the CPL file (place origin, Y up).</div></div>`;
+}
+function buildTable() {
+  let h = D.lines.map(row).join("");
+  h += `<tr class="empty" id="empty" hidden><td colspan="9">No line matches the filter.</td></tr>`;
+  if (noFit.length) {
+    h += `<tr class="section nofit" hidden><td colspan="9">Not fitted: on the board, not in the BOM (${noFit.length})</td></tr>`;
+    h += `<tr class="nofit" hidden><td colspan="9"><div class="refs" style="max-width:none">` +
+      noFit.map((f) => `<span class="ref" style="cursor:default" title="${esc(f.val)}">${esc(f.ref.replace(/@.*/, ""))}</span>`).join("") + `</div></td></tr>`;
+  }
+  $("rows").innerHTML = h;
+}
+function lineDone(l) { return l.refs.every((r) => st.placed.has(r)); }
+function applyFilter() {
+  const q = st.q.trim().toLowerCase();
+  let shown = 0;
+  for (const tr of document.querySelectorAll("tr.line")) {
+    const l = LINE.get(+tr.dataset.id);
+    const hay = [l.refs.join(" "), l.val, l.mpn, l.mfr, l.desc, l.dpn, l.fp].join(" ").toLowerCase();
+    const s = lineSide(l);
+    const ok = (!q || q.split(/\s+/).every((w) => hay.includes(w))) && (st.side === "all" || s.includes(st.side)) && !(st.hideDone && lineDone(l));
+    tr.hidden = !ok;
+    const det = tr.nextElementSibling; det.hidden = !ok || st.sel !== l.id;
+    if (ok) shown++;
+  }
+  $("empty").hidden = shown > 0;
+  for (const tr of document.querySelectorAll("tr.nofit")) tr.hidden = !st.showNo;
+}
+function refreshRows() {
+  for (const tr of document.querySelectorAll("tr.line")) {
+    const l = LINE.get(+tr.dataset.id);
+    const n = l.refs.filter((r) => st.placed.has(r)).length;
+    const cb = tr.querySelector("input");
+    cb.checked = n === l.refs.length; cb.indeterminate = n > 0 && n < l.refs.length;
+    tr.classList.toggle("done", n === l.refs.length);
+    tr.classList.toggle("sel", st.sel === l.id);
+    for (const b of tr.querySelectorAll(".ref")) {
+      const on = st.placed.has(b.dataset.ref);
+      b.classList.toggle("on", on);
+      b.title = `${on ? "Unmark" : "Mark"} ${b.dataset.ref} placed`;
+    }
+    if (st.sel === l.id) tr.nextElementSibling.firstElementChild.innerHTML = detail(l);
+  }
+  const done = [...st.placed].filter((r) => FP.get(r)?.line != null).length;
+  $("pdone").textContent = done; $("ptotal").textContent = totalParts;
+  $("pbar").style.width = (100 * done / totalParts).toFixed(1) + "%";
+}
+function refresh() { refreshRows(); applyFilter(); applyBoardClasses(); }
+
+function select(id, ref = null, scroll = false) {
+  st.sel = id; st.selRef = ref;
+  refresh();
+  if (id != null) {
+    const l = LINE.get(id);
+    const sides = new Set(l.refs.map((r) => FP.get(r).side));
+    if (st.view !== "FB" && !sides.has(st.view)) setView(sides.has("F") ? "F" : "B");
+    if (scroll) document.querySelector(`tr.line[data-id="${id}"]`)?.scrollIntoView({ block: "nearest" });
+  }
+}
+function togglePlaced(refs) {
+  const allOn = refs.every((r) => st.placed.has(r));
+  for (const r of refs) allOn ? st.placed.delete(r) : st.placed.add(r);
+  save(); refresh();
+}
+
+/* ---------- wiring ---------- */
+function init() {
+  load();
+  document.title = D.title;
+  $("ttl").textContent = D.title.replace(/ Interactive BOM$/, "");
+  $("sub").textContent = `Interactive BOM · ${D.lines.length} lines · ${totalParts} parts`;
+  $("src").textContent = `${D.source.bom} + ${D.source.board}${D.source.rev ? " @ " + D.source.rev : ""} · built ${D.generated}`;
+  drawSide("F"); drawSide("B"); buildTable();
+  zoomable($("sF")); zoomable($("sB"));
+  for (const s of [$("sF"), $("sB")]) { s.addEventListener("pointermove", hover); s.addEventListener("pointerleave", () => (tip.hidden = true)); }
+
+  $("rows").addEventListener("click", (e) => {
+    const tr = e.target.closest("tr.line"); if (!tr) return;
+    const l = LINE.get(+tr.dataset.id);
+    if (e.target.closest("a")) return;
+    if (e.target.matches("input[type=checkbox]")) { togglePlaced(l.refs); return; }
+    const chip = e.target.closest(".ref");
+    if (chip) { togglePlaced([chip.dataset.ref]); if (st.sel !== l.id) select(l.id); return; }
+    select(st.sel === l.id && !st.selRef ? null : l.id);
+  });
+  $("rows").addEventListener("mouseover", (e) => {
+    const chip = e.target.closest("tr.line .ref");
+    if (chip && st.sel === +chip.closest("tr").dataset.id) { st.selRef = chip.dataset.ref; applyBoardClasses(); }
+  });
+  $("rows").addEventListener("mouseout", (e) => { if (e.target.closest(".ref") && st.selRef) { st.selRef = null; applyBoardClasses(); } });
+
+  $("q").addEventListener("input", (e) => { st.q = e.target.value; applyFilter(); });
+  for (const b of document.querySelectorAll("[data-side]")) b.addEventListener("click", () => {
+    st.side = b.dataset.side; for (const x of document.querySelectorAll("[data-side]")) x.setAttribute("aria-pressed", String(x === b)); save(); applyFilter(); });
+  for (const b of document.querySelectorAll("[data-view]")) b.addEventListener("click", () => setView(b.dataset.view));
+  const bindTog = (id, k, fn) => { const el = $(id); el.checked = st[k]; el.addEventListener("change", () => { st[k] = el.checked; save(); fn(); }); };
+  bindTog("hideDone", "hideDone", applyFilter); bindTog("showNo", "showNo", applyFilter);
+  bindTog("tSilk", "silk", applyBoardClasses); bindTog("tTrk", "trk", applyBoardClasses); bindTog("tZone", "zone", applyBoardClasses); bindTog("tLbl", "lbl", applyBoardClasses);
+  for (const x of document.querySelectorAll("[data-side]")) x.setAttribute("aria-pressed", String(x.dataset.side === st.side));
+  $("fit").addEventListener("click", () => { for (const s of [$("sF"), $("sB")]) s.setAttribute("viewBox", s.dataset.home); });
+
+  const rb = $("reset"); let armT = 0;
+  rb.addEventListener("click", () => {
+    if (rb.dataset.armed !== "1") { rb.dataset.armed = "1"; rb.textContent = "Click again to clear all"; clearTimeout(armT);
+      armT = setTimeout(() => { rb.dataset.armed = "0"; rb.textContent = "Clear placed marks"; }, 3000); return; }
+    clearTimeout(armT); rb.dataset.armed = "0"; rb.textContent = "Clear placed marks"; st.placed.clear(); save(); refresh();
+  });
+  $("theme").addEventListener("click", () => {
+    const root = document.documentElement;
+    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.target.matches("input[type=search], input[type=text]")) { if (e.key === "Escape") e.target.blur(); return; }
+    if (e.key === "/") { e.preventDefault(); $("q").focus(); return; }
+    if (e.key === "Escape") { select(null); return; }
+    const vis = [...document.querySelectorAll("tr.line:not([hidden])")].map((t) => +t.dataset.id);
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault(); if (!vis.length) return;
+      const i = vis.indexOf(st.sel); const n = e.key === "ArrowDown" ? (i < 0 ? 0 : Math.min(i + 1, vis.length - 1)) : (i < 0 ? vis.length - 1 : Math.max(i - 1, 0));
+      select(vis[n], null, true);
+    } else if (e.key === " " && st.sel != null && !e.target.closest("button, a, input")) {
+      e.preventDefault(); togglePlaced(LINE.get(st.sel).refs);
+    }
+  });
+
+  setView(st.view);
+  refresh();
+}
+init();
+</script>
+<!--FRAG-END-->
+</body>
+</html>
