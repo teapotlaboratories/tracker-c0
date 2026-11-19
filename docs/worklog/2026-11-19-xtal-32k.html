@@ -1,0 +1,160 @@
+<title>BWLC1A 32 kHz Crystal Load</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: reading column (~74ch) with side-by-side figure rows: our design on one side, the reference on the other. Same identity as the BWLC1A reports. */
+:root{
+  --paper:#f6f5f1; --panel:#ffffff; --ink:#1d2321; --muted:#5c6763; --rule:#d9dcd6;
+  --mask:#a3262a; --copper:#a8662b; --ok:#3f6b2a; --warn:#9a6a00; --bad:#a3262a;
+  --tint-bad:#f6e3e1; --tint-ok:#e7efdf; --tint-warn:#f5ecd6; --tint-cu:#f3e6d8; --code-bg:#eceee8;
+  --display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#141716; --panel:#1b1f1d; --ink:#e6e8e3; --muted:#9aa49f; --rule:#2e3431;
+  --mask:#e0675f; --copper:#d79a5e; --ok:#9cbd6e; --warn:#e0b04a; --bad:#e0675f;
+  --tint-bad:#3a2120; --tint-ok:#23301c; --tint-warn:#352c16; --tint-cu:#33271b; --code-bg:#232825; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141716; --panel:#1b1f1d; --ink:#e6e8e3; --muted:#9aa49f; --rule:#2e3431;
+  --mask:#e0675f; --copper:#d79a5e; --ok:#9cbd6e; --warn:#e0b04a; --bad:#e0675f;
+  --tint-bad:#3a2120; --tint-ok:#23301c; --tint-warn:#352c16; --tint-cu:#33271b; --code-bg:#232825; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1180px;margin:0 auto}
+.col{max-width:74ch}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.6rem;font-weight:700;margin:0 0 .4rem}
+h3{font-size:1.1rem;font-weight:600;margin-top:1.2rem}
+p{margin:.6rem 0}
+code{font-family:var(--mono);font-size:.88em;background:var(--code-bg);padding:.05em .35em;border-radius:3px}
+.eyebrow{font:500 .75rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+header.top{padding-block:44px 26px;border-bottom:1px solid var(--rule);display:grid;gap:14px}
+.lede{font-size:1.08rem;max-width:72ch}
+.answer{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px}
+.a{border:1px solid var(--rule);background:var(--panel);border-radius:4px;padding:10px 12px;border-top:3px solid var(--rule)}
+.a.bad{border-top-color:var(--bad)} .a.ok{border-top-color:var(--ok)} .a.warn{border-top-color:var(--warn)}
+.a .v{font:600 1.6rem/1.1 var(--display);font-variant-numeric:tabular-nums}
+.a .k{font-size:.86rem;color:var(--muted)}
+section{padding-block:30px 6px;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:18px;margin-top:12px;align-items:start}
+figure{margin:0;min-width:0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;background:#fff}
+figure.dark img{background:#0f1419}
+figcaption{font-size:.84rem;color:var(--muted);margin-top:6px}
+figcaption b{color:var(--ink)}
+.src{font:500 .72rem var(--mono);letter-spacing:.04em;color:var(--copper);text-transform:uppercase}
+.tbl{overflow-x:auto;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}
+th{font:600 .74rem var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--panel)}
+td.num{text-align:right;white-space:nowrap}
+tr.pick td{background:var(--tint-ok)} tr.now td{background:var(--tint-bad)}
+.pill{display:inline-block;font:500 .7rem var(--mono);padding:2px 7px;border-radius:999px;white-space:nowrap}
+.p-ok{background:var(--tint-ok);color:var(--ok)} .p-warn{background:var(--tint-warn);color:var(--warn)} .p-bad{background:var(--tint-bad);color:var(--bad)}
+.calc{background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:12px 16px;font:400 .95rem/1.7 var(--mono);overflow-x:auto;max-width:74ch}
+ul{margin:.4rem 0;padding-left:1.2rem} li{margin:.25rem 0}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">BWLC1A Rev 4 · Y1, C20, C22, R7 · ESP32-S3 RTC crystal</div>
+  <h1>Are 12 pF load capacitors right for Y1?</h1>
+  <p class="lede">No. The 32.768 kHz crystal is cut for a 12.5 pF load. With 12 pF on each side, it sees about 7.5 pF, so the sleep clock runs roughly 74 ppm fast (about 6 seconds a day). Espressif's formula with this crystal's data and this board's stray capacitance gives 22 pF. The formula sets a starting value; Espressif says to confirm it by measuring.</p>
+  <div class="answer">
+    <div class="a"><div class="v">12.5 pF</div><div class="k">load the crystal is cut for (Epson datasheet p.1)</div></div>
+    <div class="a bad"><div class="v">≈ 7.5 pF</div><div class="k">load it sees with 12 pF on each side: about +74 ppm, fast</div></div>
+    <div class="a ok"><div class="v">22 pF</div><div class="k">calculated value per side, for about 0 ppm; now in the design</div></div>
+    <div class="a warn"><div class="v">measure</div><div class="k">confirm on board 1 against GNSS time, then trim</div></div>
+  </div>
+</header>
+
+<section id="ours">
+  <h2>Your circuit</h2>
+  <div class="pair">
+    <figure><img src="../images/xtal-32k/sch_xtal.webp" alt="Main Controller sheet: Y1 32.768 kHz with C20 and C22 12 pF to GND, R7 22 ohm to GPIO15"><figcaption><b>Schematic</b> · Main Controller sheet. Y1 between GPIO15 (XTAL_32K_P, pin 19, through R7) and GPIO16 (XTAL_32K_N, pin 20). C20 and C22, 12 pF C0G, to ground.</figcaption></figure>
+    <figure class="dark"><img src="../images/xtal-32k/pcb_xtal.webp" alt="Board: Y1, C20, C22 and R7 next to the ESP32 module pins"><figcaption><b>Board</b> · front copper. The parts sit right at the module's pins, with about 3 mm of trace in total, which keeps stray capacitance low.</figcaption></figure>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Part</th><th>What it is</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Y1</td><td>Epson Q13FC1350000400 (FC-135), 32.768 kHz</td><td>CL 12.5 pF, ±20 ppm, ESR ≤ 70 kΩ</td></tr>
+      <tr><td>C20, C22</td><td>FH 0402CG120J500NT, C0G 0402</td><td>12 pF ±5 %</td></tr>
+      <tr><td>R7</td><td>Yageo RC0402FR-0722RL, series, on the GPIO15 side</td><td>22 Ω</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="ref">
+  <h2>Espressif's reference</h2>
+  <div class="col"><p>ESP32-S3 Hardware Design Guidelines, page 14, section "RTC Clock Source (Optional)". It shows a load capacitor from each crystal pin to ground, with values left as TBD, "configured according to the crystal's specification". It also requires ESR ≤ 70 kΩ, and shows an optional 5–10 MΩ parallel bias resistor that normally isn't fitted.</p></div>
+  <div class="pair">
+    <figure><img src="../images/xtal-32k/ref_esp_fig6.webp" alt="Espressif Fig. 6, ESP32-S3 schematic for the 32.768 kHz crystal, with requirements"><figcaption><span class="src">Espressif · ESP32-S3 HW design guidelines · p.14 · Fig. 6</span><br>Same topology as yours. The capacitor values are TBD, to be sized for the crystal.</figcaption></figure>
+    <div>
+      <div class="tbl"><table>
+        <thead><tr><th></th><th>Espressif Fig. 6</th><th>BWLC1A</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Crystal between XTAL_32K_P / _N</td><td>yes (GPIO15 / GPIO16)</td><td>yes (pins 19 / 20)</td><td><span class="pill p-ok">same</span></td></tr>
+          <tr><td>Capacitor to GND on each side</td><td>C17, C18: TBD, per the crystal's spec</td><td>C20, C22: 12 pF</td><td><span class="pill p-bad">too small</span></td></tr>
+          <tr><td>Crystal ESR</td><td>≤ 70 kΩ</td><td>≤ 70 kΩ (Epson p.1)</td><td><span class="pill p-ok">meets</span></td></tr>
+          <tr><td>Parallel bias resistor</td><td>5–10 MΩ, usually not fitted</td><td>not fitted</td><td><span class="pill p-ok">same</span></td></tr>
+          <tr><td>Series resistor</td><td>none</td><td>R7, 22 Ω</td><td><span class="pill p-warn">extra, harmless</span></td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted">R7 isn't in Espressif's drawing. At 22 Ω against the crystal's 70 kΩ resistance it has no measurable effect, so it can stay.</p>
+    </div>
+  </div>
+</section>
+
+<section id="formula">
+  <h2>The formula and the data</h2>
+  <div class="col"><p>Espressif gives the formula on the same page, in the section for the main 40 MHz crystal. It's general crystal-oscillator physics, so it applies to the 32 kHz crystal too: the crystal sees the two capacitors in series, plus the board's stray capacitance. Espressif doesn't give a stray value. It says to adjust after measuring: if the clock runs fast, the load is too small and the capacitors should go up.</p></div>
+  <div class="pair">
+    <figure><img src="../images/xtal-32k/ref_esp_formula.webp" alt="Espressif formula CL = C1 x C4 / (C1 + C4) + Cstray, and how to adjust"><figcaption><span class="src">Espressif · ESP32-S3 HW design guidelines · p.14</span><br>The formula, and the rule: a positive (fast) offset means increase the capacitors.</figcaption></figure>
+    <div style="display:grid;gap:18px">
+      <figure><img src="../images/xtal-32k/ref_epson_spec.webp" alt="Epson Q13FC1350000400 specifications: CL 12.5 pF, ESR 70 kOhm max, C1 3.4 fF, C0 1 pF"><figcaption><span class="src">Epson · Q13FC1350000400 datasheet · p.1</span><br>Load capacitance 12.5 pF. Motional capacitance 3.4 fF and shunt capacitance 1 pF give the ppm figures below.</figcaption></figure>
+      <figure><img src="../images/xtal-32k/ref_esp_cin.webp" alt="ESP32-S3 Table 5-4: pin capacitance 2 pF typical"><figcaption><span class="src">Espressif · ESP32-S3 datasheet · Table 5-4 · p.65</span><br>Pin capacitance 2 pF typical. The table doesn't list the crystal pins separately.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="calc">
+  <h2>The calculation</h2>
+  <div class="calc">
+    Stray per side ≈ ESP32 pin 2 pF + pads and ~1.5 mm of trace ≈ 0.4 pF  =  2.4 pF<br>
+    Pin-to-pin stray ≈ 0.3 pF (estimate)<br>
+    Load seen = (C + 2.4) / 2 + 0.3<br>
+    For 12.5 pF:  C = 2 × (12.5 − 0.3) − 2.4  ≈  22 pF<br>
+    Offset ≈ C1/2 × (1/(C0 + load) − 1/(C0 + 12.5)),  C1 = 3.4 fF,  C0 = 1 pF
+  </div>
+  <div class="col"><p>Only CL, C1, C0 and the 2 pF pin capacitance come from documents. The 0.4 pF of pads and trace and the 0.3 pF pin-to-pin are my estimates for this layout. The last column shows how much the result moves if the per-side stray is anywhere from 1.5 to 3.5 pF.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Capacitors (each)</th><th>Load the crystal sees</th><th>Clock offset</th><th>If stray is 1.5–3.5 pF</th><th>Per day</th></tr></thead>
+    <tbody>
+      <tr class="now"><td>12 pF (now)</td><td class="num">7.5 pF</td><td class="num">+74 ppm</td><td class="num">+62 … +85 ppm</td><td class="num">≈ 6.4 s fast</td></tr>
+      <tr><td>15 pF</td><td class="num">9.0 pF</td><td class="num">+44 ppm</td><td class="num">+35 … +52 ppm</td><td class="num">≈ 3.8 s fast</td></tr>
+      <tr><td>18 pF</td><td class="num">10.5 pF</td><td class="num">+22 ppm</td><td class="num">+15 … +28 ppm</td><td class="num">≈ 1.9 s fast</td></tr>
+      <tr><td>20 pF</td><td class="num">11.5 pF</td><td class="num">+10 ppm</td><td class="num">+4 … +15 ppm</td><td class="num">≈ 0.9 s fast</td></tr>
+      <tr class="pick"><td><b>22 pF</b></td><td class="num">12.5 pF</td><td class="num">0 ppm</td><td class="num">−5 … +4 ppm</td><td class="num">≈ 0 s</td></tr>
+      <tr><td>24 pF</td><td class="num">13.5 pF</td><td class="num">−9 ppm</td><td class="num">−13 … −5 ppm</td><td class="num">≈ 0.8 s slow</td></tr>
+    </tbody>
+  </table></div>
+  <div class="col"><p>The crystal's own tolerance (±20 ppm at 25 °C) adds to every row. 22 pF centres the load. Even with the stray at either end of the range, it stays within ±5 ppm of nominal before that tolerance.</p></div>
+</section>
+
+<section id="rec">
+  <h2>Change made</h2>
+  <div class="col">
+  <ul>
+    <li><b>C20 and C22 are now 22 pF:</b> FH 0402CG220J500NT, C0G 0402 ±5 %, LCSC C1555, 980,600 in stock (2026-11-19). Same series and size as the old 12 pF part: only the value and part number changed, nothing on the board moved. ERC, DRC and the production check are unchanged; the BOM changed on this line only.</li>
+    <li><b>Then measure on board 1</b>, as Espressif asks. Run the RTC from the external crystal, compare it with GNSS time over a day, and trim. If it's still fast, go up a value; if it's slow, go down.</li>
+    <li><b>Why it matters, and how much:</b> this crystal only keeps time while the ESP32 sleeps. At 12 pF, scheduled wake-ups drift by about 6 seconds a day, until the tracker re-syncs from GNSS or LTE. It doesn't stop the board working, but it's a free fix before the first order.</li>
+  </ul>
+  </div>
+</section>
+</div>

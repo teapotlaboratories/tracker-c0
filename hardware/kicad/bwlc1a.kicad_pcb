@@ -33600,7 +33600,7 @@
 				)
 			)
 		)
-		(property "Value" "12p"
+		(property "Value" "22p"
 			(at 0 1.16 0)
 			(layer "F.Fab")
 			(uuid "f5f15dc5-777c-4401-8cee-5e467b6d6889")
@@ -33611,7 +33611,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/09fe2daf22580a99fa7fea93ccb20fb7.pdf?productCode=C1547"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/09fe2daf22580a99fa7fea93ccb20fb7.pdf?productCode=C1555"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -33624,7 +33624,7 @@
 				)
 			)
 		)
-		(property "Description" "50V 12pF C0G ±5% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS"
+		(property "Description" "50V 22pF C0G ±5% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS"
 			(at 170.94 98.0186 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -33648,7 +33648,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_FH-Guangdong-Fenghua-Advanced-Tech-0402CG120J500NT_C1547.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C1555.html"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -33660,7 +33660,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C1547"
+		(property "Distributor Part Number" "C1555"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -33685,7 +33685,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402CG120J500NT"
+		(property "Manufacturer Part Number" "0402CG220J500NT"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -43339,7 +43339,7 @@
 				)
 			)
 		)
-		(property "Value" "12p"
+		(property "Value" "22p"
 			(at 0 1.16 0)
 			(layer "F.Fab")
 			(uuid "cc917e13-86b1-47fa-875f-6cc164dac33c")
@@ -43350,7 +43350,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/09fe2daf22580a99fa7fea93ccb20fb7.pdf?productCode=C1547"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/09fe2daf22580a99fa7fea93ccb20fb7.pdf?productCode=C1555"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -43363,7 +43363,7 @@
 				)
 			)
 		)
-		(property "Description" "50V 12pF C0G ±5% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS"
+		(property "Description" "50V 22pF C0G ±5% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS"
 			(at 173.0228 98.0186 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -43387,7 +43387,7 @@
 				)
 			)
 		)
-		(property "Distributor Link" "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_FH-Guangdong-Fenghua-Advanced-Tech-0402CG120J500NT_C1547.html"
+		(property "Distributor Link" "https://www.lcsc.com/product-detail/C1555.html"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -43399,7 +43399,7 @@
 				)
 			)
 		)
-		(property "Distributor Part Number" "C1547"
+		(property "Distributor Part Number" "C1555"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -43424,7 +43424,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "0402CG120J500NT"
+		(property "Manufacturer Part Number" "0402CG220J500NT"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
