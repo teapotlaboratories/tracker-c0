@@ -27,7 +27,7 @@ python3 -I "$TOOLS/make_pcbway_files.py" "$O"
 python3 -I -c "import zipfile,os,sys;o=sys.argv[1];z=zipfile.ZipFile(o+'/TeapotlabsTrackerC0_Gerber.zip','w',zipfile.ZIP_DEFLATED);[z.write(os.path.join(o,'z',f),f) for f in sorted(os.listdir(o+'/z'))];z.close()" "$O"
 cp "$O/TeapotlabsTrackerC0_BOM.csv" "$O/TeapotlabsTrackerC0_CPL.csv" "$O/TeapotlabsTrackerC0_Gerber.zip" production/
 python3 "$TOOLS/../ibom/make_ibom.py" --board "$P" --bom production/TeapotlabsTrackerC0_BOM.csv --cpl production/TeapotlabsTrackerC0_CPL.csv \
-  --out production/TeapotlabsTrackerC0_InteractiveBOM.html --title "Tracker C0 Rev 4 Interactive BOM"
+  --out production/TeapotlabsTrackerC0_InteractiveBOM.html --title "Tracker C0 Rev 5 Interactive BOM"
 # kicad-cli rewrites the project's local settings file; keep the committed copy.
 git checkout -- tracker-c0.kicad_prl 2>/dev/null || true
 rm -f '~tracker-c0.kicad_pro.lck'

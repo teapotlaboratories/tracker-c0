@@ -1,4 +1,4 @@
-Teapotlabs Tracker C0 - Revision 4
+Teapotlabs Tracker C0 - Revision 5
 
 Thickness = 1.6mm
 
@@ -16,6 +16,9 @@ Silkscreen: White
 
 Assembly: top side only (all 112 placements in the CPL are on the top).
   The bottom side carries test points, the J2 Tag-Connect pad pattern (no part) and silkscreen only.
+
+Fiducials: 3 global fiducials on the top side (FID1-FID3), 1mm bare copper in a 2mm solder mask opening.
+  Board-only: not in the BOM or the CPL.
 
 Vias: tented on both sides. No via-in-pad, no filling or capping needed.
 

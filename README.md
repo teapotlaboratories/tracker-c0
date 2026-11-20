@@ -1,6 +1,6 @@
 # Tracker C0: Low-power Cellular GPS Tracker
 
-![Tracker C0 Rev 4, 3D render](docs/images/tracker-c0-rev4-3d-iso.webp)
+![Tracker C0 Rev 5, 3D render](docs/images/tracker-c0-rev5-3d-iso.webp)
 
 Tracker C0 is a small, low-cost tracker board from Teapot Laboratories. It reports its position over LTE Cat-1 and is
 meant to run for **at least a year on one battery**. To get there it spends almost all of its time in deep sleep,
@@ -11,7 +11,7 @@ back to sleep with the modem and GNSS fully powered off.
 
 | | |
 |---|---|
-| **Revision** | Rev 4 (branch `r4`). Design complete; not yet built or measured. |
+| **Revision** | Rev 5 in progress on `main` (adds fiducials). Rev 4 (tag `rev4`) is ordered and not yet built or measured. |
 | **Controller** | Espressif ESP32-S3-MINI-1-N4R2 (U4): Wi-Fi, Bluetooth LE, USB, deep sleep with RTC wake |
 | **Cellular** | SIMCom A7670G-LABE (U1), LTE Cat-1, nano-SIM (J1) |
 | **GNSS** | Quectel L96-M33 (U3), GPS / GLONASS / Galileo / BeiDou, built-in antenna, battery-backed hot starts |
@@ -26,10 +26,10 @@ back to sleep with the modem and GNSS fully powered off.
 
 | Top | Bottom |
 |---|---|
-| ![3D render, top](docs/images/tracker-c0-rev4-3d-top.webp) | ![3D render, bottom](docs/images/tracker-c0-rev4-3d-bottom.webp) |
-| ![Front copper and silkscreen](docs/images/tracker-c0-rev4-pcb-front.webp) | ![Back copper and silkscreen](docs/images/tracker-c0-rev4-pcb-back.webp) |
+| ![3D render, top](docs/images/tracker-c0-rev5-3d-top.webp) | ![3D render, bottom](docs/images/tracker-c0-rev5-3d-bottom.webp) |
+| ![Front copper and silkscreen](docs/images/tracker-c0-rev5-pcb-front.webp) | ![Back copper and silkscreen](docs/images/tracker-c0-rev5-pcb-back.webp) |
 
-<p align="center"><img src="docs/images/tracker-c0-rev4-turntable.webp" alt="Tracker C0 Rev 4 turntable render" width="720"></p>
+<p align="center"><img src="docs/images/tracker-c0-rev5-turntable.webp" alt="Tracker C0 Rev 5 turntable render" width="720"></p>
 
 ## Architecture
 
@@ -142,7 +142,7 @@ LiPo for one year. Measure sleep and event current on the first boards before ch
 
 ## Schematic
 
-![Top-level schematic](docs/images/tracker-c0-rev4-schematic-root.webp)
+![Top-level schematic](docs/images/tracker-c0-rev5-schematic-root.webp)
 
 The KiCad 10 project is in [`hardware/kicad/`](hardware/kicad): the root sheet `tracker-c0.kicad_sch` plus eight
 sub-sheets (Power, Battery, USB and Charger, Main Controller, Cellular, GNSS, Sensors, Antenna), the board
@@ -174,6 +174,14 @@ python3 hardware/tools/fab/check_production.py   # board, BOM, CPL and PCBWay fi
 
 The production check for PCBWay (BOM and CPL verification, board-edge and stencil fixes, part swaps) is in
 [`docs/worklog/2026-11-19-pcbway-readiness.html`](docs/worklog/2026-11-19-pcbway-readiness.html).
+
+## What changed in Rev 5 (in progress)
+
+- **Fiducials:** three global fiducials on the top side (FID1-FID3: 1 mm copper in a 2 mm mask opening) for
+  pick-and-place alignment. They are board-only, so the BOM and CPL are unchanged.
+- **Board colour:** the stack-up mask colour is set to red, so KiCad's 3D view matches the boards as ordered.
+
+The Rev 4 files as ordered from PCBWay are tagged `rev4`.
 
 ## What changed in Rev 4
 

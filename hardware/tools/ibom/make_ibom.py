@@ -171,7 +171,7 @@ def main():
     ap.add_argument('--bom', required=True)
     ap.add_argument('--cpl', required=True)
     ap.add_argument('--out', required=True)
-    ap.add_argument('--title', default='Tracker C0 Rev 4 Interactive BOM')
+    ap.add_argument('--title', default='Tracker C0 Rev 5 Interactive BOM')
     ap.add_argument('--fragment', action='store_true')
     a = ap.parse_args()
 
