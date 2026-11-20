@@ -7,9 +7,7 @@ meant to run for **at least a year on one battery**. To get there it spends almo
 wakes up when the accelerometer feels movement, takes a GNSS fix, sends a report over the cellular network, and goes
 back to sleep with the modem and GNSS fully powered off.
 
-> **Formerly BWLC1A.** The project and this repository were renamed to Tracker C0 (`tracker-c0`) on 2026-11-19.
-> The dated reports in [`docs/worklog/`](docs/worklog) and the Git history before that date use the old name and
-> the old file names (`bwlc1a.*`, `TeapotlabsBWLC1A_*`). The old GitHub URL redirects here.
+> Formerly BWLC1A; the old GitHub URL redirects here.
 
 | | |
 |---|---|
