@@ -5,7 +5,7 @@ Usage: python3 hardware/tools/fab/check_production.py
 Needs KiCad 10 (pcbnew Python + kicad-cli). Checks, and exits non-zero on any issue:
   - every fitted part (schematic: MPN set, Value != DNP, not DNP/excluded) is in the BOM exactly once, and
     nothing else is; Qty matches the reference count; no empty Manufacturer / MPN / Value / Footprint /
-    Distributor fields;
+    Distributor fields; every Distributor Link is that distributor's product page for the part (no search links);
   - BOM MPN, value and footprint agree with the schematic and the board;
   - the CPL has one row per BOM part, its position/rotation/side match the board in the drill/place-file
     origin frame (the Gerber frame), and every point lies inside the board outline;
@@ -20,6 +20,13 @@ import pcbnew
 KICAD = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'kicad'))
 PROD = os.path.join(KICAD, 'production', 'TeapotlabsTrackerC0')
 FAB_LAYERS = {'F_Cu', 'In1_Cu', 'In2_Cu', 'B_Cu', 'F_Paste', 'B_Paste', 'F_SilkS', 'B_SilkS', 'F_Mask', 'B_Mask', 'Edge_Cuts'}
+# Distributor Link must be a product page (one part), per distributor; anything search-like fails
+PRODUCT_PAGE = {
+    'lcsc': re.compile(r'^https://(www\.)?lcsc\.com/product-detail/[^?#]+$'),
+    'mouser': re.compile(r'^https://(www\.)?mouser\.com/ProductDetail/[^/]+/[^/?#]+'),
+    'digikey': re.compile(r'^https://(www\.)?digikey\.com/en/products/detail/[^/]+/[^/]+/\d+$'),
+}
+SEARCH_LINK = re.compile(r'(?i)/search|/result|[?&](q|k|keyword|keywords)=|/products/filter/|/c/')
 
 
 def main():
@@ -82,6 +89,17 @@ def main():
         for c in ('Manufacturer', 'Manufacturer Part Number', 'Value', 'Footprint', 'Distributor', 'Distributor Part Number'):
             if not row[c].strip():
                 I('BOM', 'line %s (%s): empty %s' % (row['Id'], row['Reference'], c))
+        # rule (owner, 2026-11-22): every Distributor Link is the part's product page, never a search or category page
+        link, dist = row.get('Distributor Link', '').strip(), row['Distributor'].strip().lower().replace('-', '')
+        page = PRODUCT_PAGE.get(dist)
+        if not link:
+            I('BOM links', 'line %s (%s): empty Distributor Link' % (row['Id'], row['Reference']))
+        elif SEARCH_LINK.search(link):
+            I('BOM links', 'line %s (%s): search link, not a product page: %s' % (row['Id'], row['Reference'], link))
+        elif page is None:
+            I('BOM links', 'line %s (%s): no product-page pattern for distributor %r' % (row['Id'], row['Reference'], row['Distributor']))
+        elif not page.search(link):
+            I('BOM links', 'line %s (%s): not a %s product page: %s' % (row['Id'], row['Reference'], row['Distributor'], link))
     info.append('board footprints %d, fitted %d, BOM lines %d / parts %d, CPL rows %d'
                 % (len(fps), len(need), len(bom), len(bomref), len(cpl)))
     for x in sorted(need - set(bomref)):
