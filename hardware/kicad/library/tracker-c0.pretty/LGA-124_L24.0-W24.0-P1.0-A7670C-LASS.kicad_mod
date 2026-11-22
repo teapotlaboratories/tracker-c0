@@ -673,7 +673,7 @@
 	)
 	(fp_line
 		(start 4 11.3)
-		(end 4 13.2)
+		(end 4 12.98)
 		(stroke
 			(width 0.6)
 			(type default)
